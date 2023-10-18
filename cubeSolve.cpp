@@ -1990,7 +1990,46 @@ void cubeSolve::solveFirstLayer()
                     reverseUpTurn();
                     reverseRightTurn();
                 }
-                //up 4 ifs are for front face we have to convert to all 4 sides
+
+                else if (up[8] == 'w' && !isBottomLeftSolved)
+                {
+                    // L U L'
+                    cout << "L U L'" << endl;
+                    leftTurn();
+                    upTurn();
+                    reverseLeftTurn();
+                }
+
+                else if (up[6] == 'w' && !isBottomRightSolved)
+                {
+                    // R' U' R
+                    cout << "R' U' R" << endl;
+                    reverseRightTurn();
+                    reverseUpTurn();
+                    rightTurn();
+                }
+
+                else if (up[2] == 'w' && !isBottomRightSolved)
+                {
+                    //R' U R
+                    cout << "R' U R" << endl;
+                    reverseRightTurn();
+                    upTurn();
+                    rightTurn();
+                }
+
+                else if (up[0] == 'w' && !isBottomLeftSolved)
+                {
+                    // L U' L'
+                    cout << "L U' L'" << endl;
+                    leftTurn();
+                    reverseUpTurn();
+                    reverseLeftTurn();
+                }
+
+                // covered all up face white piece cases
+                // maybe i should i've checked if there is white faced piece 
+                // but wrongly placed because i could get it to third layer easily
             }
         }
         
