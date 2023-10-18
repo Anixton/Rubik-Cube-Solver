@@ -1953,9 +1953,44 @@ void cubeSolve::solveFirstLayer()
             // in up side of the cube
             // put the white face on top of the empty corner and 
             // do: R U' R OR L' U L' (according to its place)
+            // TopLeft: R U R'
+            // TopRight: L' U' L
+            // BottomLeft: L' U L
+            // BottomRight: R U' R'
             else
             {
-                
+                if (up[0] == 'w' && !isTopRightSolved)
+                {
+                    cout << "R U R'" << endl;
+                    rightTurn();
+                    upTurn();
+                    reverseRightTurn();
+                }
+
+                else if (up[2] == 'w' && !isTopLeftSolved)
+                {
+                    cout << "L' U' L" << endl;
+                    reverseLeftTurn();
+                    reverseUpTurn();
+                    leftTurn();
+                }
+
+                else if (up[6] == 'w' && !isTopLeftSolved)
+                {
+                    cout << "L' U L" << endl;
+                    reverseLeftTurn();
+                    upTurn();
+                    leftTurn();
+                }
+
+                else if (up[8] == 'w' && !isTopRightSolved)
+                {
+                    cout << "R U' R'" << endl;
+                    rightTurn();
+                    reverseUpTurn();
+                    reverseRightTurn();
+                }
+                //up 4 ifs are for front face we have to convert to all 4 sides
             }
         }
         
