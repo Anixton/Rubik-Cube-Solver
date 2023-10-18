@@ -2027,9 +2027,93 @@ void cubeSolve::solveFirstLayer()
                     reverseLeftTurn();
                 }
 
-                // covered all up face white piece cases
-                // maybe i should i've checked if there is white faced piece 
-                // but wrongly placed because i could get it to third layer easily
+                // else if(front[6]=='w')
+                // {
+                //    L' U L
+                // }
+                //
+                // else if(front[8]=='w')
+                // {
+                //      R U' R'
+                // }
+                // 
+                // do above functions for all 4 sides
+                //
+
+                else if (front[6] == 'w')
+                {
+                    cout << "L' U L" << endl;
+                    reverseLeftTurn();
+                    upTurn();
+                    leftTurn();
+                }
+
+                else if (front[8] == 'w')
+                {
+                    cout << "R U' R'" << endl;
+                    rightTurn();
+                    reverseUpTurn();
+                    reverseRightTurn();
+                }
+
+                else if (back[6] == 'w')
+                {
+                    cout << "R' U R" << endl;
+                    reverseRightTurn();
+                    upTurn();
+                    rightTurn();
+                }
+
+                else if (back[8] == 'w')
+                {
+                    cout << "L U' L'" << endl;
+                    leftTurn();
+                    reverseUpTurn();
+                    reverseLeftTurn();
+                }
+
+                else if (left[6] == 'w')
+                {
+                    cout << "B' U B" << endl;
+                    reverseBackTurn();
+                    upTurn();
+                    backTurn();
+                }
+
+                else if (left[8] == 'w')
+                {
+                    cout << "F U' F'" << endl;
+                    frontTurn();
+                    reverseUpTurn();
+                    reverseFrontTurn();
+                }
+
+                else if (right[6] == 'w')
+                {
+                    cout << "F' U F" << endl;
+                    reverseFrontTurn();
+                    upTurn();
+                    frontTurn();
+                }
+                
+                else if (right[8] == 'w')
+                {
+                    cout << "B U' B'" << endl;
+                    backTurn();
+                    reverseUpTurn();
+                    reverseBackTurn();
+                }
+
+                // these cases for white pieces which are on 
+                // front,back,left,right
+                //
+                // now we need figure out for white pieces 
+                // looking downward but wrongly positioned
+                // if(down[2]=='w' && !isTopRightSolved)
+                // {
+                //   cout<<"R U R'"<<endl;
+                // }
+
             }
         }
         
