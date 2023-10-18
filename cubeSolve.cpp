@@ -1499,7 +1499,7 @@ void cubeSolve::solveFirstLayer()
      // possbile wrong places where the corner pieces can be:
      // 1) in wrong corner facing one of the front,back,left,right sides
      // 2) in wrong corner facing downward
-     // 3) it may be in third layer but looking in wrong corner
+     // 3) it may be in third layer but looking in wrong corner ->solved
      // 
      // 4) in up side of the cube
      // 4: put the white face on top of the empty corner and 
@@ -1555,6 +1555,7 @@ void cubeSolve::solveFirstLayer()
             leftTurn();
             cout << "L' U L" << endl;
             ++whiteCornerCount;
+            isTopLeftSolved = true;
         }
 
         else if (back[0] == 'w' && up[2] == right[4] && right[2] == front[4])
@@ -1565,6 +1566,7 @@ void cubeSolve::solveFirstLayer()
             frontTurn();
             cout << "F' U F" << endl;
             ++whiteCornerCount;
+            isTopRightSolved = true;
         }
 
         else if (left[0] == 'w' && up[0] == back[4] && back[2] == right[4])
@@ -1575,6 +1577,7 @@ void cubeSolve::solveFirstLayer()
             rightTurn();
             cout << "R' U R" << endl;
             ++whiteCornerCount;
+            isBottomRightSolved = true;
         }
 
         else if (front[0] == 'w' && up[6] == left[4] && left[2] == back[4])
@@ -1585,6 +1588,7 @@ void cubeSolve::solveFirstLayer()
             backTurn();
             cout << "B' U B" << endl;
             ++whiteCornerCount;
+            isBottomLeftSolved = true;
         }
         
         // 1 right directions
@@ -1596,6 +1600,7 @@ void cubeSolve::solveFirstLayer()
             reverseRightTurn();
             cout << "R U' R'" << endl;
             ++whiteCornerCount;
+            isTopRightSolved = true;
         }
 
         else if (back[2] == 'w' && up[0] == left[4] && left[0] == front[4])
@@ -1606,6 +1611,7 @@ void cubeSolve::solveFirstLayer()
             reverseFrontTurn();
             cout << "F U' F'" << endl;
             ++whiteCornerCount;
+            isTopLeftSolved = true;
         }
 
         else if (right[2] == 'w' && up[2] == back[4] && back[0] == left[4])
@@ -1616,6 +1622,7 @@ void cubeSolve::solveFirstLayer()
             reverseLeftTurn();
             cout << "L U' L'" << endl;
             ++whiteCornerCount;
+            isBottomLeftSolved = true;
         }
 
         else if (front[2] == 'w' && up[8] == right[4] && right[0] == back[4])
@@ -1626,6 +1633,7 @@ void cubeSolve::solveFirstLayer()
             reverseBackTurn();
             cout << "B U' B'" << endl;
             ++whiteCornerCount;
+            isBottomRightSolved = true;
         }
         //2 step l-r directions
         // if we couldn't do any algorithms above and still have white side
@@ -1648,6 +1656,7 @@ void cubeSolve::solveFirstLayer()
                 leftTurn();
                 cout << "U L' U L" << endl;
                 ++whiteCornerCount;
+                isTopLeftSolved = true;
                 continue;
             }
 
@@ -1659,6 +1668,7 @@ void cubeSolve::solveFirstLayer()
                 frontTurn();
                 cout << "U F' U F" << endl;
                 ++whiteCornerCount;
+                isTopRightSolved = true;
                 continue;
             }
 
@@ -1670,6 +1680,7 @@ void cubeSolve::solveFirstLayer()
                 rightTurn();
                 cout << "U R' U R" << endl;
                 ++whiteCornerCount;
+                isBottomRightSolved = true;
                 continue;
             }
 
@@ -1681,6 +1692,7 @@ void cubeSolve::solveFirstLayer()
                 backTurn();
                 cout << "U B' U B" << endl;
                 ++whiteCornerCount;
+                isBottomLeftSolved = true;
                 continue;
             }
 
@@ -1693,6 +1705,7 @@ void cubeSolve::solveFirstLayer()
                 reverseRightTurn();
                 cout << "U R U' R'" << endl;
                 ++whiteCornerCount;
+                isTopRightSolved = true;
                 continue;
             }
 
@@ -1704,6 +1717,7 @@ void cubeSolve::solveFirstLayer()
                 reverseFrontTurn();
                 cout << "U F U' F'" << endl;
                 ++whiteCornerCount;
+                isTopLeftSolved = true;
                 continue;
             }
 
@@ -1715,6 +1729,7 @@ void cubeSolve::solveFirstLayer()
                 reverseLeftTurn();
                 cout << "U L U' L'" << endl;
                 ++whiteCornerCount;
+                isBottomLeftSolved = true;
                 continue;
             }
 
@@ -1726,6 +1741,7 @@ void cubeSolve::solveFirstLayer()
                 reverseBackTurn();
                 cout << "U B U' B'" << endl;
                 ++whiteCornerCount;
+                isBottomRightSolved = true;
                 continue;
             }
 
@@ -1742,6 +1758,7 @@ void cubeSolve::solveFirstLayer()
                 leftTurn();
                 cout << "U' L' U L" << endl;
                 ++whiteCornerCount;
+                isTopLeftSolved = true;
                 continue;
             }
 
@@ -1753,6 +1770,7 @@ void cubeSolve::solveFirstLayer()
                 frontTurn();
                 cout << "U' F' U F" << endl;
                 ++whiteCornerCount;
+                isTopRightSolved = true;
                 continue;
             }
 
@@ -1764,6 +1782,7 @@ void cubeSolve::solveFirstLayer()
                 rightTurn();
                 cout << "U' R' U R" << endl;
                 ++whiteCornerCount;
+                isBottomRightSolved = true;
                 continue;
             }
 
@@ -1775,6 +1794,7 @@ void cubeSolve::solveFirstLayer()
                 backTurn();
                 cout << "U' B' U B" << endl;
                 ++whiteCornerCount;
+                isBottomLeftSolved = true;
                 continue;
             }
 
@@ -1787,6 +1807,7 @@ void cubeSolve::solveFirstLayer()
                 reverseRightTurn();
                 cout << "U' R U' R'" << endl;
                 ++whiteCornerCount;
+                isTopRightSolved = true;
                 continue;
             }
 
@@ -1798,6 +1819,7 @@ void cubeSolve::solveFirstLayer()
                 reverseFrontTurn();
                 cout << "U' F U' F'" << endl;
                 ++whiteCornerCount;
+                isTopLeftSolved = true;
                 continue;
             }
 
@@ -1809,6 +1831,7 @@ void cubeSolve::solveFirstLayer()
                 reverseLeftTurn();
                 cout << "U' L U' L'" << endl;
                 ++whiteCornerCount;
+                isBottomLeftSolved = true;
                 continue;
             }
 
@@ -1820,6 +1843,7 @@ void cubeSolve::solveFirstLayer()
                 reverseBackTurn();
                 cout << "U' B U' B'" << endl;
                 ++whiteCornerCount;
+                isBottomRightSolved = true;
                 continue;
             }
 
@@ -1834,6 +1858,7 @@ void cubeSolve::solveFirstLayer()
                 leftTurn();
                 cout << "U' U' L' U L" << endl;
                 ++whiteCornerCount;
+                isTopLeftSolved = true;
                 continue;
             }
 
@@ -1845,6 +1870,7 @@ void cubeSolve::solveFirstLayer()
                 frontTurn();
                 cout << "U' U' F' U F" << endl;
                 ++whiteCornerCount;
+                isTopRightSolved = true;
                 continue;
             }
 
@@ -1856,6 +1882,7 @@ void cubeSolve::solveFirstLayer()
                 rightTurn();
                 cout << "U' U' R' U R" << endl;
                 ++whiteCornerCount;
+                isBottomRightSolved = true;
                 continue;
             }
 
@@ -1867,6 +1894,7 @@ void cubeSolve::solveFirstLayer()
                 backTurn();
                 cout << "U' U' B' U B" << endl;
                 ++whiteCornerCount;
+                isBottomLeftSolved = true;
                 continue;
             }
 
@@ -1879,6 +1907,7 @@ void cubeSolve::solveFirstLayer()
                 reverseRightTurn();
                 cout << "U' U' R U' R'" << endl;
                 ++whiteCornerCount;
+                isTopRightSolved = true;
                 continue;
             }
 
@@ -1890,6 +1919,7 @@ void cubeSolve::solveFirstLayer()
                 reverseFrontTurn();
                 cout << "U' U' F U' F'" << endl;
                 ++whiteCornerCount;
+                isTopLeftSolved = true;
                 continue;
             }
 
@@ -1901,6 +1931,7 @@ void cubeSolve::solveFirstLayer()
                 reverseLeftTurn();
                 cout << "U' U' L U' L'" << endl;
                 ++whiteCornerCount;
+                isBottomLeftSolved = true;
                 continue;
             }
 
@@ -1912,11 +1943,16 @@ void cubeSolve::solveFirstLayer()
                 reverseBackTurn();
                 cout << "U' U' B U' B'" << endl;
                 ++whiteCornerCount;
+                isBottomRightSolved = true;
                 continue;
             }
 
             // we considered every case that includes third layer white piece
             // but what to do if there is no white piece in the third layer?
+            // 
+            // in up side of the cube
+            // put the white face on top of the empty corner and 
+            // do: R U' R OR L' U L' (according to its place)
             else
             {
                 
