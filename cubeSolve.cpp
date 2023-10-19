@@ -2104,16 +2104,42 @@ void cubeSolve::solveFirstLayer()
                     reverseBackTurn();
                 }
 
-                // these cases for white pieces which are on 
-                // front,back,left,right
-                //
-                // now we need figure out for white pieces 
-                // looking downward but wrongly positioned
-                // if(down[2]=='w' && !isTopRightSolved)
-                // {
-                //   cout<<"R U R'"<<endl;
-                // }
+                else if (down[0] == 'w' && !isTopLeftSolved)
+                {
+                    cout << "L' U' L" << endl;
+                    reverseLeftTurn();
+                    reverseUpTurn();
+                    leftTurn();
+                }
 
+                else if (down[2] == 'w' && !isTopRightSolved)
+                {
+                    cout << "R U R'" << endl;
+                    rightTurn();
+                    upTurn();
+                    reverseRightTurn();
+                }
+
+                else if (down[6] == 'w' && !isBottomLeftSolved)
+                {
+                    cout << "L U L'" << endl;
+                    leftTurn();
+                    upTurn();
+                    reverseLeftTurn();
+                }
+
+                else if (down[8] == 'w' && !isBottomRightSolved)
+                {
+                    cout << "R' U' R" << endl;
+                    reverseRightTurn();
+                    reverseUpTurn();
+                    rightTurn();
+                }
+
+                else
+                {
+                    cout << "ERROR:2141" << endl;
+                }
             }
         }
         
