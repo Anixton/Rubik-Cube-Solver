@@ -2182,7 +2182,57 @@ void cubeSolve::solveWhiteCross()
 
     while (correctWhiteEdgePieceCount != 4)
     {
+        if (up[1] == 'w')
+        {
+            const char current = back[1];
 
+            switch (current)
+            {
+            case 'b':
+                cout << "B B"<<endl;
+                backTurn();
+                backTurn();
+                break;
+            case 'r':
+                cout << "U' L L" << endl;
+                reverseUpTurn();
+                leftTurn();
+                leftTurn();
+                break;
+            case 'o':
+                cout << "U R R" << endl;
+                upTurn();
+                rightTurn();
+                rightTurn();
+                break;
+            case 'g':
+                cout << "U U R R" << endl;
+                upTurn();
+                upTurn();
+                rightTurn();
+                rightTurn();
+                break;
+            default:
+                cout << "ERROR:2216" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        if (up[3] == 'w')
+        {
+            correctWhiteEdgePieceCount++;
+        }
+
+        if (up[5] == 'w')
+        {
+            correctWhiteEdgePieceCount++;
+        }
+
+        if (up[7] == 'w')
+        {
+            correctWhiteEdgePieceCount++;
+        }
     }
 
     cout << endl;
