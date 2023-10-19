@@ -2142,10 +2142,49 @@ void cubeSolve::solveFirstLayer()
                 }
             }
         }
-        
-
-
     }
     cout << endl;
     cout << "First Layer Solved !" << endl;
+}
+
+void cubeSolve::solveWhiteCross()
+{
+    // variable initialization
+    int correctWhiteEdgePieceCount = 0;
+    bool isLeftEdgeSolved = false;
+    bool isRightEdgeSolved = false;
+    bool isTopEdgeSolved = false;
+    bool isBottomEdgeSolved = false;
+
+    if (down[1] == 'w' && front[7] == front[4])
+    {
+        isTopEdgeSolved = true;
+        correctWhiteEdgePieceCount++;
+    }
+
+    if (down[3] == 'w' && left[7] == left[4])
+    {
+        isLeftEdgeSolved = true;
+        correctWhiteEdgePieceCount++;
+    }
+
+    if (down[5] == 'w' && right[7] == right[4])
+    {
+        isRightEdgeSolved = true;
+        correctWhiteEdgePieceCount++;
+    }
+
+    if (down[7] == 'w' && back[7] == back[4])
+    {
+        isBottomEdgeSolved = true;
+        correctWhiteEdgePieceCount++;
+    }
+
+    while (correctWhiteEdgePieceCount != 4)
+    {
+
+    }
+
+    cout << endl;
+    cout << "White Cross Solved!" << endl;
 }
