@@ -2188,51 +2188,158 @@ void cubeSolve::solveWhiteCross()
 
             switch (current)
             {
-            case 'b':
-                cout << "B B"<<endl;
-                backTurn();
-                backTurn();
-                break;
-            case 'r':
-                cout << "U' L L" << endl;
-                reverseUpTurn();
-                leftTurn();
-                leftTurn();
-                break;
-            case 'o':
-                cout << "U R R" << endl;
-                upTurn();
-                rightTurn();
-                rightTurn();
-                break;
-            case 'g':
-                cout << "U U R R" << endl;
-                upTurn();
-                upTurn();
-                rightTurn();
-                rightTurn();
-                break;
-            default:
-                cout << "ERROR:2216" << endl;
-                break;
+                case 'b':
+                    cout << "B B"<<endl;
+                    backTurn();
+                    backTurn();
+                    break;
+                case 'r':
+                    cout << "U' L L" << endl;
+                    reverseUpTurn();
+                    leftTurn();
+                    leftTurn();
+                    break;
+                case 'o':
+                    cout << "U R R" << endl;
+                    upTurn();
+                    rightTurn();
+                    rightTurn();
+                    break;
+                case 'g':
+                    cout << "U U R R" << endl;
+                    upTurn();
+                    upTurn();
+                    rightTurn();
+                    rightTurn();
+                    break;
+                default:
+                    cout << "ERROR:2216" << endl;
+                    break;
             }
             correctWhiteEdgePieceCount++;
         }
 
-        if (up[3] == 'w')
+        else if (up[3] == 'w')
         {
+            const char current = left[1];
+            switch (current)
+            {
+                case 'b':
+                    cout << "U B B" << endl;
+                    upTurn();
+                    backTurn();
+                    backTurn();
+                    break;
+
+                case 'r':
+                    cout << "L L" << endl;
+                    leftTurn();
+                    leftTurn();
+                    break;
+
+                case 'o':
+                    cout << "U U R R" << endl;
+                    upTurn();
+                    upTurn();
+                    rightTurn();
+                    rightTurn();
+                    break;
+
+                case 'g':
+                    cout << "U' R R" << endl;
+                    reverseUpTurn();
+                    rightTurn();
+                    rightTurn();
+                    break;
+
+                default:
+                    cout << "ERROR:2257" << endl;
+                    break;
+            }
             correctWhiteEdgePieceCount++;
         }
 
-        if (up[5] == 'w')
+        else if (up[5] == 'w')
         {
+            const char current = right[1];
+            switch (current)
+            {
+                case 'b':
+                    cout << "U' B B" << endl;
+                    reverseUpTurn();
+                    backTurn();
+                    backTurn();
+                    break;
+
+                case 'r':
+                    cout << "U U L L" << endl;
+                    upTurn();
+                    upTurn();
+                    leftTurn();
+                    leftTurn();
+                    break;
+
+                case 'o':
+                    cout << "R R" << endl;
+                    rightTurn();
+                    rightTurn();
+                    break;
+
+                case 'g':
+                    cout << "U F F" << endl;
+                    upTurn();
+                    frontTurn();
+                    frontTurn();
+                    break;
+
+                default:
+                    cout << "ERROR:2296" << endl;
+                    break;
+            }
             correctWhiteEdgePieceCount++;
         }
 
-        if (up[7] == 'w')
+        else if (up[7] == 'w')
         {
+            const char current = down[1];
+            switch (current)
+            {
+                case 'b':
+                    cout << "U U B B" << endl;
+                    upTurn();
+                    upTurn();
+                    backTurn();
+                    backTurn();
+                    break;
+
+                case 'r':
+                    cout << "U L L" << endl;
+                    upTurn();
+                    leftTurn();
+                    leftTurn();
+                    break;
+
+                case 'o':
+                    cout << "U' R R" << endl;
+                    reverseUpTurn();
+                    rightTurn();
+                    rightTurn();
+                    break;
+
+                case 'g':
+                    cout << "F F" << endl;
+                    frontTurn();
+                    frontTurn();
+                    break;
+
+                default:
+                    cout << "ERROR:2336" << endl;
+                    break;
+            }
             correctWhiteEdgePieceCount++;
         }
+
+
     }
 
     cout << endl;
