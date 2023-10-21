@@ -2179,6 +2179,9 @@ void cubeSolve::solveWhiteCross()
         isBottomEdgeSolved = true;
         correctWhiteEdgePieceCount++;
     }
+    // i need to add operations for pieces
+    // which starts looking downward but
+    // wrongly positioned.
 
     while (correctWhiteEdgePieceCount != 4)
     {
@@ -2339,7 +2342,318 @@ void cubeSolve::solveWhiteCross()
             correctWhiteEdgePieceCount++;
         }
 
+        // adding cases for second layer pieces
+        else if (front[3] == 'w')
+        {
+            const char current = left[5];
+            switch (current)
+            {
+                case 'b':
+                    cout << "D L D'" << endl;
+                    downTurn();
+                    leftTurn();
+                    reverseDownTurn();
+                    break;
+                case 'r':
+                    cout << "L" << endl;
+                    leftTurn();
+                    break;
+                case 'o':
+                    cout << "D D L D' D'" << endl;
+                    downTurn();
+                    downTurn();
+                    leftTurn();
+                    reverseDownTurn();
+                    reverseDownTurn();
+                    break;
+                case 'g':
+                    cout << "D' L D" << endl;
+                    reverseDownTurn();
+                    leftTurn();
+                    downTurn();
+                    break;
+                default:
+                    cout << "ERROR:2376" << endl;
+                    break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
 
+        else if (front[5] == 'w')
+        {
+            const char current = right[3];
+            switch (current)
+            {
+                case 'b':
+                    cout << "D' R' D" << endl;
+                    reverseDownTurn();
+                    reverseRightTurn();
+                    downTurn();
+                    break;
+                case 'r':
+                    cout << "D D R' D D" << endl;
+                    downTurn();
+                    downTurn();
+                    reverseRightTurn();
+                    downTurn();
+                    downTurn();
+                    break;
+                case 'o':
+                    cout << "R'" << endl;
+                    reverseRightTurn();
+                    break;
+                case 'g':
+                    cout << "D R' D'" << endl;
+                    downTurn();
+                    reverseRightTurn();
+                    reverseDownTurn();
+                    break;
+                default:
+                    cout << "ERROR:2412" << endl;
+                    break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (back[3] == 'w')
+        {
+            const char current = right[5];
+            switch (current)
+            {
+                case 'b':
+                    cout << "D' R D" << endl;
+                    reverseDownTurn();
+                    rightTurn();
+                    downTurn();
+                    break;
+
+                case 'r':
+                    cout << "D' D' R D D" << endl;
+                    reverseDownTurn();
+                    reverseDownTurn();
+                    rightTurn();
+                    downTurn();
+                    downTurn();
+                    break;
+
+                case 'o':
+                    cout << "R" << endl;
+                    rightTurn();
+                    break;
+
+                case 'g':
+                    cout << "D R D'" << endl;
+                    downTurn();
+                    rightTurn();
+                    reverseDownTurn();
+                    break;
+
+                default:
+                    cout << "ERROR:2452" << endl;
+                    break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (back[5] == 'w')
+        {
+            const char current = left[3];
+            switch (current)
+            {
+                case 'b':
+                    cout << "D L' D'" << endl;
+                    downTurn();
+                    reverseLeftTurn();
+                    reverseDownTurn();
+                    break;
+                case 'r':
+                    cout << "L'" << endl;
+                    reverseLeftTurn();
+                    break;
+                case 'o':
+                    cout << "D D L' D' D'" << endl;
+                    downTurn();
+                    downTurn();
+                    reverseLeftTurn();
+                    reverseDownTurn();
+                    reverseDownTurn();
+                    break;
+                case 'g':
+                    cout << "D' L' D" << endl;
+                    reverseDownTurn();
+                    reverseLeftTurn();
+                    downTurn();
+                    break;
+                default:
+                    cout << "ERROR:2488" << endl;
+                    break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (left[3] == 'w')
+        {
+            const char current = back[5];
+            switch (current)
+            {
+                case 'b':
+                    cout << "B" << endl;
+                    backTurn();
+                    break;
+
+                case 'r':
+                    cout << "D' B D" << endl;
+                    reverseDownTurn();
+                    backTurn();
+                    downTurn();
+                    break;
+
+                case 'o':
+                    cout << "D  B  D'" << endl;
+                    downTurn();
+                    backTurn();
+                    reverseDownTurn();
+                    break;
+
+                case 'g':
+                    cout << "D' D' B D D" << endl;
+                    reverseDownTurn();
+                    reverseDownTurn();
+                    backTurn();
+                    downTurn();
+                    downTurn();
+                    break;
+
+                default:
+                    cout << "ERROR:2528" << endl;
+                    break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (left[5] == 'w')
+        {
+            const char current = front[3];
+            switch (current)
+            {
+                case 'b':
+                    cout << "D D L' D' D'" << endl;
+                    downTurn();
+                    downTurn();
+                    reverseLeftTurn();
+                    reverseDownTurn();
+                    reverseDownTurn();
+                    break;
+
+                case 'r':
+                    cout << "D F' D'" << endl;
+                    downTurn();
+                    reverseFrontTurn();
+                    reverseDownTurn();
+                    break;
+
+                case 'o':
+                    cout << "D' F' D" << endl;
+                    reverseDownTurn();
+                    reverseFrontTurn();
+                    downTurn();
+                    break;
+
+                case 'g':
+                    cout << "F'" << endl;
+                    reverseFrontTurn();
+                    break;
+
+                default:
+                    cout << "ERROR:2568" << endl;
+                    break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (right[3] == 'w')
+        {
+            const char current = front[5];
+            switch (current)
+            {
+                case 'b':
+                    cout << "D' D' F D D" << endl;
+                    reverseDownTurn();
+                    reverseDownTurn();
+                    frontTurn();
+                    downTurn();
+                    downTurn();
+                    break;
+
+                case 'r':
+                    cout << "D F D'" << endl;
+                    downTurn();
+                    frontTurn();
+                    reverseDownTurn();
+                    break;
+
+                case 'o':
+                    cout << "D' F D" << endl;
+                    reverseDownTurn();
+                    frontTurn();
+                    downTurn();
+                    break;
+
+                case 'g':
+                    cout << "F" << endl;
+                    frontTurn();
+                    break;
+
+                default:
+                    cout << "ERROR:2606" << endl;
+                    break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (right[5] == 'w')
+        {
+            const char current = back[3];
+            switch (current)
+            {
+                case 'b':
+                    cout << "B'" << endl;
+                    reverseBackTurn();
+                    break;
+
+                case 'r':
+                    cout << "D' B' D" << endl;
+                    reverseDownTurn();
+                    reverseBackTurn();
+                    downTurn();
+                    break;
+
+                case 'o':
+                    cout << "D B' D'" << endl;
+                    downTurn();
+                    reverseBackTurn();
+                    reverseDownTurn();
+                    break;
+
+                case 'g':
+                    cout << "D D B' D D" << endl;
+                    downTurn();
+                    downTurn();
+                    reverseBackTurn();
+                    downTurn();
+                    downTurn();
+                    break;
+
+                default:
+                    cout << "ERROR:2648" << endl;
+                    break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        // if front[1]=='w' 
+        // { if up[7]==left[4]->turn F'
+        // else turn F
     }
 
     cout << endl;
