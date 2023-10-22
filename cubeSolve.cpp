@@ -2796,5 +2796,34 @@ void cubeSolve::solveWhiteCross()
 
 void cubeSolve::setCube(vector<vector<char>> currentValues)
 {
+    for (int i = 0; i < 9; i++)
+    {
+        front[i] = currentValues[0][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        back[i] = currentValues[1][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        left[i] = currentValues[2][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        right[i] = currentValues[3][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        up[i] = currentValues[4][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        down[i] = currentValues[5][i];
+    }
 
 }
