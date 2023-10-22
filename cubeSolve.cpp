@@ -2151,37 +2151,63 @@ void cubeSolve::solveWhiteCross()
 {
     // variable initialization
     int correctWhiteEdgePieceCount = 0;
-    bool isLeftEdgeSolved = false;
+    /*bool isLeftEdgeSolved = false;
     bool isRightEdgeSolved = false;
     bool isTopEdgeSolved = false;
-    bool isBottomEdgeSolved = false;
+    bool isBottomEdgeSolved = false;*/
 
     if (down[1] == 'w' && front[7] == front[4])
     {
-        isTopEdgeSolved = true;
+        //isTopEdgeSolved = true;
         correctWhiteEdgePieceCount++;
     }
 
     if (down[3] == 'w' && left[7] == left[4])
     {
-        isLeftEdgeSolved = true;
+        //isLeftEdgeSolved = true;
         correctWhiteEdgePieceCount++;
     }
 
     if (down[5] == 'w' && right[7] == right[4])
     {
-        isRightEdgeSolved = true;
+        //isRightEdgeSolved = true;
         correctWhiteEdgePieceCount++;
     }
 
     if (down[7] == 'w' && back[7] == back[4])
     {
-        isBottomEdgeSolved = true;
+        //isBottomEdgeSolved = true;
         correctWhiteEdgePieceCount++;
     }
-    // i need to add operations for pieces
-    // which starts looking downward but
-    // wrongly positioned.
+
+    if (down[1] == 'w' && front[7] != front[4])
+    {
+        cout << "F F" << endl;
+        frontTurn();
+        frontTurn();
+    }
+
+    if (down[5] == 'w' && right[7] != right[4])
+    {
+        cout << "R R" << endl;
+        rightTurn();
+        rightTurn();
+    }
+
+    if (down[7] == 'w' && back[7] != back[4])
+    {
+        cout << "B B" << endl;
+        backTurn();
+        backTurn();
+    }
+
+    if (down[3] == 'w' && left[7] != left[4])
+    {
+        cout << "L L" << endl;
+        leftTurn();
+        leftTurn();
+    }
+
 
     while (correctWhiteEdgePieceCount != 4)
     {
@@ -2651,11 +2677,124 @@ void cubeSolve::solveWhiteCross()
             correctWhiteEdgePieceCount++;
         }
 
-        // if front[1]=='w' 
-        // { if up[7]==left[4]->turn F'
-        // else turn F
+        // Cases for first, third layered pieces
+        else if (front[1] == 'w')
+        {
+            if (up[7] == left[4])
+            {
+                cout << "F'" << endl;
+                reverseFrontTurn();
+            }
+            else
+            {
+                cout << "F" << endl;
+                frontTurn();
+            }
+        }
+
+        else if (front[7] == 'w')
+        {
+            if (down[1] == left[4])
+            {
+                cout << "F" << endl;
+                frontTurn();
+            }
+            else
+            {
+                cout << "F'" << endl;
+                reverseFrontTurn();
+            }
+        }
+
+        else if (back[1] == 'w')
+        {
+            if (up[1] == left[4])
+            {
+                cout << "B" << endl;
+                backTurn();
+            }
+            else
+            {
+                cout << "B'" << endl;
+                reverseBackTurn();
+            }
+        }
+
+        else if (back[7] == 'w')
+        {
+            if (down[7] == left[4])
+            {
+                cout << "B'" << endl;
+                reverseBackTurn();
+            }
+            else
+            {
+                cout << "B" << endl;
+                backTurn();
+            }
+        }
+
+        else if (left[1] == 'w')
+        {
+            if (up[3] == front[4])
+            {
+                cout << "L" << endl;
+                leftTurn();
+            }
+            else
+            {
+                cout << "L'" << endl;
+                reverseLeftTurn();
+            }
+        }
+
+        else if (left[7] == 'w')
+        {
+            if (down[3] == front[4])
+            {
+                cout << "L'" << endl;
+                reverseLeftTurn();
+            }
+            else
+            {
+                cout << "L" << endl;
+                leftTurn();
+            }
+        }
+
+        else if (right[1] == 'w')
+        {
+            if (up[5] == front[4])
+            {
+                cout << "R'" << endl;
+                reverseRightTurn();
+            }
+            else
+            {
+                rightTurn();
+            }
+        }
+
+        else if (right[7] == 'w')
+        {
+            if (down[5] == front[4])
+            {
+                cout << "R" << endl;
+                rightTurn();
+            }
+            else
+            {
+                cout << "R'" << endl;
+                reverseRightTurn();
+            }
+        }
     }
 
     cout << endl;
     cout << "White Cross Solved!" << endl;
+}
+
+void cubeSolve::setCube(vector<vector<char>> currentValues)
+{
+
 }

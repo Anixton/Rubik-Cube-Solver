@@ -26,6 +26,13 @@ public:
 	int currentState; 
 	cubeSolve();
 
+	// first vector is front
+	// second vector is back
+	// third vector is left
+	// fourth vector is right
+	// fifth vector is up
+	// sixth vector is down
+	void setCube(vector<vector<char>> currentValues); 
 	
 	void solveWhiteCross();
 
@@ -109,8 +116,6 @@ public:
 	//
 	void solveThirdLayerCorners();
 	void solveThirdLayerEdges();
-
-	//void setCube();
 
 	// Function that decides which state the cube is
 	void decideCurrentState();
