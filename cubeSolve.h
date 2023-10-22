@@ -149,5 +149,12 @@ public:
 	bool isColorSolved(vector<char> x);
 
 	bool checkLayer(int a, vector<char> vec);
+
+	void printFront();
+	void printBack();
+	void printLeft();
+	void printRight();
+	void printUp();
+	void printDown();
 };
 

@@ -51,8 +51,13 @@ int main()
 
     cubeSolve solution;
     solution.setCube(cubefaces);
-    
-
+    /*solution.reverseBackTurn();
+    solution.printFront();
+    solution.printBack();
+    solution.printLeft();
+    solution.printRight();
+    solution.printUp();
+    solution.printDown();*/
 
 }
 

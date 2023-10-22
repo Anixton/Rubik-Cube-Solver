@@ -2,6 +2,7 @@
 #include "cubeSolve.h"
 
 // frontTurn and reverseFrontTurn passed the test
+// backTurn and reverseBackTurn passed the test
 
 cubeSolve::cubeSolve()
 {
@@ -91,51 +92,69 @@ void cubeSolve::reverseFrontTurn() {
 }
 
 void cubeSolve::backTurn() {
-    // Store the values of the up, left, down, and right faces
-    vector<char> tempUp = up;
-    vector<char> tempLeft = left;
-    vector<char> tempDown = down;
-    vector<char> tempRight = right;
+    
+    vector<char> afterTurn(9);
+    afterTurn[0] = back[6];
+    afterTurn[1] = back[3];
+    afterTurn[2] = back[0];
+    afterTurn[3] = back[7];
+    afterTurn[4] = back[4];
+    afterTurn[5] = back[1];
+    afterTurn[6] = back[8];
+    afterTurn[7] = back[5];
+    afterTurn[8] = back[2];
+    
+    char upLeft = up[0];
+    char upMiddle = up[1];
+    char upRight = up[2];
 
-    // Update the up, left, down, and right faces using loops
-    for (int i = 0; i < 3; ++i) {
-        up[i] = tempRight[i];
-        left[i] = tempUp[i];
-        down[i] = tempLeft[i];
-        right[i] = tempDown[i];
-    }
+    up[0] = right[2];
+    up[1] = right[5];
+    up[2] = right[8];
+    right[2] = down[8];
+    right[5] = down[7];
+    right[8] = down[6];
+    down[8] = left[6];
+    down[7] = left[3];
+    down[6] = left[0];
+    left[0] = upRight;
+    left[3] = upMiddle;
+    left[6] = upLeft;
 
-    // Update the back face using loops
-    vector<char> tempBack = back;
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            back[i * 3 + j] = tempBack[j * 3 + (2 - i)];
-        }
-    }
+    back = afterTurn;
 }
 
 void cubeSolve::reverseBackTurn() {
-    // Store the values of the up, left, down, and right faces
-    vector<char> tempUp = up;
-    vector<char> tempLeft = left;
-    vector<char> tempDown = down;
-    vector<char> tempRight = right;
+    
+    vector<char> afterTurn(9);
+    afterTurn[0] = back[2];
+    afterTurn[1] = back[5];
+    afterTurn[2] = back[8];
+    afterTurn[3] = back[1];
+    afterTurn[4] = back[4];
+    afterTurn[5] = back[7];
+    afterTurn[6] = back[0];
+    afterTurn[7] = back[3];
+    afterTurn[8] = back[6];
 
-    // Update the up, left, down, and right faces to reverse the move using loops
-    for (int i = 0; i < 3; ++i) {
-        up[i] = tempLeft[i];
-        left[i] = tempDown[i];
-        down[i] = tempRight[i];
-        right[i] = tempUp[i];
-    }
+    char upLeft = up[0];
+    char upMiddle = up[1];
+    char upRight = up[2];
 
-    // Update the back face to reverse the move using loops
-    vector<char> tempBack = back;
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            back[i * 3 + j] = tempBack[(2 - j) * 3 + i];
-        }
-    }
+    up[0] = left[6];
+    up[1] = left[3];
+    up[2] = left[0];
+    left[0] = down[6];
+    left[3] = down[7];
+    left[6] = down[8];
+    down[6] = right[8];
+    down[7] = right[5];
+    down[8] = right[2];
+    right[8] = upRight;
+    right[5] = upMiddle;
+    right[2] = upLeft;
+
+    back = afterTurn;
 }
 
 void cubeSolve::upTurn() {
@@ -2846,4 +2865,94 @@ void cubeSolve::setCube(vector<vector<char>> currentValues)
         down[i] = currentValues[5][i];
     }
 
+}
+
+void cubeSolve::printFront()
+{
+    cout << "-------------------" << endl;
+    cout << "Printing Front Face" << endl;
+    for (int i = 0; i < 9; i++)
+    {
+        cout << front[i] << " ";
+        if (i % 3 == 2)
+        {
+            cout << endl;
+        }
+    }
+    cout << "-------------------" << endl;
+}
+
+void cubeSolve::printBack()
+{
+    cout << "-------------------" << endl;
+    cout << "Printing Back Face" << endl;
+    for (int i = 0; i < 9; i++)
+    {
+        cout << back[i] << " ";
+        if (i % 3 == 2)
+        {
+            cout << endl;
+        }
+    }
+    cout << "-------------------" << endl;
+}
+
+void cubeSolve::printLeft()
+{
+    cout << "-------------------" << endl;
+    cout << "Printing Left Face" << endl;
+    for (int i = 0; i < 9; i++)
+    {
+        cout << left[i] << " ";
+        if (i % 3 == 2)
+        {
+            cout << endl;
+        }
+    }
+    cout << "-------------------" << endl;
+}
+
+void cubeSolve::printRight()
+{
+    cout << "-------------------" << endl;
+    cout << "Printing Right Face" << endl;
+    for (int i = 0; i < 9; i++)
+    {
+        cout << right[i] << " ";
+        if (i % 3 == 2)
+        {
+            cout << endl;
+        }
+    }
+    cout << "-------------------" << endl;
+}
+
+void cubeSolve::printUp()
+{
+    cout << "-------------------" << endl;
+    cout << "Printing Up Face" << endl;
+    for (int i = 0; i < 9; i++)
+    {
+        cout << up[i] << " ";
+        if (i % 3 == 2)
+        {
+            cout << endl;
+        }
+    }
+    cout << "-------------------" << endl;
+}
+
+void cubeSolve::printDown()
+{
+    cout << "-------------------" << endl;
+    cout << "Printing Down Face" << endl;
+    for (int i = 0; i < 9; i++)
+    {
+        cout << down[i] << " ";
+        if (i % 3 == 2)
+        {
+            cout << endl;
+        }
+    }
+    cout << "-------------------" << endl;
 }
