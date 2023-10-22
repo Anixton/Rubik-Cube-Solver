@@ -11,44 +11,46 @@ int main()
     
     // Initialize the cube faces
     vector<char> front = {
-        'g', 'g', 'g',
-        'g', 'g', 'g',
-        'g', 'g', 'g'
+        'b', 'g', 'w',
+        'w', 'g', 'y',
+        'b', 'b', 'y'
     };
 
     vector<char> back = {
-        'b', 'b', 'b',
-        'b', 'b', 'b',
-        'b', 'b', 'b'
+        'y', 'g', 'w',
+        'r', 'b', 'y',
+        'g', 'w', 'o'
     };
 
     vector<char> left = {
-        'r', 'r', 'r',
-        'r', 'r', 'r',
-        'r', 'r', 'r'
+        'r', 'r', 'o',
+        'o', 'r', 'b',
+        'g', 'y', 'o'
     };
 
     vector<char> right = {
-        'o', 'o', 'o',
-        'o', 'o', 'o',
-        'o', 'o', 'o'
+        'o', 'w', 'g',
+        'r', 'o', 'b',
+        'r', 'o', 'r'
     };
 
     vector<char> up = {
-        'y', 'y', 'y',
-        'y', 'y', 'y',
-        'y', 'y', 'y'
+        'b', 'r', 'r',
+        'w', 'y', 'g',
+        'y', 'y', 'g'
     };
 
     vector<char> down = {
-        'w', 'w', 'w',
-        'w', 'w', 'w',
-        'w', 'w', 'w'
+        'w', 'o', 'b',
+        'b', 'w', 'g',
+        'y', 'o', 'w'
     };
 
     // Create a vector to store all cube faces
     vector<vector<char>> cubefaces = { front, back, left, right, up, down };
 
+    cubeSolve solution;
+    solution.setCube(cubefaces);
     
 
 
