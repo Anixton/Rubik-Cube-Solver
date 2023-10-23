@@ -3,6 +3,12 @@
 
 // frontTurn and reverseFrontTurn passed the test
 // backTurn and reverseBackTurn passed the test
+// upTurn and reverseUpTurn passed the test
+// downTurn and reverseDownTurn passed the test
+// leftTurn and reverseLeftTurn passed the test
+// rightTurn and reverseRightTurn passed the test
+
+// solveWhiteCross fails some test cases
 
 cubeSolve::cubeSolve()
 {
@@ -158,219 +164,267 @@ void cubeSolve::reverseBackTurn() {
 }
 
 void cubeSolve::upTurn() {
-    // Store the values of the front, left, back, and right faces
-    vector<char> tempFront = front;
-    vector<char> tempLeft = left;
-    vector<char> tempBack = back;
-    vector<char> tempRight = right;
+    
+    vector<char> afterTurn(9);
+    afterTurn[0] = up[6];
+    afterTurn[1] = up[3];
+    afterTurn[2] = up[0];
+    afterTurn[3] = up[7];
+    afterTurn[4] = up[4];
+    afterTurn[5] = up[1];
+    afterTurn[6] = up[8];
+    afterTurn[7] = up[5];
+    afterTurn[8] = up[2];
 
-    // Update the front, left, back, and right faces using loops
-    for (int i = 0; i < 3; ++i) {
-        front[i] = tempRight[i];
-        left[i] = tempFront[i];
-        back[i] = tempLeft[i];
-        right[i] = tempBack[i];
-    }
+    char frontLeft = front[0];
+    char frontMiddle = front[1];
+    char frontRight = front[2];
 
-    // Update the up face by rotating it clockwise
-    vector<char> tempUp = up;
-    up[0] = tempUp[6];
-    up[1] = tempUp[3];
-    up[2] = tempUp[0];
-    up[3] = tempUp[7];
-    up[5] = tempUp[1];
-    up[6] = tempUp[8];
-    up[7] = tempUp[5];
-    up[8] = tempUp[2];
+    front[0] = right[0];
+    front[1] = right[1];
+    front[2] = right[2];
+    right[0] = back[0];
+    right[1] = back[1];
+    right[2] = back[2];
+    back[0] = left[0];
+    back[1] = left[1];
+    back[2] = left[2];
+    left[0] = frontLeft;
+    left[1] = frontMiddle;
+    left[2] = frontRight;
+
+    up = afterTurn;
 }
 
 void cubeSolve::reverseUpTurn() {
-    // Store the values of the front, left, back, and right faces
-    vector<char> tempFront = front;
-    vector<char> tempLeft = left;
-    vector<char> tempBack = back;
-    vector<char> tempRight = right;
+    
+    vector<char> afterTurn(9);
+    afterTurn[0] = up[2];
+    afterTurn[1] = up[5];
+    afterTurn[2] = up[8];
+    afterTurn[3] = up[1];
+    afterTurn[4] = up[4];
+    afterTurn[5] = up[7];
+    afterTurn[6] = up[0];
+    afterTurn[7] = up[3];
+    afterTurn[8] = up[6];
 
-    // Update the front, left, back, and right faces using loops
-    for (int i = 0; i < 3; ++i) {
-        front[i] = tempLeft[i];
-        left[i] = tempBack[i];
-        back[i] = tempRight[i];
-        right[i] = tempFront[i];
-    }
+    char frontLeft = front[0];
+    char frontMiddle = front[1];
+    char frontRight = front[2];
 
-    // Update the up face by rotating it counterclockwise
-    vector<char> tempUp = up;
-    up[0] = tempUp[2];
-    up[1] = tempUp[5];
-    up[2] = tempUp[8];
-    up[3] = tempUp[1];
-    up[5] = tempUp[7];
-    up[6] = tempUp[0];
-    up[7] = tempUp[3];
-    up[8] = tempUp[6];
+    front[0] = left[0];
+    front[1] = left[1];
+    front[2] = left[2];
+    left[0] = back[0];
+    left[1] = back[1];
+    left[2] = back[2];
+    back[0] = right[0];
+    back[1] = right[1];
+    back[2] = right[2];
+    right[0] = frontLeft;
+    right[1] = frontMiddle;
+    right[2] = frontRight;
+
+    up = afterTurn;
 }
 
 void cubeSolve::downTurn() {
-    // Store the values of the front, left, back, and right faces
-    vector<char> tempFront = front;
-    vector<char> tempLeft = left;
-    vector<char> tempBack = back;
-    vector<char> tempRight = right;
+    
+    vector<char> afterTurn(9);
+    afterTurn[0] = down[6];
+    afterTurn[1] = down[3];
+    afterTurn[2] = down[0];
+    afterTurn[3] = down[7];
+    afterTurn[4] = down[4];
+    afterTurn[5] = down[1];
+    afterTurn[6] = down[8];
+    afterTurn[7] = down[5];
+    afterTurn[8] = down[2];
 
-    // Update the front, left, back, and right faces using loops
-    for (int i = 0; i < 3; ++i) {
-        front[i + 6] = tempLeft[i + 6];
-        left[i + 6] = tempBack[i + 6];
-        back[i + 6] = tempRight[i + 6];
-        right[i + 6] = tempFront[i + 6];
-    }
+    char frontLeft = front[6];
+    char frontMiddle = front[7];
+    char frontRight = front[8];
 
-    // Update the down face by rotating it clockwise
-    vector<char> tempDown = down;
-    down[0] = tempDown[6];
-    down[1] = tempDown[3];
-    down[2] = tempDown[0];
-    down[3] = tempDown[7];
-    down[5] = tempDown[1];
-    down[6] = tempDown[8];
-    down[7] = tempDown[5];
-    down[8] = tempDown[2];
+    front[6] = left[6];
+    front[7] = left[7];
+    front[8] = left[8];
+    left[6] = back[6];
+    left[7] = back[7];
+    left[8] = back[8];
+    back[6] = right[6];
+    back[7] = right[7];
+    back[8] = right[8];
+    right[6] = frontLeft;
+    right[7] = frontMiddle;
+    right[8] = frontRight;
+
+    down = afterTurn;
 }
 
 void cubeSolve::reverseDownTurn() {
-    // Store the values of the front, left, back, and right faces
-    vector<char> tempFront = front;
-    vector<char> tempLeft = left;
-    vector<char> tempBack = back;
-    vector<char> tempRight = right;
+   
+    vector<char> afterTurn(9);
+    afterTurn[0] = down[2];
+    afterTurn[1] = down[5];
+    afterTurn[2] = down[8];
+    afterTurn[3] = down[1];
+    afterTurn[4] = down[4];
+    afterTurn[5] = down[7];
+    afterTurn[6] = down[0];
+    afterTurn[7] = down[3];
+    afterTurn[8] = down[6];
 
-    // Update the front, left, back, and right faces using loops
-    for (int i = 0; i < 3; ++i) {
-        front[i + 6] = tempRight[i + 6];
-        left[i + 6] = tempFront[i + 6];
-        back[i + 6] = tempLeft[i + 6];
-        right[i + 6] = tempBack[i + 6];
-    }
+    char frontLeft = front[6];
+    char frontMiddle = front[7];
+    char frontRight = front[8];
 
-    // Update the down face by rotating it counterclockwise
-    vector<char> tempDown = down;
-    down[0] = tempDown[2];
-    down[1] = tempDown[5];
-    down[2] = tempDown[8];
-    down[3] = tempDown[1];
-    down[5] = tempDown[7];
-    down[6] = tempDown[0];
-    down[7] = tempDown[3];
-    down[8] = tempDown[6];
+    front[6] = right[6];
+    front[7] = right[7];
+    front[8] = right[8];
+    right[6] = back[6];
+    right[7] = back[7];
+    right[8] = back[8];
+    back[6] = left[6];
+    back[7] = left[7];
+    back[8] = left[8];
+    left[6] = frontLeft;
+    left[7] = frontMiddle;
+    left[8] = frontRight;
+
+    down = afterTurn;
 }
 
 void cubeSolve::leftTurn() {
-    // Store the values of the up, front, down, and back faces
-    vector<char> tempUp = up;
-    vector<char> tempFront = front;
-    vector<char> tempDown = down;
-    vector<char> tempBack = back;
+    
+    vector<char> afterTurn(9);
+    afterTurn[0] = left[6];
+    afterTurn[1] = left[3];
+    afterTurn[2] = left[0];
+    afterTurn[3] = left[7];
+    afterTurn[4] = left[4];
+    afterTurn[5] = left[1];
+    afterTurn[6] = left[8];
+    afterTurn[7] = left[5];
+    afterTurn[8] = left[2];
 
-    // Update the up, front, down, and back faces using loops
-    for (int i = 0; i < 3; ++i) {
-        up[i * 3] = tempBack[(2 - i) * 3];
-        front[i * 3] = tempUp[i * 3];
-        down[i * 3] = tempFront[i * 3];
-        back[i * 3] = tempDown[i * 3];
-    }
+    char frontLeft = front[0];
+    char frontMiddle = front[3];
+    char frontRight = front[6];
 
-    // Update the left face by rotating it clockwise
-    vector<char> tempLeft = left;
-    left[0] = tempLeft[6];
-    left[1] = tempLeft[3];
-    left[2] = tempLeft[0];
-    left[3] = tempLeft[7];
-    left[5] = tempLeft[1];
-    left[6] = tempLeft[8];
-    left[7] = tempLeft[5];
-    left[8] = tempLeft[2];
+    front[0] = up[0];
+    front[3] = up[3];
+    front[6] = up[6];
+    up[6] = back[2];
+    up[3] = back[5];
+    up[0] = back[8];
+    back[2] = down[6];
+    back[5] = down[3];
+    back[8] = down[0];
+    down[0] = frontLeft;
+    down[3] = frontMiddle;
+    down[6] = frontRight;
+
+    left = afterTurn;
 }
 
 void cubeSolve::reverseLeftTurn() {
-    // Store the values of the up, front, down, and back faces
-    vector<char> tempUp = up;
-    vector<char> tempFront = front;
-    vector<char> tempDown = down;
-    vector<char> tempBack = back;
+    
+    vector<char> afterTurn(9);
+    afterTurn[0] = left[2];
+    afterTurn[1] = left[5];
+    afterTurn[2] = left[8];
+    afterTurn[3] = left[1];
+    afterTurn[4] = left[4];
+    afterTurn[5] = left[7];
+    afterTurn[6] = left[0];
+    afterTurn[7] = left[3];
+    afterTurn[8] = left[6];
 
-    // Update the up, front, down, and back faces using loops
-    for (int i = 0; i < 3; ++i) {
-        up[i * 3] = tempFront[i * 3];
-        front[i * 3] = tempDown[i * 3];
-        down[i * 3] = tempBack[(2 - i) * 3];
-        back[i * 3] = tempUp[i * 3];
-    }
+    char frontLeft = front[0];
+    char frontMiddle = front[3];
+    char frontRight = front[6];
 
-    // Update the left face by rotating it counterclockwise
-    vector<char> tempLeft = left;
-    left[0] = tempLeft[2];
-    left[1] = tempLeft[5];
-    left[2] = tempLeft[8];
-    left[3] = tempLeft[1];
-    left[5] = tempLeft[7];
-    left[6] = tempLeft[0];
-    left[7] = tempLeft[3];
-    left[8] = tempLeft[6];
+    front[0] = down[0];
+    front[3] = down[3];
+    front[6] = down[6];
+    down[0] = back[8];
+    down[3] = back[5];
+    down[6] = back[2];
+    back[2] = up[6];
+    back[5] = up[3];
+    back[8] = up[0];
+    up[0] = frontLeft;
+    up[3] = frontMiddle;
+    up[6] = frontRight;
+
+    left = afterTurn;
 }
 
 void cubeSolve::rightTurn() {
-    // Store the values of the up, front, down, and back faces
-    vector<char> tempUp = up;
-    vector<char> tempFront = front;
-    vector<char> tempDown = down;
-    vector<char> tempBack = back;
+    
+    vector<char> afterTurn(9);
+    afterTurn[0] = right[6];
+    afterTurn[1] = right[3];
+    afterTurn[2] = right[0];
+    afterTurn[3] = right[7];
+    afterTurn[4] = right[4];
+    afterTurn[5] = right[1];
+    afterTurn[6] = right[8];
+    afterTurn[7] = right[5];
+    afterTurn[8] = right[2];
 
-    // Update the up, front, down, and back faces using loops
-    for (int i = 0; i < 3; ++i) {
-        up[i * 3 + 2] = tempFront[i * 3 + 2];
-        front[i * 3 + 2] = tempDown[i * 3 + 2];
-        down[i * 3 + 2] = tempBack[(2 - i) * 3 + 2];
-        back[i * 3 + 2] = tempUp[i * 3 + 2];
-    }
+    char frontLeft = front[2];
+    char frontMiddle = front[5];
+    char frontRight = front[8];
 
-    // Update the right face by rotating it clockwise
-    vector<char> tempRight = right;
-    right[0] = tempRight[6];
-    right[1] = tempRight[3];
-    right[2] = tempRight[0];
-    right[3] = tempRight[7];
-    right[5] = tempRight[1];
-    right[6] = tempRight[8];
-    right[7] = tempRight[5];
-    right[8] = tempRight[2];
+    front[2] = down[2];
+    front[5] = down[5];
+    front[8] = down[8];
+    down[2] = back[6];
+    down[5] = back[3];
+    down[8] = back[0];
+    back[6] = up[2];
+    back[3] = up[5];
+    back[0] = up[8];
+    up[2] = frontLeft;
+    up[5] = frontMiddle;
+    up[8] = frontRight;
+
+    right = afterTurn;
 }
 
 void cubeSolve::reverseRightTurn() {
-    // Store the values of the up, front, down, and back faces
-    vector<char> tempUp = up;
-    vector<char> tempFront = front;
-    vector<char> tempDown = down;
-    vector<char> tempBack = back;
+    
+    vector<char> afterTurn(9);
+    afterTurn[0] = right[2];
+    afterTurn[1] = right[5];
+    afterTurn[2] = right[8];
+    afterTurn[3] = right[1];
+    afterTurn[4] = right[4];
+    afterTurn[5] = right[7];
+    afterTurn[6] = right[0];
+    afterTurn[7] = right[3];
+    afterTurn[8] = right[6];
 
-    // Update the up, front, down, and back faces using loops
-    for (int i = 0; i < 3; ++i) {
-        up[i * 3 + 2] = tempBack[(2 - i) * 3 + 2];
-        front[i * 3 + 2] = tempUp[i * 3 + 2];
-        down[i * 3 + 2] = tempFront[i * 3 + 2];
-        back[i * 3 + 2] = tempDown[i * 3 + 2];
-    }
+    char frontLeft = front[2];
+    char frontMiddle = front[5];
+    char frontRight = front[8];
 
-    // Update the right face by rotating it counterclockwise
-    vector<char> tempRight = right;
-    right[0] = tempRight[2];
-    right[1] = tempRight[5];
-    right[2] = tempRight[8];
-    right[3] = tempRight[1];
-    right[5] = tempRight[7];
-    right[6] = tempRight[0];
-    right[7] = tempRight[3];
-    right[8] = tempRight[6];
+    front[2] = up[2];
+    front[5] = up[5];
+    front[8] = up[8];
+    up[2] = back[6];
+    up[5] = back[3];
+    up[8] = back[0];
+    back[0] = down[8];
+    back[3] = down[5];
+    back[6] = down[2];
+    down[2] = frontLeft;
+    down[5] = frontMiddle;
+    down[8] = frontRight;
+
+    right = afterTurn;
 }
 
 bool isColorSolved(vector<char> x)
