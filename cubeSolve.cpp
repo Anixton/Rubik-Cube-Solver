@@ -8,7 +8,7 @@
 // leftTurn and reverseLeftTurn passed the test
 // rightTurn and reverseRightTurn passed the test
 
-// solveWhiteCross fails some test cases
+// solveWhiteCross passed first,second test
 
 cubeSolve::cubeSolve()
 {
@@ -2244,32 +2244,32 @@ void cubeSolve::solveWhiteCross()
 {
     // variable initialization
     int correctWhiteEdgePieceCount = 0;
-    /*bool isLeftEdgeSolved = false;
+    bool isLeftEdgeSolved = false;
     bool isRightEdgeSolved = false;
     bool isTopEdgeSolved = false;
-    bool isBottomEdgeSolved = false;*/
+    bool isBottomEdgeSolved = false;
 
     if (down[1] == 'w' && front[7] == front[4])
     {
-        //isTopEdgeSolved = true;
+        isTopEdgeSolved = true;
         correctWhiteEdgePieceCount++;
     }
 
     if (down[3] == 'w' && left[7] == left[4])
     {
-        //isLeftEdgeSolved = true;
+        isLeftEdgeSolved = true;
         correctWhiteEdgePieceCount++;
     }
 
     if (down[5] == 'w' && right[7] == right[4])
     {
-        //isRightEdgeSolved = true;
+        isRightEdgeSolved = true;
         correctWhiteEdgePieceCount++;
     }
 
     if (down[7] == 'w' && back[7] == back[4])
     {
-        //isBottomEdgeSolved = true;
+        isBottomEdgeSolved = true;
         correctWhiteEdgePieceCount++;
     }
 
@@ -2314,18 +2314,21 @@ void cubeSolve::solveWhiteCross()
                     cout << "B B"<<endl;
                     backTurn();
                     backTurn();
+                    isBottomEdgeSolved = true;
                     break;
                 case 'r':
                     cout << "U' L L" << endl;
                     reverseUpTurn();
                     leftTurn();
                     leftTurn();
+                    isLeftEdgeSolved = true;
                     break;
                 case 'o':
                     cout << "U R R" << endl;
                     upTurn();
                     rightTurn();
                     rightTurn();
+                    isRightEdgeSolved = true;
                     break;
                 case 'g':
                     cout << "U U R R" << endl;
@@ -2333,6 +2336,7 @@ void cubeSolve::solveWhiteCross()
                     upTurn();
                     rightTurn();
                     rightTurn();
+                    isTopEdgeSolved = true;
                     break;
                 default:
                     cout << "ERROR:2216" << endl;
@@ -2351,12 +2355,14 @@ void cubeSolve::solveWhiteCross()
                     upTurn();
                     backTurn();
                     backTurn();
+                    isBottomEdgeSolved = true;
                     break;
 
                 case 'r':
                     cout << "L L" << endl;
                     leftTurn();
                     leftTurn();
+                    isLeftEdgeSolved = true;
                     break;
 
                 case 'o':
@@ -2365,6 +2371,7 @@ void cubeSolve::solveWhiteCross()
                     upTurn();
                     rightTurn();
                     rightTurn();
+                    isRightEdgeSolved = true;
                     break;
 
                 case 'g':
@@ -2372,6 +2379,7 @@ void cubeSolve::solveWhiteCross()
                     reverseUpTurn();
                     rightTurn();
                     rightTurn();
+                    isTopEdgeSolved = true;
                     break;
 
                 default:
@@ -2391,6 +2399,7 @@ void cubeSolve::solveWhiteCross()
                     reverseUpTurn();
                     backTurn();
                     backTurn();
+                    isBottomEdgeSolved = true;
                     break;
 
                 case 'r':
@@ -2399,12 +2408,14 @@ void cubeSolve::solveWhiteCross()
                     upTurn();
                     leftTurn();
                     leftTurn();
+                    isLeftEdgeSolved = true;
                     break;
 
                 case 'o':
                     cout << "R R" << endl;
                     rightTurn();
                     rightTurn();
+                    isRightEdgeSolved = true;
                     break;
 
                 case 'g':
@@ -2412,6 +2423,7 @@ void cubeSolve::solveWhiteCross()
                     upTurn();
                     frontTurn();
                     frontTurn();
+                    isTopEdgeSolved = true;
                     break;
 
                 default:
@@ -2423,7 +2435,7 @@ void cubeSolve::solveWhiteCross()
 
         else if (up[7] == 'w')
         {
-            const char current = down[1];
+            const char current = front[1];
             switch (current)
             {
                 case 'b':
@@ -2432,6 +2444,7 @@ void cubeSolve::solveWhiteCross()
                     upTurn();
                     backTurn();
                     backTurn();
+                    isBottomEdgeSolved = true;
                     break;
 
                 case 'r':
@@ -2439,6 +2452,7 @@ void cubeSolve::solveWhiteCross()
                     upTurn();
                     leftTurn();
                     leftTurn();
+                    isLeftEdgeSolved = true;
                     break;
 
                 case 'o':
@@ -2446,12 +2460,14 @@ void cubeSolve::solveWhiteCross()
                     reverseUpTurn();
                     rightTurn();
                     rightTurn();
+                    isRightEdgeSolved = true;
                     break;
 
                 case 'g':
                     cout << "F F" << endl;
                     frontTurn();
                     frontTurn();
+                    isTopEdgeSolved = true;
                     break;
 
                 default:
@@ -2472,10 +2488,12 @@ void cubeSolve::solveWhiteCross()
                     downTurn();
                     leftTurn();
                     reverseDownTurn();
+                    isBottomEdgeSolved = true;
                     break;
                 case 'r':
                     cout << "L" << endl;
                     leftTurn();
+                    isLeftEdgeSolved = true;
                     break;
                 case 'o':
                     cout << "D D L D' D'" << endl;
@@ -2484,12 +2502,14 @@ void cubeSolve::solveWhiteCross()
                     leftTurn();
                     reverseDownTurn();
                     reverseDownTurn();
+                    isRightEdgeSolved = true;
                     break;
                 case 'g':
                     cout << "D' L D" << endl;
                     reverseDownTurn();
                     leftTurn();
                     downTurn();
+                    isTopEdgeSolved = true;
                     break;
                 default:
                     cout << "ERROR:2376" << endl;
@@ -2508,6 +2528,7 @@ void cubeSolve::solveWhiteCross()
                     reverseDownTurn();
                     reverseRightTurn();
                     downTurn();
+                    isBottomEdgeSolved = true;
                     break;
                 case 'r':
                     cout << "D D R' D D" << endl;
@@ -2516,16 +2537,19 @@ void cubeSolve::solveWhiteCross()
                     reverseRightTurn();
                     downTurn();
                     downTurn();
+                    isLeftEdgeSolved = true;
                     break;
                 case 'o':
                     cout << "R'" << endl;
                     reverseRightTurn();
+                    isRightEdgeSolved = true;
                     break;
                 case 'g':
                     cout << "D R' D'" << endl;
                     downTurn();
                     reverseRightTurn();
                     reverseDownTurn();
+                    isTopEdgeSolved = true;
                     break;
                 default:
                     cout << "ERROR:2412" << endl;
@@ -2544,6 +2568,7 @@ void cubeSolve::solveWhiteCross()
                     reverseDownTurn();
                     rightTurn();
                     downTurn();
+                    isBottomEdgeSolved = true;
                     break;
 
                 case 'r':
@@ -2553,11 +2578,13 @@ void cubeSolve::solveWhiteCross()
                     rightTurn();
                     downTurn();
                     downTurn();
+                    isLeftEdgeSolved = true;
                     break;
 
                 case 'o':
                     cout << "R" << endl;
                     rightTurn();
+                    isRightEdgeSolved = true;
                     break;
 
                 case 'g':
@@ -2565,6 +2592,7 @@ void cubeSolve::solveWhiteCross()
                     downTurn();
                     rightTurn();
                     reverseDownTurn();
+                    isTopEdgeSolved = true;
                     break;
 
                 default:
@@ -2584,10 +2612,12 @@ void cubeSolve::solveWhiteCross()
                     downTurn();
                     reverseLeftTurn();
                     reverseDownTurn();
+                    isBottomEdgeSolved = true;
                     break;
                 case 'r':
                     cout << "L'" << endl;
                     reverseLeftTurn();
+                    isLeftEdgeSolved = true;
                     break;
                 case 'o':
                     cout << "D D L' D' D'" << endl;
@@ -2596,12 +2626,14 @@ void cubeSolve::solveWhiteCross()
                     reverseLeftTurn();
                     reverseDownTurn();
                     reverseDownTurn();
+                    isRightEdgeSolved = true;
                     break;
                 case 'g':
                     cout << "D' L' D" << endl;
                     reverseDownTurn();
                     reverseLeftTurn();
                     downTurn();
+                    isTopEdgeSolved = true;
                     break;
                 default:
                     cout << "ERROR:2488" << endl;
@@ -2618,6 +2650,7 @@ void cubeSolve::solveWhiteCross()
                 case 'b':
                     cout << "B" << endl;
                     backTurn();
+                    isBottomEdgeSolved = true;
                     break;
 
                 case 'r':
@@ -2625,6 +2658,7 @@ void cubeSolve::solveWhiteCross()
                     reverseDownTurn();
                     backTurn();
                     downTurn();
+                    isLeftEdgeSolved = true;
                     break;
 
                 case 'o':
@@ -2632,6 +2666,7 @@ void cubeSolve::solveWhiteCross()
                     downTurn();
                     backTurn();
                     reverseDownTurn();
+                    isRightEdgeSolved = true;
                     break;
 
                 case 'g':
@@ -2641,6 +2676,7 @@ void cubeSolve::solveWhiteCross()
                     backTurn();
                     downTurn();
                     downTurn();
+                    isTopEdgeSolved = true;
                     break;
 
                 default:
@@ -2662,6 +2698,7 @@ void cubeSolve::solveWhiteCross()
                     reverseLeftTurn();
                     reverseDownTurn();
                     reverseDownTurn();
+                    isBottomEdgeSolved = true;
                     break;
 
                 case 'r':
@@ -2669,6 +2706,7 @@ void cubeSolve::solveWhiteCross()
                     downTurn();
                     reverseFrontTurn();
                     reverseDownTurn();
+                    isLeftEdgeSolved = true;
                     break;
 
                 case 'o':
@@ -2676,11 +2714,13 @@ void cubeSolve::solveWhiteCross()
                     reverseDownTurn();
                     reverseFrontTurn();
                     downTurn();
+                    isRightEdgeSolved = true;
                     break;
 
                 case 'g':
                     cout << "F'" << endl;
                     reverseFrontTurn();
+                    isTopEdgeSolved = true;
                     break;
 
                 default:
@@ -2702,6 +2742,7 @@ void cubeSolve::solveWhiteCross()
                     frontTurn();
                     downTurn();
                     downTurn();
+                    isBottomEdgeSolved = true;
                     break;
 
                 case 'r':
@@ -2709,6 +2750,7 @@ void cubeSolve::solveWhiteCross()
                     downTurn();
                     frontTurn();
                     reverseDownTurn();
+                    isLeftEdgeSolved = true;
                     break;
 
                 case 'o':
@@ -2716,11 +2758,13 @@ void cubeSolve::solveWhiteCross()
                     reverseDownTurn();
                     frontTurn();
                     downTurn();
+                    isRightEdgeSolved = true;
                     break;
 
                 case 'g':
                     cout << "F" << endl;
                     frontTurn();
+                    isTopEdgeSolved = true;
                     break;
 
                 default:
@@ -2738,6 +2782,7 @@ void cubeSolve::solveWhiteCross()
                 case 'b':
                     cout << "B'" << endl;
                     reverseBackTurn();
+                    isBottomEdgeSolved = true;
                     break;
 
                 case 'r':
@@ -2745,6 +2790,7 @@ void cubeSolve::solveWhiteCross()
                     reverseDownTurn();
                     reverseBackTurn();
                     downTurn();
+                    isLeftEdgeSolved = true;
                     break;
 
                 case 'o':
@@ -2752,6 +2798,7 @@ void cubeSolve::solveWhiteCross()
                     downTurn();
                     reverseBackTurn();
                     reverseDownTurn();
+                    isRightEdgeSolved = true;
                     break;
 
                 case 'g':
@@ -2761,6 +2808,7 @@ void cubeSolve::solveWhiteCross()
                     reverseBackTurn();
                     downTurn();
                     downTurn();
+                    isTopEdgeSolved = true;
                     break;
 
                 default:
@@ -2771,17 +2819,46 @@ void cubeSolve::solveWhiteCross()
         }
 
         // Cases for first, third layered pieces
+        // after the turn i must place the white piece here otherwise infinite loop
         else if (front[1] == 'w')
         {
-            if (up[7] == left[4])
+            if (!isTopEdgeSolved)
             {
-                cout << "F'" << endl;
-                reverseFrontTurn();
+                if (up[7] == left[4])
+                {
+                    cout << "F'" << endl;
+                    reverseFrontTurn();
+                }
+                else
+                {
+                    cout << "F" << endl;
+                    frontTurn();
+                }
+
             }
+            
+            else if (!isRightEdgeSolved)
+            {
+                cout << "U'" << endl;
+                reverseUpTurn();
+            }
+
+            else if (!isLeftEdgeSolved)
+            {
+                cout << "U" << endl;
+                upTurn();
+            }
+
+            else if (!isBottomEdgeSolved)
+            {
+                cout << "U U" << endl;
+                upTurn();
+                upTurn();
+            }
+
             else
             {
-                cout << "F" << endl;
-                frontTurn();
+                cout << "ERROR: else if (front[1] == 'w')" << endl;
             }
         }
 
@@ -2801,15 +2878,42 @@ void cubeSolve::solveWhiteCross()
 
         else if (back[1] == 'w')
         {
-            if (up[1] == left[4])
+            if (!isBottomEdgeSolved)
             {
-                cout << "B" << endl;
-                backTurn();
+                if (up[1] == left[4])
+                {
+                    cout << "B" << endl;
+                    backTurn();
+                }
+                else
+                {
+                    cout << "B'" << endl;
+                    reverseBackTurn();
+                }
             }
+            
+            else if (!isLeftEdgeSolved)
+            {
+                cout << "U'" << endl;
+                reverseUpTurn();
+            }
+
+            else if (!isRightEdgeSolved)
+            {
+                cout << "U" << endl;
+                upTurn();
+            }
+
+            else if (!isTopEdgeSolved)
+            {
+                cout << "U U" << endl;
+                upTurn();
+                upTurn();
+            }
+
             else
             {
-                cout << "B'" << endl;
-                reverseBackTurn();
+                cout << "ERROR: else if (back[1] == 'w') " << endl;
             }
         }
 
@@ -2829,15 +2933,42 @@ void cubeSolve::solveWhiteCross()
 
         else if (left[1] == 'w')
         {
-            if (up[3] == front[4])
+            if (!isLeftEdgeSolved)
             {
-                cout << "L" << endl;
-                leftTurn();
+                if (up[3] == front[4])
+                {
+                    cout << "L" << endl;
+                    leftTurn();
+                }
+                else
+                {
+                    cout << "L'" << endl;
+                    reverseLeftTurn();
+                }
             }
+
+            else if (!isTopEdgeSolved)
+            {
+                cout << "U'" << endl;
+                reverseUpTurn();
+            }
+
+            else if (!isBottomEdgeSolved)
+            {
+                cout << "U" << endl;
+                upTurn();
+            }
+
+            else if (!isRightEdgeSolved)
+            {
+                cout << "U U" << endl;
+                upTurn();
+                upTurn();
+            }
+
             else
             {
-                cout << "L'" << endl;
-                reverseLeftTurn();
+                cout << "ERROR: else if (left[1] == 'w')" << endl;
             }
         }
 
@@ -2857,14 +2988,41 @@ void cubeSolve::solveWhiteCross()
 
         else if (right[1] == 'w')
         {
-            if (up[5] == front[4])
+            if (!isRightEdgeSolved)
             {
-                cout << "R'" << endl;
-                reverseRightTurn();
+                if (up[5] == front[4])
+                {
+                    cout << "R'" << endl;
+                    reverseRightTurn();
+                }
+                else
+                {
+                    rightTurn();
+                }
             }
+
+            else if (!isTopEdgeSolved)
+            {
+                cout << "U" << endl;
+                upTurn();
+            }
+
+            else if (!isBottomEdgeSolved)
+            {
+                cout << "U'" << endl;
+                reverseUpTurn();
+            }
+
+            else if (!isLeftEdgeSolved)
+            {
+                cout << "U U" << endl;
+                upTurn();
+                upTurn();
+            }
+
             else
             {
-                rightTurn();
+                cout << "ERROR: else if (right[1] == 'w') " << endl;
             }
         }
 
@@ -2880,6 +3038,32 @@ void cubeSolve::solveWhiteCross()
                 cout << "R'" << endl;
                 reverseRightTurn();
             }
+        }
+
+        correctWhiteEdgePieceCount = 0;
+
+        if (down[1] == 'w' && front[7] == front[4])
+        {
+            isTopEdgeSolved = true;
+            correctWhiteEdgePieceCount++;
+        }
+
+        if (down[3] == 'w' && left[7] == left[4])
+        {
+            isLeftEdgeSolved = true;
+            correctWhiteEdgePieceCount++;
+        }
+
+        if (down[5] == 'w' && right[7] == right[4])
+        {
+            isRightEdgeSolved = true;
+            correctWhiteEdgePieceCount++;
+        }
+
+        if (down[7] == 'w' && back[7] == back[4])
+        {
+            isBottomEdgeSolved = true;
+            correctWhiteEdgePieceCount++;
         }
     }
 
