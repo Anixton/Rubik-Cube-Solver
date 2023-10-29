@@ -7,8 +7,8 @@
 // downTurn and reverseDownTurn passed the test
 // leftTurn and reverseLeftTurn passed the test
 // rightTurn and reverseRightTurn passed the test
-
-// solveWhiteCross passed 3 test
+// solveWhiteCross passed the test
+// solveFirstLayer: works properly for now
 
 cubeSolve::cubeSolve()
 {
@@ -1531,11 +1531,12 @@ void cubeSolve::solveSecondLayer()
                 }
                 // after this we will check from back
 
-                else if (back[3] != up[4] && right[6] != up[4]
-                    && !(back[3] == back[4] && right[6] == right[4]))
+                else if (back[3] != up[4] && right[5] != up[4]
+                    && !(back[3] == back[4] && right[5] == right[4]))
                 {
                     // do the algo
                     // back-> sola parçayý koyma algoritmasý
+                    // algorithm bellow has issue
                     cout << "U' R' U R U B' U' B'" << endl;
                     reverseUpTurn();
                     reverseRightTurn();
