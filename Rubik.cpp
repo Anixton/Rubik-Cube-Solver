@@ -11,39 +11,39 @@ int main()
     
     // Initialize the cube faces
     vector<char> front = {
-        'o', 'g', 'r',
-        'o', 'g', 'r',
-        'r', 'w', 'g'
+        'b', 'w', 'g',
+        'r', 'g', 'o',
+        'w', 'o', 'o'
     };
 
     vector<char> back = {
-        'b', 'o', 'o',
-        'b', 'b', 'o',
-        'w', 'w', 'y'
+        'o', 'g', 'o',
+        'b', 'b', 'g',
+        'y', 'w', 'g'
     };
 
     vector<char> left = {
-        'b', 'r', 'w',
-        'b', 'r', 'y',
-        'o', 'w', 'b'
+        'b', 'o', 'y',
+        'y', 'r', 'y',
+        'w', 'g', 'r'
     };
 
     vector<char> right = {
-        'g', 'r', 'y',
-        'w', 'o', 'y',
-        'w', 'g', 'b'
+        'w', 'b', 'g',
+        'y', 'o', 'y',
+        'b', 'b', 'r'
     };
 
     vector<char> up = {
-        'y', 'g', 'r',
-        'y', 'y', 'b',
-        'g', 'y', 'y'
+        'y', 'r', 'y',
+        'g', 'y', 'r',
+        'r', 'r', 'o'
     };
 
     vector<char> down = {
-        'w', 'o', 'r',
-        'b', 'w', 'r',
-        'g', 'g', 'o'
+        'b', 'b', 'w',
+        'w', 'w', 'w',
+        'r', 'o', 'g'
     };
 
     // Create a vector to store all cube faces
@@ -56,6 +56,9 @@ int main()
     solution.solveFirstLayer();
     cout << endl;
     solution.solveSecondLayer();
+    cout << endl;
+    solution.solveYellowCross();
+
 
 }
 

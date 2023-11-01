@@ -516,9 +516,11 @@ void cubeSolve::decideCurrentState()
 
 void cubeSolve::solveYellowCross()
 {
-    cout << "Solving the second Layer:"<<endl;
+    cout << "Solving the Yellow Cross:"<<endl;
     cout << "-----------------------------" << endl;
+
     int yellowCount = 0;
+
     if (up[1] == 'y')
     {
         yellowCount++;
@@ -535,6 +537,14 @@ void cubeSolve::solveYellowCross()
     {
         yellowCount++;
     }
+
+    if (yellowCount == 4)
+    {
+        cout << "Yellow Cross Already Solved!" << endl;
+        cout << "-----------------------------" << endl;
+        return;
+    }
+
     if (yellowCount < 2)
     {
         cout << "F  U  R  U'  R'  F'" << endl;
@@ -545,6 +555,7 @@ void cubeSolve::solveYellowCross()
         reverseRightTurn();
         reverseFrontTurn();
     }
+
     if (up[3] == 'y' && up[5] == 'y')
     {
         cout << "F  R  U  R'  U'  F'" << endl;
@@ -613,6 +624,20 @@ void cubeSolve::solveYellowCross()
         cout << "-----------------------------" << endl;
         return;
     }
+    if (up[5] == 'y' && up[7] == 'w')
+    {
+        // do F  U  R  U'  R'  F' from back
+        cout << "B U L U' L' B'" << endl;
+        backTurn();
+        upTurn();
+        leftTurn();
+        reverseUpTurn();
+        reverseLeftTurn();
+        reverseBackTurn();
+        cout << "Second Layer Solved!" << endl;
+        cout << "-----------------------------" << endl;
+        return;
+    }
     
     cout << "U U F  U  R  U'  R'  F'" << endl;
     upTurn();
@@ -623,7 +648,7 @@ void cubeSolve::solveYellowCross()
     reverseUpTurn();
     reverseRightTurn();
     reverseFrontTurn();
-    cout << "Second Layer Solved!" << endl;
+    cout << "Yellow Cross Solved!" << endl;
     cout << "-----------------------------" << endl;
     return;
 }
@@ -1245,7 +1270,7 @@ void cubeSolve::solveSecondLayer()
 {
     int correctPieces = 0;
 
-    if (front[5] == front[4] && left[3] == left[4])
+    if (front[5] == front[4] && right[3] == right[4])
     {
         correctPieces++;
     }
@@ -1307,13 +1332,13 @@ void cubeSolve::solveSecondLayer()
             if (up[1] == right[4]) // left: U' L' U L U F U' F' from back
             {
                 // U' R' U R U B' U' B'
-                cout << "U' R' U R U B' U' B'"<<endl;
+                cout << "U' R' U R U B U' B'"<<endl;
                 reverseUpTurn();
                 reverseRightTurn();
                 upTurn();
                 rightTurn();
                 upTurn();
-                reverseBackTurn();
+                backTurn();
                 reverseUpTurn();
                 reverseBackTurn();
             }
@@ -1343,7 +1368,7 @@ void cubeSolve::solveSecondLayer()
             if (up[3] == back[4]) // left: U' L' U L U F U' F' from left
             {
                 // U' B' U B U L U' L
-                cout << "U' B' U B U L U' L" << endl;
+                cout << "U' B' U B U L U' L'" << endl;
                 reverseUpTurn();
                 reverseBackTurn();
                 upTurn();
@@ -1351,7 +1376,7 @@ void cubeSolve::solveSecondLayer()
                 upTurn();
                 leftTurn();
                 reverseUpTurn();
-                leftTurn();
+                reverseLeftTurn();
             }
             else if (up[3] == front[4]) // right: U R U' R' U' F' U F from left
             {
@@ -1537,13 +1562,13 @@ void cubeSolve::solveSecondLayer()
                     // do the algo
                     // back-> sola parçayý koyma algoritmasý
                     // algorithm bellow has issue
-                    cout << "U' R' U R U B' U' B'" << endl;
+                    cout << "U' R' U R U B U' B'" << endl;
                     reverseUpTurn();
                     reverseRightTurn();
                     upTurn();
                     rightTurn();
                     upTurn();
-                    reverseBackTurn();
+                    backTurn();
                     reverseUpTurn();
                     reverseBackTurn();
                 }
@@ -2232,7 +2257,8 @@ void cubeSolve::solveFirstLayer()
 
                 else
                 {
-                    cout << "ERROR:2141" << endl;
+                    cout << "U" << endl;
+                    upTurn();
                 }
             }
         }
