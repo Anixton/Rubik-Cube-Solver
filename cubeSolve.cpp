@@ -592,7 +592,7 @@ void cubeSolve::solveYellowCross()
         reverseUpTurn();
         reverseRightTurn();
         reverseFrontTurn();
-        cout << "Second Layer Solved!" << endl;
+        cout << "Yellow Cross Solved!" << endl;
         cout << "-----------------------------" << endl;
         return;
     }
@@ -1028,6 +1028,7 @@ void cubeSolve::solveThirdLayerCorners()
     cout << "Third Layer's Corners are solved !" << endl;
 }
 
+// infinite loop
 void cubeSolve::solveThirdLayerEdges()
 {
     // check if its already solved
@@ -2078,6 +2079,9 @@ void cubeSolve::solveFirstLayer()
             // BottomRight: R U' R'
             else
             {
+                upTurn();
+                upTurn();
+
                 if (up[0] == 'w' && !isTopRightSolved)
                 {
                     cout << "R U R'" << endl;
