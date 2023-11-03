@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include "cubeSolve.h"
 
 // frontTurn and reverseFrontTurn passed the test
@@ -8,7 +9,12 @@
 // leftTurn and reverseLeftTurn passed the test
 // rightTurn and reverseRightTurn passed the test
 // solveWhiteCross passed the test
-// solveFirstLayer: works properly for now
+// solveFirstLayer passed the test
+// solveSecondLayer passed the test
+// solveThirdLayerCorners ...
+
+// all functions that solves some part of the cube works accordingly in some cases
+// still need to check more cases...
 
 cubeSolve::cubeSolve()
 {
@@ -463,7 +469,20 @@ bool cubeSolve::checkLayer(int a, vector<char> vec)
 
 void cubeSolve::decideCurrentState()
 {
-    
+    if (down[1] != 'w' || down[3] != 'w' ||
+        down[5] != 'w' || down[7] != 'w')
+    {
+        currentState = -1;
+        return;
+    }
+
+    if (front[7] != front[4] || back[7] != back[4] ||
+        left[7] != left[4] || right[7] != right[4])
+    {
+        currentState = -1;
+        return;
+    }
+
     for (int i = 0; i < 9; i++)
     {
         if (down[i] != 'w')
@@ -472,7 +491,35 @@ void cubeSolve::decideCurrentState()
             return;
         }
     }
-    if (!(checkLayer(1, front) && checkLayer(1, back) && checkLayer(1, left) && checkLayer(1, right)))
+    
+    for (int j = 6; j < 9; j++)
+    {
+        if (front[j] != front[4])
+        {
+            return;
+        }
+
+        if (left[j] == left[4])
+        {
+            return;
+        }
+
+        if (right[j] == right[4])
+        {
+            return;
+        }
+
+        if (back[j] == back[4])
+        {
+            return;
+        }
+    }
+
+    currentState = 1;
+
+
+    
+    /*if (!(checkLayer(1, front) && checkLayer(1, back) && checkLayer(1, left) && checkLayer(1, right)))
     {
         currentState = 0;
         return;
@@ -510,7 +557,7 @@ void cubeSolve::decideCurrentState()
     }
     
     currentState = 4;
-    return;
+    return;*/
 
 }
 
@@ -3231,6 +3278,28 @@ void cubeSolve::solveWhiteCross()
 
 void cubeSolve::setCube(vector<vector<char>> currentValues)
 {
+    // check if there are any wrong information
+    for (int firstIndex = 0; firstIndex < 6; firstIndex++)
+    {
+        for (int secondIndex = 0; secondIndex < 6; secondIndex++)
+        {
+            char currentColor = currentValues[firstIndex][secondIndex];
+            
+            if (currentColor == 'g' || currentColor == 'b' ||
+                currentColor == 'o' || currentColor == 'r' ||
+                currentColor == 'w' || currentColor == 'y')
+            {
+                continue;
+            }
+
+            else
+            {
+                cout << "There is an error in input!" << endl;
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+
     for (int i = 0; i < 9; i++)
     {
         front[i] = currentValues[0][i];
