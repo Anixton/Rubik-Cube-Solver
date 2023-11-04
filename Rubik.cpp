@@ -51,6 +51,8 @@ int main()
 
     cubeSolve solution;
     solution.setCube(cubefaces);
+    solution.solveMyCube();
+    /*solution.setCube(cubefaces);
     solution.solveWhiteCross();
     cout << endl;
     solution.solveFirstLayer();
@@ -63,11 +65,8 @@ int main()
     cout << endl;
     solution.solveThirdLayerCorners();
     cout << endl;
-    solution.solveThirdLayerEdges();
+    solution.solveThirdLayerEdges();*/
 
-    // -1 if nothing has done
-    // 0 if white cross done
-    // 1 if white layer solved
-    // 2 if second layer solved
+    
 }
 

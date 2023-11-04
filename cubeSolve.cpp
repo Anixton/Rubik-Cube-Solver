@@ -483,11 +483,12 @@ void cubeSolve::decideCurrentState()
         return;
     }
 
+    currentState = 0;
+
     for (int i = 0; i < 9; i++)
     {
-        if (down[i] != 'w')
+        if (down[i] != down[4])
         {
-            currentState = 0;
             return;
         }
     }
@@ -499,17 +500,17 @@ void cubeSolve::decideCurrentState()
             return;
         }
 
-        if (left[j] == left[4])
+        if (left[j] != left[4])
         {
             return;
         }
 
-        if (right[j] == right[4])
+        if (right[j] != right[4])
         {
             return;
         }
 
-        if (back[j] == back[4])
+        if (back[j] != back[4])
         {
             return;
         }
@@ -517,47 +518,74 @@ void cubeSolve::decideCurrentState()
 
     currentState = 1;
 
+    for (int secondLayerVariable = 3; secondLayerVariable < 6; secondLayerVariable++)
+    {
+        if (front[secondLayerVariable] != front[4])
+        {
+            return;
+        }
 
-    
-    /*if (!(checkLayer(1, front) && checkLayer(1, back) && checkLayer(1, left) && checkLayer(1, right)))
-    {
-        currentState = 0;
-        return;
+        if (left[secondLayerVariable] != left[4])
+        {
+            return;
+        }
+
+        if (right[secondLayerVariable] != right[4])
+        {
+            return;
+        }
+
+        if (back[secondLayerVariable] != back[4])
+        {
+            return;
+        }
     }
-    currentState = 1;
-    if (!(checkLayer(2, front) && checkLayer(2, back) && checkLayer(2, left) && checkLayer(2, right)))
-    {
-        currentState = 1;
-        return;
-    }
+
     currentState = 2;
-    if (up[1] == 'y' && up[3] == 'y' && up[5] == 'y' && up[7] == 'y')
+
+    if (up[1] == up[4] && up[3] == up[4] && up[5] == up[4] && up[7] == up[4])
     {
         currentState = 3;
     }
+
     else
     {
-        currentState = 2;
         return;
     }
-    for (int i = 0; i < 9; i++)
-    {
-        if (up[i] != 'y')
-        {
-            currentState = 3;
-            return;
-        }
-    }
-    currentState = 4;
 
-    if (!(checkLayer(3, front) && checkLayer(3, back) && checkLayer(3, left) && checkLayer(3, right)))
+
+    if (up[0] == up[4] && up[2] == up[4] && up[6] == up[4] && up[8] == up[4])
     {
-        currentState = 3;
+        currentState = 4;
+    }
+
+    else
+    {
+        return;
+    }
+
+    if (front[0] == front[4] && front[2] == front[4] && left[0] == left[4] && left[2] == left[4] &&
+        back[0] == back[4] && back[2] == back[4] && right[0] == right[4] && right[2] == right[4])
+    {
+        currentState = 5;
+    }
+
+    else
+    {
+        return;
+    }
+
+    if (front[1] == front[4] && left[1] == left[4] && back[1] == back[4] && right[1] == right[4])
+    {
+        currentState = 6;
+    }
+
+    else
+    {
         return;
     }
     
-    currentState = 4;
-    return;*/
+    
 
 }
 
@@ -3420,4 +3448,42 @@ void cubeSolve::printDown()
         }
     }
     cout << "-------------------" << endl;
+}
+
+void cubeSolve::solveMyCube() {
+
+    decideCurrentState();
+
+    while (currentState < 6) {
+        switch (currentState) {
+        case -1:
+            solveWhiteCross();
+            break;
+        case 0:
+            solveFirstLayer();
+            break;
+        case 1:
+            solveSecondLayer();
+            break;
+        case 2:
+            solveYellowCross();
+            break;
+        case 3:
+            solveYellowFace();
+            break;
+        case 4:
+            solveThirdLayerCorners();
+            break;
+        case 5:
+            solveThirdLayerEdges();
+            break;
+        default:
+            cout << "You shouldn't be here in function solveMyCube" << endl;
+            break;
+        }
+
+        decideCurrentState();  // Update the currentState after each step
+    }
+
+    cout << "Cube is solved" << endl;
 }

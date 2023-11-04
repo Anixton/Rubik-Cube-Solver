@@ -7,6 +7,8 @@ using namespace std;
 
 class cubeSolve
 {
+private:
+	int currentState;
 public:
 	vector<char> front; // Green Square
 	vector<char> back;  //Blue Square
@@ -20,10 +22,8 @@ public:
 	bool downSolved;
 	bool rightSolved;
 	bool leftSolved;
-	// 0 if base case, 1 if first floor solved, 2 if second floor solved
-	// 3 yellow cross solved ,4 if yellow face solved,
-	//5 if cube solved
-	int currentState; 
+	
+
 	cubeSolve();
 
 	// first vector is front
@@ -118,7 +118,20 @@ public:
 	void solveThirdLayerEdges();
 
 	// Function that decides which state the cube is
+	// 
+	// -1 if nothing has done
+	// 0 if white cross done
+	// 1 if white layer solved
+	// 2 if second layer solved
+	// 3 if yellow cross
+	// 4 if yellow face solved
+	// 5 if third layer corners solved
+	// 6 if cube solved
+	// 
 	void decideCurrentState();
+
+	// Function that solves the current problem using decideCurrentState function
+	void solveMyCube();
 
 	// F and F' Turns
 	void frontTurn();
