@@ -70,3 +70,13 @@ int main()
     
 }
 
+/*
+    To Do:
+    1) Delete unnecessary variables and methods
+    2) Add necessary comments
+    3) Write documentation and explanation of the code
+    4) Display your project in Resume
+*/
+
+
+
