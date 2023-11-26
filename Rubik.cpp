@@ -52,7 +52,7 @@ int main()
     cubeSolve solution;
     solution.setCube(cubefaces);
     solution.solveMyCube();
-    /*solution.setCube(cubefaces);
+    solution.setCube(cubefaces);
     solution.solveWhiteCross();
     cout << endl;
     solution.solveFirstLayer();
@@ -65,7 +65,7 @@ int main()
     cout << endl;
     solution.solveThirdLayerCorners();
     cout << endl;
-    solution.solveThirdLayerEdges();*/
+    solution.solveThirdLayerEdges();
 
     
 }
@@ -74,14 +74,10 @@ int main()
     To Do:
     1) Delete unnecessary variables and methods
     2) Add necessary comments
-    3) Write documentation and explanation of the code
-    4) Display your project in Resume
+    3) Write documentation and explanation of the code using Microsoft Word
+    4) Display your project in Resume (Don't forget to update your Resume)
 */
 
-/*
-    Why i can't see my changes from my second laptop??
-    asfdýusaýufass
-*/
 
 
 
