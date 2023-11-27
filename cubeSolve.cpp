@@ -2,19 +2,6 @@
 #include <cstdlib>
 #include "cubeSolve.h"
 
-// frontTurn and reverseFrontTurn passed the test
-// backTurn and reverseBackTurn passed the test
-// upTurn and reverseUpTurn passed the test
-// downTurn and reverseDownTurn passed the test
-// leftTurn and reverseLeftTurn passed the test
-// rightTurn and reverseRightTurn passed the test
-// solveWhiteCross passed the test
-// solveFirstLayer passed the test
-// solveSecondLayer passed the test
-// solveThirdLayerCorners ...
-
-// all functions that solves some part of the cube works accordingly in some cases
-// still need to check more cases...
 
 cubeSolve::cubeSolve()
 {
@@ -27,12 +14,6 @@ cubeSolve::cubeSolve()
         right.push_back('o');
         left.push_back('r');
     }
-    frontSolved = false;
-    backSolved = false;
-    upSolved = false;
-    downSolved = false;
-    rightSolved = false;
-    leftSolved = false;
     currentState = 0;
 }
 
@@ -431,30 +412,6 @@ void cubeSolve::reverseRightTurn() {
     down[8] = frontRight;
 
     right = afterTurn;
-}
-
-bool isColorSolved(vector<char> x)
-{
-    for (int i = 0; i < x.size(); i++)
-    {
-        if (x.at(i) != x.at(4))
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool cubeSolve::isSolved()
-{
-    // Check each color if its solved
-    if (frontSolved && backSolved && upSolved &&
-        downSolved  && leftSolved && rightSolved)
-    {
-        return true;
-    }
-
-    return false;
 }
 
 bool cubeSolve::checkLayer(int a, vector<char> vec)
@@ -1103,7 +1060,6 @@ void cubeSolve::solveThirdLayerCorners()
     cout << "Third Layer's Corners are solved !" << endl;
 }
 
-// infinite loop
 void cubeSolve::solveThirdLayerEdges()
 {
     // check if its already solved
