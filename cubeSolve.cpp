@@ -546,6 +546,1591 @@ void cubeSolve::decideCurrentState()
 
 }
 
+void cubeSolve::solveWhiteCross()
+{
+    // variable initialization
+    int correctWhiteEdgePieceCount = 0;
+    bool isLeftEdgeSolved = false;
+    bool isRightEdgeSolved = false;
+    bool isTopEdgeSolved = false;
+    bool isBottomEdgeSolved = false;
+
+    if (down[1] == 'w' && front[7] == front[4])
+    {
+        isTopEdgeSolved = true;
+        correctWhiteEdgePieceCount++;
+    }
+
+    if (down[3] == 'w' && left[7] == left[4])
+    {
+        isLeftEdgeSolved = true;
+        correctWhiteEdgePieceCount++;
+    }
+
+    if (down[5] == 'w' && right[7] == right[4])
+    {
+        isRightEdgeSolved = true;
+        correctWhiteEdgePieceCount++;
+    }
+
+    if (down[7] == 'w' && back[7] == back[4])
+    {
+        isBottomEdgeSolved = true;
+        correctWhiteEdgePieceCount++;
+    }
+
+    if (down[1] == 'w' && front[7] != front[4])
+    {
+        cout << "F F" << endl;
+        frontTurn();
+        frontTurn();
+    }
+
+    if (down[5] == 'w' && right[7] != right[4])
+    {
+        cout << "R R" << endl;
+        rightTurn();
+        rightTurn();
+    }
+
+    if (down[7] == 'w' && back[7] != back[4])
+    {
+        cout << "B B" << endl;
+        backTurn();
+        backTurn();
+    }
+
+    if (down[3] == 'w' && left[7] != left[4])
+    {
+        cout << "L L" << endl;
+        leftTurn();
+        leftTurn();
+    }
+
+
+    while (correctWhiteEdgePieceCount != 4)
+    {
+        if (up[1] == 'w')
+        {
+            const char current = back[1];
+
+            switch (current)
+            {
+            case 'b':
+                cout << "B B" << endl;
+                backTurn();
+                backTurn();
+                isBottomEdgeSolved = true;
+                break;
+            case 'r':
+                cout << "U' L L" << endl;
+                reverseUpTurn();
+                leftTurn();
+                leftTurn();
+                isLeftEdgeSolved = true;
+                break;
+            case 'o':
+                cout << "U R R" << endl;
+                upTurn();
+                rightTurn();
+                rightTurn();
+                isRightEdgeSolved = true;
+                break;
+            case 'g':
+                cout << "U U F F" << endl;
+                upTurn();
+                upTurn();
+                frontTurn();
+                frontTurn();
+                isTopEdgeSolved = true;
+                break;
+            default:
+                cout << "ERROR:2216" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (up[3] == 'w')
+        {
+            const char current = left[1];
+            switch (current)
+            {
+            case 'b':
+                cout << "U B B" << endl;
+                upTurn();
+                backTurn();
+                backTurn();
+                isBottomEdgeSolved = true;
+                break;
+
+            case 'r':
+                cout << "L L" << endl;
+                leftTurn();
+                leftTurn();
+                isLeftEdgeSolved = true;
+                break;
+
+            case 'o':
+                cout << "U U R R" << endl;
+                upTurn();
+                upTurn();
+                rightTurn();
+                rightTurn();
+                isRightEdgeSolved = true;
+                break;
+
+            case 'g':
+                cout << "U' F F" << endl;
+                reverseUpTurn();
+                frontTurn();
+                frontTurn();
+                isTopEdgeSolved = true;
+                break;
+
+            default:
+                cout << "ERROR:2257" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (up[5] == 'w')
+        {
+            const char current = right[1];
+            switch (current)
+            {
+            case 'b':
+                cout << "U' B B" << endl;
+                reverseUpTurn();
+                backTurn();
+                backTurn();
+                isBottomEdgeSolved = true;
+                break;
+
+            case 'r':
+                cout << "U U L L" << endl;
+                upTurn();
+                upTurn();
+                leftTurn();
+                leftTurn();
+                isLeftEdgeSolved = true;
+                break;
+
+            case 'o':
+                cout << "R R" << endl;
+                rightTurn();
+                rightTurn();
+                isRightEdgeSolved = true;
+                break;
+
+            case 'g':
+                cout << "U F F" << endl;
+                upTurn();
+                frontTurn();
+                frontTurn();
+                isTopEdgeSolved = true;
+                break;
+
+            default:
+                cout << "ERROR:2296" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (up[7] == 'w')
+        {
+            const char current = front[1];
+            switch (current)
+            {
+            case 'b':
+                cout << "U U B B" << endl;
+                upTurn();
+                upTurn();
+                backTurn();
+                backTurn();
+                isBottomEdgeSolved = true;
+                break;
+
+            case 'r':
+                cout << "U L L" << endl;
+                upTurn();
+                leftTurn();
+                leftTurn();
+                isLeftEdgeSolved = true;
+                break;
+
+            case 'o':
+                cout << "U' R R" << endl;
+                reverseUpTurn();
+                rightTurn();
+                rightTurn();
+                isRightEdgeSolved = true;
+                break;
+
+            case 'g':
+                cout << "F F" << endl;
+                frontTurn();
+                frontTurn();
+                isTopEdgeSolved = true;
+                break;
+
+            default:
+                cout << "ERROR:2336" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        // adding cases for second layer pieces
+        else if (front[3] == 'w')
+        {
+            const char current = left[5];
+            switch (current)
+            {
+            case 'b':
+                cout << "D L D'" << endl;
+                downTurn();
+                leftTurn();
+                reverseDownTurn();
+                isBottomEdgeSolved = true;
+                break;
+            case 'r':
+                cout << "L" << endl;
+                leftTurn();
+                isLeftEdgeSolved = true;
+                break;
+            case 'o':
+                cout << "D D L D' D'" << endl;
+                downTurn();
+                downTurn();
+                leftTurn();
+                reverseDownTurn();
+                reverseDownTurn();
+                isRightEdgeSolved = true;
+                break;
+            case 'g':
+                cout << "D' L D" << endl;
+                reverseDownTurn();
+                leftTurn();
+                downTurn();
+                isTopEdgeSolved = true;
+                break;
+            default:
+                cout << "ERROR:2376" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (front[5] == 'w')
+        {
+            const char current = right[3];
+            switch (current)
+            {
+            case 'b':
+                cout << "D' R' D" << endl;
+                reverseDownTurn();
+                reverseRightTurn();
+                downTurn();
+                isBottomEdgeSolved = true;
+                break;
+            case 'r':
+                cout << "D D R' D D" << endl;
+                downTurn();
+                downTurn();
+                reverseRightTurn();
+                downTurn();
+                downTurn();
+                isLeftEdgeSolved = true;
+                break;
+            case 'o':
+                cout << "R'" << endl;
+                reverseRightTurn();
+                isRightEdgeSolved = true;
+                break;
+            case 'g':
+                cout << "D R' D'" << endl;
+                downTurn();
+                reverseRightTurn();
+                reverseDownTurn();
+                isTopEdgeSolved = true;
+                break;
+            default:
+                cout << "ERROR:2412" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (back[3] == 'w')
+        {
+            const char current = right[5];
+            switch (current)
+            {
+            case 'b':
+                cout << "D' R D" << endl;
+                reverseDownTurn();
+                rightTurn();
+                downTurn();
+                isBottomEdgeSolved = true;
+                break;
+
+            case 'r':
+                cout << "D' D' R D D" << endl;
+                reverseDownTurn();
+                reverseDownTurn();
+                rightTurn();
+                downTurn();
+                downTurn();
+                isLeftEdgeSolved = true;
+                break;
+
+            case 'o':
+                cout << "R" << endl;
+                rightTurn();
+                isRightEdgeSolved = true;
+                break;
+
+            case 'g':
+                cout << "D R D'" << endl;
+                downTurn();
+                rightTurn();
+                reverseDownTurn();
+                isTopEdgeSolved = true;
+                break;
+
+            default:
+                cout << "ERROR:2452" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (back[5] == 'w')
+        {
+            const char current = left[3];
+            switch (current)
+            {
+            case 'b':
+                cout << "D L' D'" << endl;
+                downTurn();
+                reverseLeftTurn();
+                reverseDownTurn();
+                isBottomEdgeSolved = true;
+                break;
+            case 'r':
+                cout << "L'" << endl;
+                reverseLeftTurn();
+                isLeftEdgeSolved = true;
+                break;
+            case 'o':
+                cout << "D D L' D' D'" << endl;
+                downTurn();
+                downTurn();
+                reverseLeftTurn();
+                reverseDownTurn();
+                reverseDownTurn();
+                isRightEdgeSolved = true;
+                break;
+            case 'g':
+                cout << "D' L' D" << endl;
+                reverseDownTurn();
+                reverseLeftTurn();
+                downTurn();
+                isTopEdgeSolved = true;
+                break;
+            default:
+                cout << "ERROR:2488" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (left[3] == 'w')
+        {
+            const char current = back[5];
+            switch (current)
+            {
+            case 'b':
+                cout << "B" << endl;
+                backTurn();
+                isBottomEdgeSolved = true;
+                break;
+
+            case 'r':
+                cout << "D' B D" << endl;
+                reverseDownTurn();
+                backTurn();
+                downTurn();
+                isLeftEdgeSolved = true;
+                break;
+
+            case 'o':
+                cout << "D  B  D'" << endl;
+                downTurn();
+                backTurn();
+                reverseDownTurn();
+                isRightEdgeSolved = true;
+                break;
+
+            case 'g':
+                cout << "D' D' B D D" << endl;
+                reverseDownTurn();
+                reverseDownTurn();
+                backTurn();
+                downTurn();
+                downTurn();
+                isTopEdgeSolved = true;
+                break;
+
+            default:
+                cout << "ERROR:2528" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (left[5] == 'w')
+        {
+            const char current = front[3];
+            switch (current)
+            {
+            case 'b':
+                cout << "D D L' D' D'" << endl;
+                downTurn();
+                downTurn();
+                reverseLeftTurn();
+                reverseDownTurn();
+                reverseDownTurn();
+                isBottomEdgeSolved = true;
+                break;
+
+            case 'r':
+                cout << "D F' D'" << endl;
+                downTurn();
+                reverseFrontTurn();
+                reverseDownTurn();
+                isLeftEdgeSolved = true;
+                break;
+
+            case 'o':
+                cout << "D' F' D" << endl;
+                reverseDownTurn();
+                reverseFrontTurn();
+                downTurn();
+                isRightEdgeSolved = true;
+                break;
+
+            case 'g':
+                cout << "F'" << endl;
+                reverseFrontTurn();
+                isTopEdgeSolved = true;
+                break;
+
+            default:
+                cout << "ERROR:2568" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (right[3] == 'w')
+        {
+            const char current = front[5];
+            switch (current)
+            {
+            case 'b':
+                cout << "D' D' F D D" << endl;
+                reverseDownTurn();
+                reverseDownTurn();
+                frontTurn();
+                downTurn();
+                downTurn();
+                isBottomEdgeSolved = true;
+                break;
+
+            case 'r':
+                cout << "D F D'" << endl;
+                downTurn();
+                frontTurn();
+                reverseDownTurn();
+                isLeftEdgeSolved = true;
+                break;
+
+            case 'o':
+                cout << "D' F D" << endl;
+                reverseDownTurn();
+                frontTurn();
+                downTurn();
+                isRightEdgeSolved = true;
+                break;
+
+            case 'g':
+                cout << "F" << endl;
+                frontTurn();
+                isTopEdgeSolved = true;
+                break;
+
+            default:
+                cout << "ERROR:2606" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        else if (right[5] == 'w')
+        {
+            const char current = back[3];
+            switch (current)
+            {
+            case 'b':
+                cout << "B'" << endl;
+                reverseBackTurn();
+                isBottomEdgeSolved = true;
+                break;
+
+            case 'r':
+                cout << "D' B' D" << endl;
+                reverseDownTurn();
+                reverseBackTurn();
+                downTurn();
+                isLeftEdgeSolved = true;
+                break;
+
+            case 'o':
+                cout << "D B' D'" << endl;
+                downTurn();
+                reverseBackTurn();
+                reverseDownTurn();
+                isRightEdgeSolved = true;
+                break;
+
+            case 'g':
+                cout << "D D B' D D" << endl;
+                downTurn();
+                downTurn();
+                reverseBackTurn();
+                downTurn();
+                downTurn();
+                isTopEdgeSolved = true;
+                break;
+
+            default:
+                cout << "ERROR:2648" << endl;
+                break;
+            }
+            correctWhiteEdgePieceCount++;
+        }
+
+        // Cases for first, third layered pieces
+        // after the turn i must place the white piece here otherwise infinite loop
+        else if (front[1] == 'w')
+        {
+            if (!isTopEdgeSolved)
+            {
+                if (up[7] == left[4])
+                {
+                    cout << "F'" << endl;
+                    reverseFrontTurn();
+                }
+                else
+                {
+                    cout << "F" << endl;
+                    frontTurn();
+                }
+
+            }
+
+            else if (!isRightEdgeSolved)
+            {
+                cout << "U'" << endl;
+                reverseUpTurn();
+                if (up[5] == front[4])
+                {
+                    cout << "R'" << endl;
+                    reverseRightTurn();
+                }
+                else
+                {
+                    cout << "R" << endl;
+                    rightTurn();
+                }
+            }
+
+            else if (!isLeftEdgeSolved)
+            {
+                cout << "U" << endl;
+                upTurn();
+                if (!isLeftEdgeSolved)
+                {
+                    if (up[3] == front[4])
+                    {
+                        cout << "L" << endl;
+                        leftTurn();
+                    }
+                    else
+                    {
+                        cout << "L'" << endl;
+                        reverseLeftTurn();
+                    }
+                }
+            }
+
+            else if (!isBottomEdgeSolved)
+            {
+                cout << "U U" << endl;
+                upTurn();
+                upTurn();
+                if (up[1] == left[4])
+                {
+                    cout << "B" << endl;
+                    backTurn();
+                }
+                else
+                {
+                    cout << "B'" << endl;
+                    reverseBackTurn();
+                }
+            }
+
+            else
+            {
+                cout << "ERROR: else if (front[1] == 'w')" << endl;
+            }
+        }
+
+        else if (front[7] == 'w')
+        {
+            if (down[1] == left[4])
+            {
+                cout << "F" << endl;
+                frontTurn();
+            }
+            else
+            {
+                cout << "F'" << endl;
+                reverseFrontTurn();
+            }
+        }
+
+        else if (back[1] == 'w')
+        {
+            if (!isBottomEdgeSolved)
+            {
+                if (up[1] == left[4])
+                {
+                    cout << "B" << endl;
+                    backTurn();
+                }
+                else
+                {
+                    cout << "B'" << endl;
+                    reverseBackTurn();
+                }
+            }
+
+            else if (!isLeftEdgeSolved)
+            {
+                cout << "U'" << endl;
+                reverseUpTurn();
+                if (up[3] == front[4])
+                {
+                    cout << "L" << endl;
+                    leftTurn();
+                }
+                else
+                {
+                    cout << "L'" << endl;
+                    reverseLeftTurn();
+                }
+            }
+
+            else if (!isRightEdgeSolved)
+            {
+                cout << "U" << endl;
+                upTurn();
+                if (!isRightEdgeSolved)
+                {
+                    if (up[5] == front[4])
+                    {
+                        cout << "R'" << endl;
+                        reverseRightTurn();
+                    }
+                    else
+                    {
+                        cout << "R" << endl;
+                        rightTurn();
+                    }
+                }
+            }
+
+            else if (!isTopEdgeSolved)
+            {
+                cout << "U U" << endl;
+                upTurn();
+                upTurn();
+                if (up[7] == left[4])
+                {
+                    cout << "F'" << endl;
+                    reverseFrontTurn();
+                }
+                else
+                {
+                    cout << "F" << endl;
+                    frontTurn();
+                }
+            }
+
+            else
+            {
+                cout << "ERROR: else if (back[1] == 'w') " << endl;
+            }
+        }
+
+        else if (back[7] == 'w')
+        {
+            if (down[7] == left[4])
+            {
+                cout << "B'" << endl;
+                reverseBackTurn();
+            }
+            else
+            {
+                cout << "B" << endl;
+                backTurn();
+            }
+        }
+
+        else if (left[1] == 'w')
+        {
+            if (!isLeftEdgeSolved)
+            {
+                if (up[3] == front[4])
+                {
+                    cout << "L" << endl;
+                    leftTurn();
+                }
+                else
+                {
+                    cout << "L'" << endl;
+                    reverseLeftTurn();
+                }
+            }
+
+            else if (!isTopEdgeSolved)
+            {
+                cout << "U'" << endl;
+                reverseUpTurn();
+                if (up[7] == left[4])
+                {
+                    cout << "F'" << endl;
+                    reverseFrontTurn();
+                }
+                else
+                {
+                    cout << "F" << endl;
+                    frontTurn();
+                }
+            }
+
+            else if (!isBottomEdgeSolved)
+            {
+                cout << "U" << endl;
+                upTurn();
+                if (up[1] == left[4])
+                {
+                    cout << "B" << endl;
+                    backTurn();
+                }
+                else
+                {
+                    cout << "B'" << endl;
+                    reverseBackTurn();
+                }
+            }
+
+            else if (!isRightEdgeSolved)
+            {
+                cout << "U U" << endl;
+                upTurn();
+                upTurn();
+                if (up[5] == front[4])
+                {
+                    cout << "R'" << endl;
+                    reverseRightTurn();
+                }
+                else
+                {
+                    cout << "R" << endl;
+                    rightTurn();
+                }
+            }
+
+            else
+            {
+                cout << "ERROR: else if (left[1] == 'w')" << endl;
+            }
+        }
+
+        else if (left[7] == 'w')
+        {
+            if (down[3] == front[4])
+            {
+                cout << "L'" << endl;
+                reverseLeftTurn();
+            }
+            else
+            {
+                cout << "L" << endl;
+                leftTurn();
+            }
+        }
+
+        else if (right[1] == 'w')
+        {
+            if (!isRightEdgeSolved)
+            {
+                if (up[5] == front[4])
+                {
+                    cout << "R'" << endl;
+                    reverseRightTurn();
+                }
+                else
+                {
+                    cout << "R" << endl;
+                    rightTurn();
+                }
+            }
+
+            else if (!isTopEdgeSolved)
+            {
+                cout << "U" << endl;
+                upTurn();
+                if (up[7] == left[4])
+                {
+                    cout << "F'" << endl;
+                    reverseFrontTurn();
+                }
+                else
+                {
+                    cout << "F" << endl;
+                    frontTurn();
+                }
+            }
+
+            else if (!isBottomEdgeSolved)
+            {
+                cout << "U'" << endl;
+                reverseUpTurn();
+                if (up[1] == left[4])
+                {
+                    cout << "B" << endl;
+                    backTurn();
+                }
+                else
+                {
+                    cout << "B'" << endl;
+                    reverseBackTurn();
+                }
+            }
+
+            else if (!isLeftEdgeSolved)
+            {
+                cout << "U U" << endl;
+                upTurn();
+                upTurn();
+                if (up[3] == front[4])
+                {
+                    cout << "L" << endl;
+                    leftTurn();
+                }
+                else
+                {
+                    cout << "L'" << endl;
+                    reverseLeftTurn();
+                }
+            }
+
+            else
+            {
+                cout << "ERROR: else if (right[1] == 'w') " << endl;
+            }
+        }
+
+        else if (right[7] == 'w')
+        {
+            if (down[5] == front[4])
+            {
+                cout << "R" << endl;
+                rightTurn();
+            }
+            else
+            {
+                cout << "R'" << endl;
+                reverseRightTurn();
+            }
+        }
+
+        correctWhiteEdgePieceCount = 0;
+
+        if (down[1] == 'w' && front[7] == front[4])
+        {
+            isTopEdgeSolved = true;
+            correctWhiteEdgePieceCount++;
+        }
+
+        if (down[3] == 'w' && left[7] == left[4])
+        {
+            isLeftEdgeSolved = true;
+            correctWhiteEdgePieceCount++;
+        }
+
+        if (down[5] == 'w' && right[7] == right[4])
+        {
+            isRightEdgeSolved = true;
+            correctWhiteEdgePieceCount++;
+        }
+
+        if (down[7] == 'w' && back[7] == back[4])
+        {
+            isBottomEdgeSolved = true;
+            correctWhiteEdgePieceCount++;
+        }
+    }
+
+    cout << endl;
+    cout << "White Cross Solved!" << endl;
+}
+
+void cubeSolve::solveFirstLayer()
+{
+    int whiteCornerCount = 0;
+    bool isTopLeftSolved = false;
+    bool isTopRightSolved = false;
+    bool isBottomLeftSolved = false;
+    bool isBottomRightSolved = false;
+
+
+    if (down[0] == down[4] && front[6] == front[4] && left[8] == left[4])
+    {
+        ++whiteCornerCount;
+        isTopLeftSolved = true;
+    }
+
+    if (down[2] == down[4] && front[8] == front[4] && right[6] == right[4])
+    {
+        ++whiteCornerCount;
+        isTopRightSolved = true;
+    }
+
+    if (down[6] == down[4] && left[6] == left[4] && back[8] == back[4])
+    {
+        ++whiteCornerCount;
+        isBottomLeftSolved = true;
+    }
+
+    if (down[8] == down[4] && right[8] == right[4] && back[6] == back[4])
+    {
+        ++whiteCornerCount;
+        isBottomRightSolved = true;
+    }
+
+    while (whiteCornerCount < 4)
+    {
+        // 1 left directions
+        if (right[0] == 'w' && up[8] == front[4] && front[2] == left[4])
+        {
+            // L' U L
+            reverseLeftTurn();
+            upTurn();
+            leftTurn();
+            cout << "L' U L" << endl;
+            ++whiteCornerCount;
+            isTopLeftSolved = true;
+        }
+
+        else if (back[0] == 'w' && up[2] == right[4] && right[2] == front[4])
+        {
+            // F' U F
+            reverseFrontTurn();
+            upTurn();
+            frontTurn();
+            cout << "F' U F" << endl;
+            ++whiteCornerCount;
+            isTopRightSolved = true;
+        }
+
+        else if (left[0] == 'w' && up[0] == back[4] && back[2] == right[4])
+        {
+            // R' U R
+            reverseRightTurn();
+            upTurn();
+            rightTurn();
+            cout << "R' U R" << endl;
+            ++whiteCornerCount;
+            isBottomRightSolved = true;
+        }
+
+        else if (front[0] == 'w' && up[6] == left[4] && left[2] == back[4])
+        {
+            // B' U B
+            reverseBackTurn();
+            upTurn();
+            backTurn();
+            cout << "B' U B" << endl;
+            ++whiteCornerCount;
+            isBottomLeftSolved = true;
+        }
+
+        // 1 right directions
+        else if (left[2] == 'w' && up[6] == front[4] && front[0] == right[4])
+        {
+            // R U' R'
+            rightTurn();
+            reverseUpTurn();
+            reverseRightTurn();
+            cout << "R U' R'" << endl;
+            ++whiteCornerCount;
+            isTopRightSolved = true;
+        }
+
+        else if (back[2] == 'w' && up[0] == left[4] && left[0] == front[4])
+        {
+            // F U' F'
+            frontTurn();
+            reverseUpTurn();
+            reverseFrontTurn();
+            cout << "F U' F'" << endl;
+            ++whiteCornerCount;
+            isTopLeftSolved = true;
+        }
+
+        else if (right[2] == 'w' && up[2] == back[4] && back[0] == left[4])
+        {
+            // L U' L'
+            leftTurn();
+            reverseUpTurn();
+            reverseLeftTurn();
+            cout << "L U' L'" << endl;
+            ++whiteCornerCount;
+            isBottomLeftSolved = true;
+        }
+
+        else if (front[2] == 'w' && up[8] == right[4] && right[0] == back[4])
+        {
+            // B U' B'
+            backTurn();
+            reverseUpTurn();
+            reverseBackTurn();
+            cout << "B U' B'" << endl;
+            ++whiteCornerCount;
+            isBottomRightSolved = true;
+        }
+        //2 step l-r directions
+        // if we couldn't do any algorithms above and still have white side
+        // in third layer we should do move U or U'
+        // turn U and checks the ifs above
+        // if no correct piece then backtrack and turn U' check again
+        // if no correct piece again then do U U and check
+        // if still no correct piece then there is error.
+
+        else
+        {
+            upTurn();
+            // U case
+            // 1 left directions
+            if (right[0] == 'w' && up[8] == front[4] && front[2] == left[4])
+            {
+                // L' U L
+                reverseLeftTurn();
+                upTurn();
+                leftTurn();
+                cout << "U L' U L" << endl;
+                ++whiteCornerCount;
+                isTopLeftSolved = true;
+                continue;
+            }
+
+            else if (back[0] == 'w' && up[2] == right[4] && right[2] == front[4])
+            {
+                // F' U F
+                reverseFrontTurn();
+                upTurn();
+                frontTurn();
+                cout << "U F' U F" << endl;
+                ++whiteCornerCount;
+                isTopRightSolved = true;
+                continue;
+            }
+
+            else if (left[0] == 'w' && up[0] == back[4] && back[2] == right[4])
+            {
+                // R' U R
+                reverseRightTurn();
+                upTurn();
+                rightTurn();
+                cout << "U R' U R" << endl;
+                ++whiteCornerCount;
+                isBottomRightSolved = true;
+                continue;
+            }
+
+            else if (front[0] == 'w' && up[6] == left[4] && left[2] == back[4])
+            {
+                // B' U B
+                reverseBackTurn();
+                upTurn();
+                backTurn();
+                cout << "U B' U B" << endl;
+                ++whiteCornerCount;
+                isBottomLeftSolved = true;
+                continue;
+            }
+
+            // 1 right directions
+            else if (left[2] == 'w' && up[6] == front[4] && front[0] == right[4])
+            {
+                // R U' R'
+                rightTurn();
+                reverseUpTurn();
+                reverseRightTurn();
+                cout << "U R U' R'" << endl;
+                ++whiteCornerCount;
+                isTopRightSolved = true;
+                continue;
+            }
+
+            else if (back[2] == 'w' && up[0] == left[4] && left[0] == front[4])
+            {
+                // F U' F'
+                frontTurn();
+                reverseUpTurn();
+                reverseFrontTurn();
+                cout << "U F U' F'" << endl;
+                ++whiteCornerCount;
+                isTopLeftSolved = true;
+                continue;
+            }
+
+            else if (right[2] == 'w' && up[2] == back[4] && back[0] == left[4])
+            {
+                // L U' L'
+                leftTurn();
+                reverseUpTurn();
+                reverseLeftTurn();
+                cout << "U L U' L'" << endl;
+                ++whiteCornerCount;
+                isBottomLeftSolved = true;
+                continue;
+            }
+
+            else if (front[2] == 'w' && up[8] == right[4] && right[0] == back[4])
+            {
+                // B U' B'
+                backTurn();
+                reverseUpTurn();
+                reverseBackTurn();
+                cout << "U B U' B'" << endl;
+                ++whiteCornerCount;
+                isBottomRightSolved = true;
+                continue;
+            }
+
+            reverseUpTurn();
+            reverseUpTurn();
+            // U' case
+            // 
+            // 1 left directions
+            if (right[0] == 'w' && up[8] == front[4] && front[2] == left[4])
+            {
+                // L' U L
+                reverseLeftTurn();
+                upTurn();
+                leftTurn();
+                cout << "U' L' U L" << endl;
+                ++whiteCornerCount;
+                isTopLeftSolved = true;
+                continue;
+            }
+
+            else if (back[0] == 'w' && up[2] == right[4] && right[2] == front[4])
+            {
+                // F' U F
+                reverseFrontTurn();
+                upTurn();
+                frontTurn();
+                cout << "U' F' U F" << endl;
+                ++whiteCornerCount;
+                isTopRightSolved = true;
+                continue;
+            }
+
+            else if (left[0] == 'w' && up[0] == back[4] && back[2] == right[4])
+            {
+                // R' U R
+                reverseRightTurn();
+                upTurn();
+                rightTurn();
+                cout << "U' R' U R" << endl;
+                ++whiteCornerCount;
+                isBottomRightSolved = true;
+                continue;
+            }
+
+            else if (front[0] == 'w' && up[6] == left[4] && left[2] == back[4])
+            {
+                // B' U B
+                reverseBackTurn();
+                upTurn();
+                backTurn();
+                cout << "U' B' U B" << endl;
+                ++whiteCornerCount;
+                isBottomLeftSolved = true;
+                continue;
+            }
+
+            // 1 right directions
+            else if (left[2] == 'w' && up[6] == front[4] && front[0] == right[4])
+            {
+                // R U' R'
+                rightTurn();
+                reverseUpTurn();
+                reverseRightTurn();
+                cout << "U' R U' R'" << endl;
+                ++whiteCornerCount;
+                isTopRightSolved = true;
+                continue;
+            }
+
+            else if (back[2] == 'w' && up[0] == left[4] && left[0] == front[4])
+            {
+                // F U' F'
+                frontTurn();
+                reverseUpTurn();
+                reverseFrontTurn();
+                cout << "U' F U' F'" << endl;
+                ++whiteCornerCount;
+                isTopLeftSolved = true;
+                continue;
+            }
+
+            else if (right[2] == 'w' && up[2] == back[4] && back[0] == left[4])
+            {
+                // L U' L'
+                leftTurn();
+                reverseUpTurn();
+                reverseLeftTurn();
+                cout << "U' L U' L'" << endl;
+                ++whiteCornerCount;
+                isBottomLeftSolved = true;
+                continue;
+            }
+
+            else if (front[2] == 'w' && up[8] == right[4] && right[0] == back[4])
+            {
+                // B U' B'
+                backTurn();
+                reverseUpTurn();
+                reverseBackTurn();
+                cout << "U' B U' B'" << endl;
+                ++whiteCornerCount;
+                isBottomRightSolved = true;
+                continue;
+            }
+
+            // U' U' case
+            reverseUpTurn();
+            // 1 left directions
+            if (right[0] == 'w' && up[8] == front[4] && front[2] == left[4])
+            {
+                // L' U L
+                reverseLeftTurn();
+                upTurn();
+                leftTurn();
+                cout << "U' U' L' U L" << endl;
+                ++whiteCornerCount;
+                isTopLeftSolved = true;
+                continue;
+            }
+
+            else if (back[0] == 'w' && up[2] == right[4] && right[2] == front[4])
+            {
+                // F' U F
+                reverseFrontTurn();
+                upTurn();
+                frontTurn();
+                cout << "U' U' F' U F" << endl;
+                ++whiteCornerCount;
+                isTopRightSolved = true;
+                continue;
+            }
+
+            else if (left[0] == 'w' && up[0] == back[4] && back[2] == right[4])
+            {
+                // R' U R
+                reverseRightTurn();
+                upTurn();
+                rightTurn();
+                cout << "U' U' R' U R" << endl;
+                ++whiteCornerCount;
+                isBottomRightSolved = true;
+                continue;
+            }
+
+            else if (front[0] == 'w' && up[6] == left[4] && left[2] == back[4])
+            {
+                // B' U B
+                reverseBackTurn();
+                upTurn();
+                backTurn();
+                cout << "U' U' B' U B" << endl;
+                ++whiteCornerCount;
+                isBottomLeftSolved = true;
+                continue;
+            }
+
+            // 1 right directions
+            else if (left[2] == 'w' && up[6] == front[4] && front[0] == right[4])
+            {
+                // R U' R'
+                rightTurn();
+                reverseUpTurn();
+                reverseRightTurn();
+                cout << "U' U' R U' R'" << endl;
+                ++whiteCornerCount;
+                isTopRightSolved = true;
+                continue;
+            }
+
+            else if (back[2] == 'w' && up[0] == left[4] && left[0] == front[4])
+            {
+                // F U' F'
+                frontTurn();
+                reverseUpTurn();
+                reverseFrontTurn();
+                cout << "U' U' F U' F'" << endl;
+                ++whiteCornerCount;
+                isTopLeftSolved = true;
+                continue;
+            }
+
+            else if (right[2] == 'w' && up[2] == back[4] && back[0] == left[4])
+            {
+                // L U' L'
+                leftTurn();
+                reverseUpTurn();
+                reverseLeftTurn();
+                cout << "U' U' L U' L'" << endl;
+                ++whiteCornerCount;
+                isBottomLeftSolved = true;
+                continue;
+            }
+
+            else if (front[2] == 'w' && up[8] == right[4] && right[0] == back[4])
+            {
+                // B U' B'
+                backTurn();
+                reverseUpTurn();
+                reverseBackTurn();
+                cout << "U' U' B U' B'" << endl;
+                ++whiteCornerCount;
+                isBottomRightSolved = true;
+                continue;
+            }
+
+            // we considered every case that includes third layer white piece
+            // but what to do if there is no white piece in the third layer?
+            // 
+            // in up side of the cube
+            // put the white face on top of the empty corner and 
+            // do: R U' R OR L' U L' (according to its place)
+            // TopLeft: R U R'
+            // TopRight: L' U' L
+            // BottomLeft: L' U L
+            // BottomRight: R U' R'
+            else
+            {
+                upTurn();
+                upTurn();
+
+                if (up[0] == 'w' && !isTopRightSolved)
+                {
+                    cout << "R U R'" << endl;
+                    rightTurn();
+                    upTurn();
+                    reverseRightTurn();
+                }
+
+                else if (up[2] == 'w' && !isTopLeftSolved)
+                {
+                    cout << "L' U' L" << endl;
+                    reverseLeftTurn();
+                    reverseUpTurn();
+                    leftTurn();
+                }
+
+                else if (up[6] == 'w' && !isTopLeftSolved)
+                {
+                    cout << "L' U L" << endl;
+                    reverseLeftTurn();
+                    upTurn();
+                    leftTurn();
+                }
+
+                else if (up[8] == 'w' && !isTopRightSolved)
+                {
+                    cout << "R U' R'" << endl;
+                    rightTurn();
+                    reverseUpTurn();
+                    reverseRightTurn();
+                }
+
+                else if (up[8] == 'w' && !isBottomLeftSolved)
+                {
+                    // L U L'
+                    cout << "L U L'" << endl;
+                    leftTurn();
+                    upTurn();
+                    reverseLeftTurn();
+                }
+
+                else if (up[6] == 'w' && !isBottomRightSolved)
+                {
+                    // R' U' R
+                    cout << "R' U' R" << endl;
+                    reverseRightTurn();
+                    reverseUpTurn();
+                    rightTurn();
+                }
+
+                else if (up[2] == 'w' && !isBottomRightSolved)
+                {
+                    //R' U R
+                    cout << "R' U R" << endl;
+                    reverseRightTurn();
+                    upTurn();
+                    rightTurn();
+                }
+
+                else if (up[0] == 'w' && !isBottomLeftSolved)
+                {
+                    // L U' L'
+                    cout << "L U' L'" << endl;
+                    leftTurn();
+                    reverseUpTurn();
+                    reverseLeftTurn();
+                }  
+
+                else if (front[6] == 'w')
+                {
+                    cout << "L' U L" << endl;
+                    reverseLeftTurn();
+                    upTurn();
+                    leftTurn();
+                }
+
+                else if (front[8] == 'w')
+                {
+                    cout << "R U' R'" << endl;
+                    rightTurn();
+                    reverseUpTurn();
+                    reverseRightTurn();
+                }
+
+                else if (back[6] == 'w')
+                {
+                    cout << "R' U R" << endl;
+                    reverseRightTurn();
+                    upTurn();
+                    rightTurn();
+                }
+
+                else if (back[8] == 'w')
+                {
+                    cout << "L U' L'" << endl;
+                    leftTurn();
+                    reverseUpTurn();
+                    reverseLeftTurn();
+                }
+
+                else if (left[6] == 'w')
+                {
+                    cout << "B' U B" << endl;
+                    reverseBackTurn();
+                    upTurn();
+                    backTurn();
+                }
+
+                else if (left[8] == 'w')
+                {
+                    cout << "F U' F'" << endl;
+                    frontTurn();
+                    reverseUpTurn();
+                    reverseFrontTurn();
+                }
+
+                else if (right[6] == 'w')
+                {
+                    cout << "F' U F" << endl;
+                    reverseFrontTurn();
+                    upTurn();
+                    frontTurn();
+                }
+
+                else if (right[8] == 'w')
+                {
+                    cout << "B U' B'" << endl;
+                    backTurn();
+                    reverseUpTurn();
+                    reverseBackTurn();
+                }
+
+                else if (down[0] == 'w' && !isTopLeftSolved)
+                {
+                    cout << "L' U' L" << endl;
+                    reverseLeftTurn();
+                    reverseUpTurn();
+                    leftTurn();
+                }
+
+                else if (down[2] == 'w' && !isTopRightSolved)
+                {
+                    cout << "R U R'" << endl;
+                    rightTurn();
+                    upTurn();
+                    reverseRightTurn();
+                }
+
+                else if (down[6] == 'w' && !isBottomLeftSolved)
+                {
+                    cout << "L U L'" << endl;
+                    leftTurn();
+                    upTurn();
+                    reverseLeftTurn();
+                }
+
+                else if (down[8] == 'w' && !isBottomRightSolved)
+                {
+                    cout << "R' U' R" << endl;
+                    reverseRightTurn();
+                    reverseUpTurn();
+                    rightTurn();
+                }
+
+                else
+                {
+                    cout << "U" << endl;
+                    upTurn();
+                }
+            }
+        }
+    }
+    cout << endl;
+    cout << "First Layer Solved !" << endl;
+}
+
 void cubeSolve::solveYellowCross()
 {
     cout << "Solving the Yellow Cross:"<<endl;
@@ -1632,1632 +3217,6 @@ void cubeSolve::solveSecondLayer()
 
     cout << endl;
     cout << "Second Layer Solved!" << endl;
-}
-
-void cubeSolve::solveFirstLayer()
-{
-    /* in order to place corner piece correctly
-     the white side should be on the third layer
-     and should'nt be on top*/
-
-     // if(right[0]=='w' && up[8]==front[4] && front[2]==left[4])
-     // do this algorithm for all sides
-     // if(left[2]=='w' && up[6]==front[4] && front[0]==right[4])
-     // do this algorithm for all sides
-
-     // now we need to figure out how to place other corner pieces
-     // to third layer correctly
-     // possbile wrong places where the corner pieces can be:
-     // 1) in wrong corner facing one of the front,back,left,right sides
-     // 2) in wrong corner facing downward
-     // 3) it may be in third layer but looking in wrong corner ->solved
-     // 
-     // 4) in up side of the cube
-     // 4: put the white face on top of the empty corner and 
-     // do: R U' R OR L' U L' (according to its place)
-     //
-     // 
-     // add 4 boolean values 
-     // isTopLeftSolved,isTopRightSolved,isBottomLeftSolved,isBottomRightSolved
-     // if there is white face in the bottom but wrongly placed, do this
-     // R U R'
-     //
-
-
-    int whiteCornerCount = 0;
-    bool isTopLeftSolved = false;
-    bool isTopRightSolved = false;
-    bool isBottomLeftSolved = false;
-    bool isBottomRightSolved = false;
-
-
-    if (down[0] == down[4] && front[6] == front[4] && left[8] == left[4])
-    {
-        ++whiteCornerCount;
-        isTopLeftSolved = true;
-    }
-
-    if (down[2] == down[4] && front[8] == front[4] && right[6] == right[4])
-    {
-        ++whiteCornerCount;
-        isTopRightSolved = true;
-    }
-
-    if (down[6] == down[4] && left[6] == left[4] && back[8] == back[4])
-    {
-        ++whiteCornerCount;
-        isBottomLeftSolved = true;
-    }
-
-    if (down[8] == down[4] && right[8] == right[4] && back[6] == back[4])
-    {
-        ++whiteCornerCount;
-        isBottomRightSolved = true;
-    }
-
-    while (whiteCornerCount < 4)
-    {
-        // 1 left directions
-        if (right[0] == 'w' && up[8] == front[4] && front[2] == left[4])
-        {
-            // L' U L
-            reverseLeftTurn();
-            upTurn();
-            leftTurn();
-            cout << "L' U L" << endl;
-            ++whiteCornerCount;
-            isTopLeftSolved = true;
-        }
-
-        else if (back[0] == 'w' && up[2] == right[4] && right[2] == front[4])
-        {
-            // F' U F
-            reverseFrontTurn();
-            upTurn();
-            frontTurn();
-            cout << "F' U F" << endl;
-            ++whiteCornerCount;
-            isTopRightSolved = true;
-        }
-
-        else if (left[0] == 'w' && up[0] == back[4] && back[2] == right[4])
-        {
-            // R' U R
-            reverseRightTurn();
-            upTurn();
-            rightTurn();
-            cout << "R' U R" << endl;
-            ++whiteCornerCount;
-            isBottomRightSolved = true;
-        }
-
-        else if (front[0] == 'w' && up[6] == left[4] && left[2] == back[4])
-        {
-            // B' U B
-            reverseBackTurn();
-            upTurn();
-            backTurn();
-            cout << "B' U B" << endl;
-            ++whiteCornerCount;
-            isBottomLeftSolved = true;
-        }
-        
-        // 1 right directions
-        else if (left[2] == 'w' && up[6] == front[4] && front[0] == right[4])
-        {
-            // R U' R'
-            rightTurn();
-            reverseUpTurn();
-            reverseRightTurn();
-            cout << "R U' R'" << endl;
-            ++whiteCornerCount;
-            isTopRightSolved = true;
-        }
-
-        else if (back[2] == 'w' && up[0] == left[4] && left[0] == front[4])
-        {
-            // F U' F'
-            frontTurn();
-            reverseUpTurn();
-            reverseFrontTurn();
-            cout << "F U' F'" << endl;
-            ++whiteCornerCount;
-            isTopLeftSolved = true;
-        }
-
-        else if (right[2] == 'w' && up[2] == back[4] && back[0] == left[4])
-        {
-            // L U' L'
-            leftTurn();
-            reverseUpTurn();
-            reverseLeftTurn();
-            cout << "L U' L'" << endl;
-            ++whiteCornerCount;
-            isBottomLeftSolved = true;
-        }
-
-        else if (front[2] == 'w' && up[8] == right[4] && right[0] == back[4])
-        {
-            // B U' B'
-            backTurn();
-            reverseUpTurn();
-            reverseBackTurn();
-            cout << "B U' B'" << endl;
-            ++whiteCornerCount;
-            isBottomRightSolved = true;
-        }
-        //2 step l-r directions
-        // if we couldn't do any algorithms above and still have white side
-        // in third layer we should do move U or U'
-        // i'm thinking of an algorithm which turn U and checks the ifs above
-        // if no correct piece then backtrack and turn U' check again
-        // if no correct piece again then do U U and check
-        // if still no correct piece then there is error.
-
-        else
-        {
-            upTurn();
-            // U case
-            // 1 left directions
-            if (right[0] == 'w' && up[8] == front[4] && front[2] == left[4])
-            {
-                // L' U L
-                reverseLeftTurn();
-                upTurn();
-                leftTurn();
-                cout << "U L' U L" << endl;
-                ++whiteCornerCount;
-                isTopLeftSolved = true;
-                continue;
-            }
-
-            else if (back[0] == 'w' && up[2] == right[4] && right[2] == front[4])
-            {
-                // F' U F
-                reverseFrontTurn();
-                upTurn();
-                frontTurn();
-                cout << "U F' U F" << endl;
-                ++whiteCornerCount;
-                isTopRightSolved = true;
-                continue;
-            }
-
-            else if (left[0] == 'w' && up[0] == back[4] && back[2] == right[4])
-            {
-                // R' U R
-                reverseRightTurn();
-                upTurn();
-                rightTurn();
-                cout << "U R' U R" << endl;
-                ++whiteCornerCount;
-                isBottomRightSolved = true;
-                continue;
-            }
-
-            else if (front[0] == 'w' && up[6] == left[4] && left[2] == back[4])
-            {
-                // B' U B
-                reverseBackTurn();
-                upTurn();
-                backTurn();
-                cout << "U B' U B" << endl;
-                ++whiteCornerCount;
-                isBottomLeftSolved = true;
-                continue;
-            }
-
-            // 1 right directions
-            else if (left[2] == 'w' && up[6] == front[4] && front[0] == right[4])
-            {
-                // R U' R'
-                rightTurn();
-                reverseUpTurn();
-                reverseRightTurn();
-                cout << "U R U' R'" << endl;
-                ++whiteCornerCount;
-                isTopRightSolved = true;
-                continue;
-            }
-
-            else if (back[2] == 'w' && up[0] == left[4] && left[0] == front[4])
-            {
-                // F U' F'
-                frontTurn();
-                reverseUpTurn();
-                reverseFrontTurn();
-                cout << "U F U' F'" << endl;
-                ++whiteCornerCount;
-                isTopLeftSolved = true;
-                continue;
-            }
-
-            else if (right[2] == 'w' && up[2] == back[4] && back[0] == left[4])
-            {
-                // L U' L'
-                leftTurn();
-                reverseUpTurn();
-                reverseLeftTurn();
-                cout << "U L U' L'" << endl;
-                ++whiteCornerCount;
-                isBottomLeftSolved = true;
-                continue;
-            }
-
-            else if (front[2] == 'w' && up[8] == right[4] && right[0] == back[4])
-            {
-                // B U' B'
-                backTurn();
-                reverseUpTurn();
-                reverseBackTurn();
-                cout << "U B U' B'" << endl;
-                ++whiteCornerCount;
-                isBottomRightSolved = true;
-                continue;
-            }
-
-            reverseUpTurn();
-            reverseUpTurn();
-            // U' case
-            // 
-            // 1 left directions
-            if (right[0] == 'w' && up[8] == front[4] && front[2] == left[4])
-            {
-                // L' U L
-                reverseLeftTurn();
-                upTurn();
-                leftTurn();
-                cout << "U' L' U L" << endl;
-                ++whiteCornerCount;
-                isTopLeftSolved = true;
-                continue;
-            }
-
-            else if (back[0] == 'w' && up[2] == right[4] && right[2] == front[4])
-            {
-                // F' U F
-                reverseFrontTurn();
-                upTurn();
-                frontTurn();
-                cout << "U' F' U F" << endl;
-                ++whiteCornerCount;
-                isTopRightSolved = true;
-                continue;
-            }
-
-            else if (left[0] == 'w' && up[0] == back[4] && back[2] == right[4])
-            {
-                // R' U R
-                reverseRightTurn();
-                upTurn();
-                rightTurn();
-                cout << "U' R' U R" << endl;
-                ++whiteCornerCount;
-                isBottomRightSolved = true;
-                continue;
-            }
-
-            else if (front[0] == 'w' && up[6] == left[4] && left[2] == back[4])
-            {
-                // B' U B
-                reverseBackTurn();
-                upTurn();
-                backTurn();
-                cout << "U' B' U B" << endl;
-                ++whiteCornerCount;
-                isBottomLeftSolved = true;
-                continue;
-            }
-
-            // 1 right directions
-            else if (left[2] == 'w' && up[6] == front[4] && front[0] == right[4])
-            {
-                // R U' R'
-                rightTurn();
-                reverseUpTurn();
-                reverseRightTurn();
-                cout << "U' R U' R'" << endl;
-                ++whiteCornerCount;
-                isTopRightSolved = true;
-                continue;
-            }
-
-            else if (back[2] == 'w' && up[0] == left[4] && left[0] == front[4])
-            {
-                // F U' F'
-                frontTurn();
-                reverseUpTurn();
-                reverseFrontTurn();
-                cout << "U' F U' F'" << endl;
-                ++whiteCornerCount;
-                isTopLeftSolved = true;
-                continue;
-            }
-
-            else if (right[2] == 'w' && up[2] == back[4] && back[0] == left[4])
-            {
-                // L U' L'
-                leftTurn();
-                reverseUpTurn();
-                reverseLeftTurn();
-                cout << "U' L U' L'" << endl;
-                ++whiteCornerCount;
-                isBottomLeftSolved = true;
-                continue;
-            }
-
-            else if (front[2] == 'w' && up[8] == right[4] && right[0] == back[4])
-            {
-                // B U' B'
-                backTurn();
-                reverseUpTurn();
-                reverseBackTurn();
-                cout << "U' B U' B'" << endl;
-                ++whiteCornerCount;
-                isBottomRightSolved = true;
-                continue;
-            }
-
-            // U' U' case
-            reverseUpTurn();
-            // 1 left directions
-            if (right[0] == 'w' && up[8] == front[4] && front[2] == left[4])
-            {
-                // L' U L
-                reverseLeftTurn();
-                upTurn();
-                leftTurn();
-                cout << "U' U' L' U L" << endl;
-                ++whiteCornerCount;
-                isTopLeftSolved = true;
-                continue;
-            }
-
-            else if (back[0] == 'w' && up[2] == right[4] && right[2] == front[4])
-            {
-                // F' U F
-                reverseFrontTurn();
-                upTurn();
-                frontTurn();
-                cout << "U' U' F' U F" << endl;
-                ++whiteCornerCount;
-                isTopRightSolved = true;
-                continue;
-            }
-
-            else if (left[0] == 'w' && up[0] == back[4] && back[2] == right[4])
-            {
-                // R' U R
-                reverseRightTurn();
-                upTurn();
-                rightTurn();
-                cout << "U' U' R' U R" << endl;
-                ++whiteCornerCount;
-                isBottomRightSolved = true;
-                continue;
-            }
-
-            else if (front[0] == 'w' && up[6] == left[4] && left[2] == back[4])
-            {
-                // B' U B
-                reverseBackTurn();
-                upTurn();
-                backTurn();
-                cout << "U' U' B' U B" << endl;
-                ++whiteCornerCount;
-                isBottomLeftSolved = true;
-                continue;
-            }
-
-            // 1 right directions
-            else if (left[2] == 'w' && up[6] == front[4] && front[0] == right[4])
-            {
-                // R U' R'
-                rightTurn();
-                reverseUpTurn();
-                reverseRightTurn();
-                cout << "U' U' R U' R'" << endl;
-                ++whiteCornerCount;
-                isTopRightSolved = true;
-                continue;
-            }
-
-            else if (back[2] == 'w' && up[0] == left[4] && left[0] == front[4])
-            {
-                // F U' F'
-                frontTurn();
-                reverseUpTurn();
-                reverseFrontTurn();
-                cout << "U' U' F U' F'" << endl;
-                ++whiteCornerCount;
-                isTopLeftSolved = true;
-                continue;
-            }
-
-            else if (right[2] == 'w' && up[2] == back[4] && back[0] == left[4])
-            {
-                // L U' L'
-                leftTurn();
-                reverseUpTurn();
-                reverseLeftTurn();
-                cout << "U' U' L U' L'" << endl;
-                ++whiteCornerCount;
-                isBottomLeftSolved = true;
-                continue;
-            }
-
-            else if (front[2] == 'w' && up[8] == right[4] && right[0] == back[4])
-            {
-                // B U' B'
-                backTurn();
-                reverseUpTurn();
-                reverseBackTurn();
-                cout << "U' U' B U' B'" << endl;
-                ++whiteCornerCount;
-                isBottomRightSolved = true;
-                continue;
-            }
-
-            // we considered every case that includes third layer white piece
-            // but what to do if there is no white piece in the third layer?
-            // 
-            // in up side of the cube
-            // put the white face on top of the empty corner and 
-            // do: R U' R OR L' U L' (according to its place)
-            // TopLeft: R U R'
-            // TopRight: L' U' L
-            // BottomLeft: L' U L
-            // BottomRight: R U' R'
-            else
-            {
-                upTurn();
-                upTurn();
-
-                if (up[0] == 'w' && !isTopRightSolved)
-                {
-                    cout << "R U R'" << endl;
-                    rightTurn();
-                    upTurn();
-                    reverseRightTurn();
-                }
-
-                else if (up[2] == 'w' && !isTopLeftSolved)
-                {
-                    cout << "L' U' L" << endl;
-                    reverseLeftTurn();
-                    reverseUpTurn();
-                    leftTurn();
-                }
-
-                else if (up[6] == 'w' && !isTopLeftSolved)
-                {
-                    cout << "L' U L" << endl;
-                    reverseLeftTurn();
-                    upTurn();
-                    leftTurn();
-                }
-
-                else if (up[8] == 'w' && !isTopRightSolved)
-                {
-                    cout << "R U' R'" << endl;
-                    rightTurn();
-                    reverseUpTurn();
-                    reverseRightTurn();
-                }
-
-                else if (up[8] == 'w' && !isBottomLeftSolved)
-                {
-                    // L U L'
-                    cout << "L U L'" << endl;
-                    leftTurn();
-                    upTurn();
-                    reverseLeftTurn();
-                }
-
-                else if (up[6] == 'w' && !isBottomRightSolved)
-                {
-                    // R' U' R
-                    cout << "R' U' R" << endl;
-                    reverseRightTurn();
-                    reverseUpTurn();
-                    rightTurn();
-                }
-
-                else if (up[2] == 'w' && !isBottomRightSolved)
-                {
-                    //R' U R
-                    cout << "R' U R" << endl;
-                    reverseRightTurn();
-                    upTurn();
-                    rightTurn();
-                }
-
-                else if (up[0] == 'w' && !isBottomLeftSolved)
-                {
-                    // L U' L'
-                    cout << "L U' L'" << endl;
-                    leftTurn();
-                    reverseUpTurn();
-                    reverseLeftTurn();
-                }
-
-                // else if(front[6]=='w')
-                // {
-                //    L' U L
-                // }
-                //
-                // else if(front[8]=='w')
-                // {
-                //      R U' R'
-                // }
-                // 
-                // do above functions for all 4 sides
-                //
-
-                else if (front[6] == 'w')
-                {
-                    cout << "L' U L" << endl;
-                    reverseLeftTurn();
-                    upTurn();
-                    leftTurn();
-                }
-
-                else if (front[8] == 'w')
-                {
-                    cout << "R U' R'" << endl;
-                    rightTurn();
-                    reverseUpTurn();
-                    reverseRightTurn();
-                }
-
-                else if (back[6] == 'w')
-                {
-                    cout << "R' U R" << endl;
-                    reverseRightTurn();
-                    upTurn();
-                    rightTurn();
-                }
-
-                else if (back[8] == 'w')
-                {
-                    cout << "L U' L'" << endl;
-                    leftTurn();
-                    reverseUpTurn();
-                    reverseLeftTurn();
-                }
-
-                else if (left[6] == 'w')
-                {
-                    cout << "B' U B" << endl;
-                    reverseBackTurn();
-                    upTurn();
-                    backTurn();
-                }
-
-                else if (left[8] == 'w')
-                {
-                    cout << "F U' F'" << endl;
-                    frontTurn();
-                    reverseUpTurn();
-                    reverseFrontTurn();
-                }
-
-                else if (right[6] == 'w')
-                {
-                    cout << "F' U F" << endl;
-                    reverseFrontTurn();
-                    upTurn();
-                    frontTurn();
-                }
-                
-                else if (right[8] == 'w')
-                {
-                    cout << "B U' B'" << endl;
-                    backTurn();
-                    reverseUpTurn();
-                    reverseBackTurn();
-                }
-
-                else if (down[0] == 'w' && !isTopLeftSolved)
-                {
-                    cout << "L' U' L" << endl;
-                    reverseLeftTurn();
-                    reverseUpTurn();
-                    leftTurn();
-                }
-
-                else if (down[2] == 'w' && !isTopRightSolved)
-                {
-                    cout << "R U R'" << endl;
-                    rightTurn();
-                    upTurn();
-                    reverseRightTurn();
-                }
-
-                else if (down[6] == 'w' && !isBottomLeftSolved)
-                {
-                    cout << "L U L'" << endl;
-                    leftTurn();
-                    upTurn();
-                    reverseLeftTurn();
-                }
-
-                else if (down[8] == 'w' && !isBottomRightSolved)
-                {
-                    cout << "R' U' R" << endl;
-                    reverseRightTurn();
-                    reverseUpTurn();
-                    rightTurn();
-                }
-
-                else
-                {
-                    cout << "U" << endl;
-                    upTurn();
-                }
-            }
-        }
-    }
-    cout << endl;
-    cout << "First Layer Solved !" << endl;
-}
-
-void cubeSolve::solveWhiteCross()
-{
-    // variable initialization
-    int correctWhiteEdgePieceCount = 0;
-    bool isLeftEdgeSolved = false;
-    bool isRightEdgeSolved = false;
-    bool isTopEdgeSolved = false;
-    bool isBottomEdgeSolved = false;
-
-    if (down[1] == 'w' && front[7] == front[4])
-    {
-        isTopEdgeSolved = true;
-        correctWhiteEdgePieceCount++;
-    }
-
-    if (down[3] == 'w' && left[7] == left[4])
-    {
-        isLeftEdgeSolved = true;
-        correctWhiteEdgePieceCount++;
-    }
-
-    if (down[5] == 'w' && right[7] == right[4])
-    {
-        isRightEdgeSolved = true;
-        correctWhiteEdgePieceCount++;
-    }
-
-    if (down[7] == 'w' && back[7] == back[4])
-    {
-        isBottomEdgeSolved = true;
-        correctWhiteEdgePieceCount++;
-    }
-
-    if (down[1] == 'w' && front[7] != front[4])
-    {
-        cout << "F F" << endl;
-        frontTurn();
-        frontTurn();
-    }
-
-    if (down[5] == 'w' && right[7] != right[4])
-    {
-        cout << "R R" << endl;
-        rightTurn();
-        rightTurn();
-    }
-
-    if (down[7] == 'w' && back[7] != back[4])
-    {
-        cout << "B B" << endl;
-        backTurn();
-        backTurn();
-    }
-
-    if (down[3] == 'w' && left[7] != left[4])
-    {
-        cout << "L L" << endl;
-        leftTurn();
-        leftTurn();
-    }
-
-
-    while (correctWhiteEdgePieceCount != 4)
-    {
-        if (up[1] == 'w')
-        {
-            const char current = back[1];
-
-            switch (current)
-            {
-                case 'b':
-                    cout << "B B"<<endl;
-                    backTurn();
-                    backTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-                case 'r':
-                    cout << "U' L L" << endl;
-                    reverseUpTurn();
-                    leftTurn();
-                    leftTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-                case 'o':
-                    cout << "U R R" << endl;
-                    upTurn();
-                    rightTurn();
-                    rightTurn();
-                    isRightEdgeSolved = true;
-                    break;
-                case 'g':
-                    cout << "U U F F" << endl;
-                    upTurn();
-                    upTurn();
-                    frontTurn();
-                    frontTurn();
-                    isTopEdgeSolved = true;
-                    break;
-                default:
-                    cout << "ERROR:2216" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (up[3] == 'w')
-        {
-            const char current = left[1];
-            switch (current)
-            {
-                case 'b':
-                    cout << "U B B" << endl;
-                    upTurn();
-                    backTurn();
-                    backTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-
-                case 'r':
-                    cout << "L L" << endl;
-                    leftTurn();
-                    leftTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-
-                case 'o':
-                    cout << "U U R R" << endl;
-                    upTurn();
-                    upTurn();
-                    rightTurn();
-                    rightTurn();
-                    isRightEdgeSolved = true;
-                    break;
-
-                case 'g':
-                    cout << "U' F F" << endl;
-                    reverseUpTurn();
-                    frontTurn();
-                    frontTurn();
-                    isTopEdgeSolved = true;
-                    break;
-
-                default:
-                    cout << "ERROR:2257" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (up[5] == 'w')
-        {
-            const char current = right[1];
-            switch (current)
-            {
-                case 'b':
-                    cout << "U' B B" << endl;
-                    reverseUpTurn();
-                    backTurn();
-                    backTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-
-                case 'r':
-                    cout << "U U L L" << endl;
-                    upTurn();
-                    upTurn();
-                    leftTurn();
-                    leftTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-
-                case 'o':
-                    cout << "R R" << endl;
-                    rightTurn();
-                    rightTurn();
-                    isRightEdgeSolved = true;
-                    break;
-
-                case 'g':
-                    cout << "U F F" << endl;
-                    upTurn();
-                    frontTurn();
-                    frontTurn();
-                    isTopEdgeSolved = true;
-                    break;
-
-                default:
-                    cout << "ERROR:2296" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (up[7] == 'w')
-        {
-            const char current = front[1];
-            switch (current)
-            {
-                case 'b':
-                    cout << "U U B B" << endl;
-                    upTurn();
-                    upTurn();
-                    backTurn();
-                    backTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-
-                case 'r':
-                    cout << "U L L" << endl;
-                    upTurn();
-                    leftTurn();
-                    leftTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-
-                case 'o':
-                    cout << "U' R R" << endl;
-                    reverseUpTurn();
-                    rightTurn();
-                    rightTurn();
-                    isRightEdgeSolved = true;
-                    break;
-
-                case 'g':
-                    cout << "F F" << endl;
-                    frontTurn();
-                    frontTurn();
-                    isTopEdgeSolved = true;
-                    break;
-
-                default:
-                    cout << "ERROR:2336" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        // adding cases for second layer pieces
-        else if (front[3] == 'w')
-        {
-            const char current = left[5];
-            switch (current)
-            {
-                case 'b':
-                    cout << "D L D'" << endl;
-                    downTurn();
-                    leftTurn();
-                    reverseDownTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-                case 'r':
-                    cout << "L" << endl;
-                    leftTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-                case 'o':
-                    cout << "D D L D' D'" << endl;
-                    downTurn();
-                    downTurn();
-                    leftTurn();
-                    reverseDownTurn();
-                    reverseDownTurn();
-                    isRightEdgeSolved = true;
-                    break;
-                case 'g':
-                    cout << "D' L D" << endl;
-                    reverseDownTurn();
-                    leftTurn();
-                    downTurn();
-                    isTopEdgeSolved = true;
-                    break;
-                default:
-                    cout << "ERROR:2376" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (front[5] == 'w')
-        {
-            const char current = right[3];
-            switch (current)
-            {
-                case 'b':
-                    cout << "D' R' D" << endl;
-                    reverseDownTurn();
-                    reverseRightTurn();
-                    downTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-                case 'r':
-                    cout << "D D R' D D" << endl;
-                    downTurn();
-                    downTurn();
-                    reverseRightTurn();
-                    downTurn();
-                    downTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-                case 'o':
-                    cout << "R'" << endl;
-                    reverseRightTurn();
-                    isRightEdgeSolved = true;
-                    break;
-                case 'g':
-                    cout << "D R' D'" << endl;
-                    downTurn();
-                    reverseRightTurn();
-                    reverseDownTurn();
-                    isTopEdgeSolved = true;
-                    break;
-                default:
-                    cout << "ERROR:2412" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (back[3] == 'w')
-        {
-            const char current = right[5];
-            switch (current)
-            {
-                case 'b':
-                    cout << "D' R D" << endl;
-                    reverseDownTurn();
-                    rightTurn();
-                    downTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-
-                case 'r':
-                    cout << "D' D' R D D" << endl;
-                    reverseDownTurn();
-                    reverseDownTurn();
-                    rightTurn();
-                    downTurn();
-                    downTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-
-                case 'o':
-                    cout << "R" << endl;
-                    rightTurn();
-                    isRightEdgeSolved = true;
-                    break;
-
-                case 'g':
-                    cout << "D R D'" << endl;
-                    downTurn();
-                    rightTurn();
-                    reverseDownTurn();
-                    isTopEdgeSolved = true;
-                    break;
-
-                default:
-                    cout << "ERROR:2452" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (back[5] == 'w')
-        {
-            const char current = left[3];
-            switch (current)
-            {
-                case 'b':
-                    cout << "D L' D'" << endl;
-                    downTurn();
-                    reverseLeftTurn();
-                    reverseDownTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-                case 'r':
-                    cout << "L'" << endl;
-                    reverseLeftTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-                case 'o':
-                    cout << "D D L' D' D'" << endl;
-                    downTurn();
-                    downTurn();
-                    reverseLeftTurn();
-                    reverseDownTurn();
-                    reverseDownTurn();
-                    isRightEdgeSolved = true;
-                    break;
-                case 'g':
-                    cout << "D' L' D" << endl;
-                    reverseDownTurn();
-                    reverseLeftTurn();
-                    downTurn();
-                    isTopEdgeSolved = true;
-                    break;
-                default:
-                    cout << "ERROR:2488" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (left[3] == 'w')
-        {
-            const char current = back[5];
-            switch (current)
-            {
-                case 'b':
-                    cout << "B" << endl;
-                    backTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-
-                case 'r':
-                    cout << "D' B D" << endl;
-                    reverseDownTurn();
-                    backTurn();
-                    downTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-
-                case 'o':
-                    cout << "D  B  D'" << endl;
-                    downTurn();
-                    backTurn();
-                    reverseDownTurn();
-                    isRightEdgeSolved = true;
-                    break;
-
-                case 'g':
-                    cout << "D' D' B D D" << endl;
-                    reverseDownTurn();
-                    reverseDownTurn();
-                    backTurn();
-                    downTurn();
-                    downTurn();
-                    isTopEdgeSolved = true;
-                    break;
-
-                default:
-                    cout << "ERROR:2528" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (left[5] == 'w')
-        {
-            const char current = front[3];
-            switch (current)
-            {
-                case 'b':
-                    cout << "D D L' D' D'" << endl;
-                    downTurn();
-                    downTurn();
-                    reverseLeftTurn();
-                    reverseDownTurn();
-                    reverseDownTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-
-                case 'r':
-                    cout << "D F' D'" << endl;
-                    downTurn();
-                    reverseFrontTurn();
-                    reverseDownTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-
-                case 'o':
-                    cout << "D' F' D" << endl;
-                    reverseDownTurn();
-                    reverseFrontTurn();
-                    downTurn();
-                    isRightEdgeSolved = true;
-                    break;
-
-                case 'g':
-                    cout << "F'" << endl;
-                    reverseFrontTurn();
-                    isTopEdgeSolved = true;
-                    break;
-
-                default:
-                    cout << "ERROR:2568" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (right[3] == 'w')
-        {
-            const char current = front[5];
-            switch (current)
-            {
-                case 'b':
-                    cout << "D' D' F D D" << endl;
-                    reverseDownTurn();
-                    reverseDownTurn();
-                    frontTurn();
-                    downTurn();
-                    downTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-
-                case 'r':
-                    cout << "D F D'" << endl;
-                    downTurn();
-                    frontTurn();
-                    reverseDownTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-
-                case 'o':
-                    cout << "D' F D" << endl;
-                    reverseDownTurn();
-                    frontTurn();
-                    downTurn();
-                    isRightEdgeSolved = true;
-                    break;
-
-                case 'g':
-                    cout << "F" << endl;
-                    frontTurn();
-                    isTopEdgeSolved = true;
-                    break;
-
-                default:
-                    cout << "ERROR:2606" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        else if (right[5] == 'w')
-        {
-            const char current = back[3];
-            switch (current)
-            {
-                case 'b':
-                    cout << "B'" << endl;
-                    reverseBackTurn();
-                    isBottomEdgeSolved = true;
-                    break;
-
-                case 'r':
-                    cout << "D' B' D" << endl;
-                    reverseDownTurn();
-                    reverseBackTurn();
-                    downTurn();
-                    isLeftEdgeSolved = true;
-                    break;
-
-                case 'o':
-                    cout << "D B' D'" << endl;
-                    downTurn();
-                    reverseBackTurn();
-                    reverseDownTurn();
-                    isRightEdgeSolved = true;
-                    break;
-
-                case 'g':
-                    cout << "D D B' D D" << endl;
-                    downTurn();
-                    downTurn();
-                    reverseBackTurn();
-                    downTurn();
-                    downTurn();
-                    isTopEdgeSolved = true;
-                    break;
-
-                default:
-                    cout << "ERROR:2648" << endl;
-                    break;
-            }
-            correctWhiteEdgePieceCount++;
-        }
-
-        // Cases for first, third layered pieces
-        // after the turn i must place the white piece here otherwise infinite loop
-        else if (front[1] == 'w')
-        {
-            if (!isTopEdgeSolved)
-            {
-                if (up[7] == left[4])
-                {
-                    cout << "F'" << endl;
-                    reverseFrontTurn();
-                }
-                else
-                {
-                    cout << "F" << endl;
-                    frontTurn();
-                }
-
-            }
-            
-            else if (!isRightEdgeSolved)
-            {
-                cout << "U'" << endl;
-                reverseUpTurn();
-                if (up[5] == front[4])
-                {
-                    cout << "R'" << endl;
-                    reverseRightTurn();
-                }
-                else
-                {
-                    cout << "R" << endl;
-                    rightTurn();
-                }
-            }
-
-            else if (!isLeftEdgeSolved)
-            {
-                cout << "U" << endl;
-                upTurn();
-                if (!isLeftEdgeSolved)
-                {
-                    if (up[3] == front[4])
-                    {
-                        cout << "L" << endl;
-                        leftTurn();
-                    }
-                    else
-                    {
-                        cout << "L'" << endl;
-                        reverseLeftTurn();
-                    }
-                }
-            }
-
-            else if (!isBottomEdgeSolved)
-            {
-                cout << "U U" << endl;
-                upTurn();
-                upTurn();
-                if (up[1] == left[4])
-                {
-                    cout << "B" << endl;
-                    backTurn();
-                }
-                else
-                {
-                    cout << "B'" << endl;
-                    reverseBackTurn();
-                }
-            }
-
-            else
-            {
-                cout << "ERROR: else if (front[1] == 'w')" << endl;
-            }
-        }
-
-        else if (front[7] == 'w')
-        {
-            if (down[1] == left[4])
-            {
-                cout << "F" << endl;
-                frontTurn();
-            }
-            else
-            {
-                cout << "F'" << endl;
-                reverseFrontTurn();
-            }
-        }
-
-        else if (back[1] == 'w')
-        {
-            if (!isBottomEdgeSolved)
-            {
-                if (up[1] == left[4])
-                {
-                    cout << "B" << endl;
-                    backTurn();
-                }
-                else
-                {
-                    cout << "B'" << endl;
-                    reverseBackTurn();
-                }
-            }
-            
-            else if (!isLeftEdgeSolved)
-            {
-                cout << "U'" << endl;
-                reverseUpTurn();
-                if (up[3] == front[4])
-                {
-                    cout << "L" << endl;
-                    leftTurn();
-                }
-                else
-                {
-                    cout << "L'" << endl;
-                    reverseLeftTurn();
-                }
-            }
-
-            else if (!isRightEdgeSolved)
-            {
-                cout << "U" << endl;
-                upTurn();
-                if (!isRightEdgeSolved)
-                {
-                    if (up[5] == front[4])
-                    {
-                        cout << "R'" << endl;
-                        reverseRightTurn();
-                    }
-                    else
-                    {
-                        cout << "R" << endl;
-                        rightTurn();
-                    }
-                }
-            }
-
-            else if (!isTopEdgeSolved)
-            {
-                cout << "U U" << endl;
-                upTurn();
-                upTurn();
-                if (up[7] == left[4])
-                {
-                    cout << "F'" << endl;
-                    reverseFrontTurn();
-                }
-                else
-                {
-                    cout << "F" << endl;
-                    frontTurn();
-                }
-            }
-
-            else
-            {
-                cout << "ERROR: else if (back[1] == 'w') " << endl;
-            }
-        }
-
-        else if (back[7] == 'w')
-        {
-            if (down[7] == left[4])
-            {
-                cout << "B'" << endl;
-                reverseBackTurn();
-            }
-            else
-            {
-                cout << "B" << endl;
-                backTurn();
-            }
-        }
-
-        else if (left[1] == 'w')
-        {
-            if (!isLeftEdgeSolved)
-            {
-                if (up[3] == front[4])
-                {
-                    cout << "L" << endl;
-                    leftTurn();
-                }
-                else
-                {
-                    cout << "L'" << endl;
-                    reverseLeftTurn();
-                }
-            }
-
-            else if (!isTopEdgeSolved)
-            {
-                cout << "U'" << endl;
-                reverseUpTurn();
-                if (up[7] == left[4])
-                {
-                    cout << "F'" << endl;
-                    reverseFrontTurn();
-                }
-                else
-                {
-                    cout << "F" << endl;
-                    frontTurn();
-                }
-            }
-
-            else if (!isBottomEdgeSolved)
-            {
-                cout << "U" << endl;
-                upTurn();
-                if (up[1] == left[4])
-                {
-                    cout << "B" << endl;
-                    backTurn();
-                }
-                else
-                {
-                    cout << "B'" << endl;
-                    reverseBackTurn();
-                }
-            }
-
-            else if (!isRightEdgeSolved)
-            {
-                cout << "U U" << endl;
-                upTurn();
-                upTurn();
-                if (up[5] == front[4])
-                {
-                    cout << "R'" << endl;
-                    reverseRightTurn();
-                }
-                else
-                {
-                    cout << "R" << endl;
-                    rightTurn();
-                }
-            }
-
-            else
-            {
-                cout << "ERROR: else if (left[1] == 'w')" << endl;
-            }
-        }
-
-        else if (left[7] == 'w')
-        {
-            if (down[3] == front[4])
-            {
-                cout << "L'" << endl;
-                reverseLeftTurn();
-            }
-            else
-            {
-                cout << "L" << endl;
-                leftTurn();
-            }
-        }
-
-        else if (right[1] == 'w')
-        {
-            if (!isRightEdgeSolved)
-            {
-                if (up[5] == front[4])
-                {
-                    cout << "R'" << endl;
-                    reverseRightTurn();
-                }
-                else
-                {
-                    cout << "R" << endl;
-                    rightTurn();
-                }
-            }
-
-            else if (!isTopEdgeSolved)
-            {
-                cout << "U" << endl;
-                upTurn();
-                if (up[7] == left[4])
-                {
-                    cout << "F'" << endl;
-                    reverseFrontTurn();
-                }
-                else
-                {
-                    cout << "F" << endl;
-                    frontTurn();
-                }
-            }
-
-            else if (!isBottomEdgeSolved)
-            {
-                cout << "U'" << endl;
-                reverseUpTurn();
-                if (up[1] == left[4])
-                {
-                    cout << "B" << endl;
-                    backTurn();
-                }
-                else
-                {
-                    cout << "B'" << endl;
-                    reverseBackTurn();
-                }
-            }
-
-            else if (!isLeftEdgeSolved)
-            {
-                cout << "U U" << endl;
-                upTurn();
-                upTurn();
-                if (up[3] == front[4])
-                {
-                    cout << "L" << endl;
-                    leftTurn();
-                }
-                else
-                {
-                    cout << "L'" << endl;
-                    reverseLeftTurn();
-                }
-            }
-
-            else
-            {
-                cout << "ERROR: else if (right[1] == 'w') " << endl;
-            }
-        }
-
-        else if (right[7] == 'w')
-        {
-            if (down[5] == front[4])
-            {
-                cout << "R" << endl;
-                rightTurn();
-            }
-            else
-            {
-                cout << "R'" << endl;
-                reverseRightTurn();
-            }
-        }
-
-        correctWhiteEdgePieceCount = 0;
-
-        if (down[1] == 'w' && front[7] == front[4])
-        {
-            isTopEdgeSolved = true;
-            correctWhiteEdgePieceCount++;
-        }
-
-        if (down[3] == 'w' && left[7] == left[4])
-        {
-            isLeftEdgeSolved = true;
-            correctWhiteEdgePieceCount++;
-        }
-
-        if (down[5] == 'w' && right[7] == right[4])
-        {
-            isRightEdgeSolved = true;
-            correctWhiteEdgePieceCount++;
-        }
-
-        if (down[7] == 'w' && back[7] == back[4])
-        {
-            isBottomEdgeSolved = true;
-            correctWhiteEdgePieceCount++;
-        }
-    }
-
-    cout << endl;
-    cout << "White Cross Solved!" << endl;
 }
 
 void cubeSolve::setCube(vector<vector<char>> currentValues)

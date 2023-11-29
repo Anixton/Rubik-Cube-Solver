@@ -16,13 +16,6 @@ public:
 	vector<char> down; // White Square
 	vector<char> right; //Orange Square
 	vector<char> left;  // Red Square
-	bool frontSolved;
-	bool backSolved;
-	bool upSolved;
-	bool downSolved;
-	bool rightSolved;
-	bool leftSolved;
-	
 
 	cubeSolve();
 
@@ -34,10 +27,23 @@ public:
 	// sixth vector is down
 	void setCube(vector<vector<char>> currentValues); 
 	
+
+	// Method to solve the white cross on the Rubik's Cube.
+	// The algorithm systematically checks and solves the orientation of white edge pieces
+	// on the first layer to form a white cross. It considers the colors of adjacent faces
+	// to determine the correct moves. The solved cross ensures that each white edge piece is
+	// correctly aligned with its adjacent center colors.
 	void solveWhiteCross();
 
-	// in solveFirstLayer function
-	// we are going to assume its cross is already solved
+
+	// Method to solve the first layer of a Rubik's Cube by correctly placing white corner pieces.
+	// The algorithm systematically checks and applies specific moves based on the current state of the cube.
+	// It starts by identifying the correctly placed white corner pieces in the third layer.
+	// If a piece is not in the correct position, it applies the corresponding algorithm to move it to the correct place.
+	// The process continues until all four white corner pieces are correctly positioned.
+
+	// Additionally, the algorithm handles cases where a white corner piece is in the top layer or in the wrong position,
+	// adjusting their placement with specific moves. The method utilizes a rule-based approach rather than brute force.
 	void solveFirstLayer();
 
 	// solving the second layer
@@ -156,10 +162,6 @@ public:
 	// R and R' Turns
 	void rightTurn();
 	void reverseRightTurn();
-
-	// To check if its solved
-	bool isSolved();
-	bool isColorSolved(vector<char> x);
 
 	bool checkLayer(int a, vector<char> vec);
 

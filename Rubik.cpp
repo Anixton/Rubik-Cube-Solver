@@ -72,7 +72,6 @@ int main()
 
 /*
     To Do:
-    1) Delete unnecessary variables and methods
     2) Add necessary comments
     3) Write documentation and explanation of the code using Microsoft Word
     4) Display your project in Resume (Don't forget to update your Resume)
