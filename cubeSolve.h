@@ -17,6 +17,7 @@ public:
 	vector<char> right; //Orange Square
 	vector<char> left;  // Red Square
 
+	// Initializes the Cube sides with default colors
 	cubeSolve();
 
 	// first vector is front
@@ -45,6 +46,8 @@ public:
 	// Additionally, the algorithm handles cases where a white corner piece is in the top layer or in the wrong position,
 	// adjusting their placement with specific moves. The method utilizes a rule-based approach rather than brute force.
 	void solveFirstLayer();
+
+
 
 	// solving the second layer
 	// while(correctPieces!=4)
@@ -133,7 +136,6 @@ public:
 	// 4 if yellow face solved
 	// 5 if third layer corners solved
 	// 6 if cube solved
-	// 
 	void decideCurrentState();
 
 	// Function that solves the current problem using decideCurrentState function
@@ -163,8 +165,7 @@ public:
 	void rightTurn();
 	void reverseRightTurn();
 
-	bool checkLayer(int a, vector<char> vec);
-
+	// Printing Cube faces
 	void printFront();
 	void printBack();
 	void printLeft();

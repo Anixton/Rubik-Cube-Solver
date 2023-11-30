@@ -414,16 +414,6 @@ void cubeSolve::reverseRightTurn() {
     right = afterTurn;
 }
 
-bool cubeSolve::checkLayer(int a, vector<char> vec)
-{
-    char target = vec[4];
-    if (vec[3 * (3 - a)] == target && vec[3 * (3 - a) + 1] == target && vec[3 * (3 - 1) + 2] == target)
-    {
-        return true;
-    }
-    return false;
-}
-
 void cubeSolve::decideCurrentState()
 {
     if (down[1] != 'w' || down[3] != 'w' ||
