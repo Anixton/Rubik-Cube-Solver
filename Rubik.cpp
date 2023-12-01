@@ -2,7 +2,6 @@
 #include <vector>
 #include "cubeSolve.h"
 
-
 using namespace std;
 
 
@@ -52,21 +51,6 @@ int main()
     cubeSolve solution;
     solution.setCube(cubefaces);
     solution.solveMyCube();
-    solution.setCube(cubefaces);
-    solution.solveWhiteCross();
-    cout << endl;
-    solution.solveFirstLayer();
-    cout << endl;
-    solution.solveSecondLayer();
-    cout << endl;
-    solution.solveYellowCross();
-    cout << endl;
-    solution.solveYellowFace();
-    cout << endl;
-    solution.solveThirdLayerCorners();
-    cout << endl;
-    solution.solveThirdLayerEdges();
-
     
 }
 

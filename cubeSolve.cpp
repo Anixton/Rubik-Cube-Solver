@@ -414,6 +414,62 @@ void cubeSolve::reverseRightTurn() {
     right = afterTurn;
 }
 
+void cubeSolve::setCube(vector<vector<char>> currentValues)
+{
+    // check if there are any wrong information
+    for (int firstIndex = 0; firstIndex < 6; firstIndex++)
+    {
+        for (int secondIndex = 0; secondIndex < 6; secondIndex++)
+        {
+            char currentColor = currentValues[firstIndex][secondIndex];
+
+            if (currentColor == 'g' || currentColor == 'b' ||
+                currentColor == 'o' || currentColor == 'r' ||
+                currentColor == 'w' || currentColor == 'y')
+            {
+                continue;
+            }
+
+            else
+            {
+                cout << "There is an error in input!" << endl;
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        front[i] = currentValues[0][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        back[i] = currentValues[1][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        left[i] = currentValues[2][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        right[i] = currentValues[3][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        up[i] = currentValues[4][i];
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        down[i] = currentValues[5][i];
+    }
+
+}
+
 void cubeSolve::decideCurrentState()
 {
     if (down[1] != 'w' || down[3] != 'w' ||
@@ -2121,6 +2177,342 @@ void cubeSolve::solveFirstLayer()
     cout << "First Layer Solved !" << endl;
 }
 
+void cubeSolve::solveSecondLayer()
+{
+    int correctPieces = 0;
+
+    if (front[5] == front[4] && right[3] == right[4])
+    {
+        correctPieces++;
+    }
+
+    if (front[3] == front[4] && left[5] == left[4])
+    {
+        correctPieces++;
+    }
+
+    if (back[5] == back[4] && left[3] == left[4])
+    {
+        correctPieces++;
+    }
+
+    if (back[3] == back[4] && right[5] == right[4])
+    {
+        correctPieces++;
+    }
+
+    while (correctPieces != 4)
+    {
+        if (front[1] == front[4] && up[7] != up[4])
+        {
+            // decide to move left or right
+            if (up[7] == left[4])//left  U' L' U L U F U' F'
+            {
+                cout << "U' L' U L U F U' F'" << endl;
+                reverseUpTurn();
+                reverseLeftTurn();
+                upTurn();
+                leftTurn();
+                upTurn();
+                frontTurn();
+                reverseUpTurn();
+                reverseFrontTurn();
+            }
+            else if (up[7] == right[4])// right U R U' R' U' F' U F
+            {
+                cout << "U R U' R' U' F' U F" << endl;
+                upTurn();
+                rightTurn();
+                reverseUpTurn();
+                reverseRightTurn();
+                reverseUpTurn();
+                reverseFrontTurn();
+                upTurn();
+                frontTurn();
+            }
+            else
+            {
+                cout << "ERROR 1189 YOU SHOULDN'T BE HERE" << endl;
+            }
+            correctPieces++;
+        }
+
+        else if (back[1] == back[4] && up[1] != up[4])
+        {
+            // decide to move left or right
+            if (up[1] == right[4]) // left: U' L' U L U F U' F' from back
+            {
+                // U' R' U R U B' U' B'
+                cout << "U' R' U R U B U' B'" << endl;
+                reverseUpTurn();
+                reverseRightTurn();
+                upTurn();
+                rightTurn();
+                upTurn();
+                backTurn();
+                reverseUpTurn();
+                reverseBackTurn();
+            }
+            else if (up[1] == left[4]) // right: U R U' R' U' F' U F from back
+            {
+                // U L U' L' U' B' U B
+                cout << "U L U' L' U' B' U B" << endl;
+                upTurn();
+                leftTurn();
+                reverseUpTurn();
+                reverseLeftTurn();
+                reverseUpTurn();
+                reverseBackTurn();
+                upTurn();
+                backTurn();
+            }
+            else
+            {
+                cout << "ERROR 1241 YOU SHOULDN'T BE HERE" << endl;
+            }
+            correctPieces++;
+        }
+
+        else if (left[1] == left[4] && up[3] != up[4])
+        {
+            // decide to move left or right
+            if (up[3] == back[4]) // left: U' L' U L U F U' F' from left
+            {
+                // U' B' U B U L U' L
+                cout << "U' B' U B U L U' L'" << endl;
+                reverseUpTurn();
+                reverseBackTurn();
+                upTurn();
+                backTurn();
+                upTurn();
+                leftTurn();
+                reverseUpTurn();
+                reverseLeftTurn();
+            }
+            else if (up[3] == front[4]) // right: U R U' R' U' F' U F from left
+            {
+                // U F U' F' U' L' U L
+                cout << "U F U' F' U' L' U L" << endl;
+                upTurn();
+                frontTurn();
+                reverseUpTurn();
+                reverseFrontTurn();
+                reverseUpTurn();
+                reverseLeftTurn();
+                upTurn();
+                leftTurn();
+            }
+            else
+            {
+                cout << "ERROR 1277 YOU SHOULDN'T BE HERE" << endl;
+            }
+            correctPieces++;
+        }
+
+        else if (right[1] == right[4] && up[5] != up[4])
+        {
+            // decide to move left or right
+            if (up[5] == front[4]) // left: U' L' U L U F U' F' from right
+            {
+                // U' F' U F U R U' R'
+                cout << "U' F' U F U R U' R'" << endl;
+                reverseUpTurn();
+                reverseFrontTurn();
+                upTurn();
+                frontTurn();
+                upTurn();
+                rightTurn();
+                reverseUpTurn();
+                reverseRightTurn();
+            }
+            else if (up[5] == back[4]) // right: U R U' R' U' F' U F from right
+            {
+                // U B U' B' U' R' U R
+                cout << "U B U' B' U' R' U R" << endl;
+                upTurn();
+                backTurn();
+                reverseUpTurn();
+                reverseBackTurn();
+                reverseUpTurn();
+                reverseRightTurn();
+                upTurn();
+                rightTurn();
+            }
+            else
+            {
+                cout << "ERROR 1313 YOU SHOULDN'T BE HERE" << endl;
+            }
+            correctPieces++;
+        }
+
+        else
+        {
+            // check if there is 
+            // "correct piece in wrong position"
+            // make turns to do upper conditions correct if possible
+            // if not there is/are piece(s) in the wrong position
+            if (left[1] == front[4] && up[3] != up[4])
+            {
+                cout << "U' ";
+                reverseUpTurn();
+            }
+
+            else if (back[1] == left[4] && up[1] != up[4])
+            {
+                cout << "U' ";
+                reverseUpTurn();
+            }
+
+            else if (right[1] == back[4] && up[5] != up[4])
+            {
+                cout << "U' ";
+                reverseUpTurn();
+            }
+
+            else if (front[1] == right[4] && up[7] != up[4])
+            {
+                cout << "U' ";
+                reverseUpTurn();
+            }
+
+            else if (left[1] == back[4] && up[3] != up[4])
+            {
+                cout << "U ";
+                upTurn();
+            }
+
+            else if (back[1] == right[4] && up[1] != up[4])
+            {
+                cout << "U ";
+                upTurn();
+            }
+
+            else if (right[1] == front[4] && up[5] != up[4])
+            {
+                cout << "U ";
+                upTurn();
+            }
+
+            else if (front[1] == left[4] && up[7] != up[4])
+            {
+                cout << "U ";
+                upTurn();
+            }
+
+            else if (left[1] == right[4] && up[3] != up[4])
+            {
+                cout << "U U ";
+                upTurn();
+                upTurn();
+            }
+
+            else if (back[1] == front[4] && up[1] != up[4])
+            {
+                cout << "U U ";
+                upTurn();
+                upTurn();
+            }
+
+            else if (right[1] == left[4] && up[5] != up[4])
+            {
+                cout << "U U ";
+                upTurn();
+                upTurn();
+            }
+
+            else if (front[1] == back[4] && up[7] != up[4])
+            {
+                cout << "U U ";
+                upTurn();
+                upTurn();
+            }
+
+            else
+            {
+                // we need to get the wrong positioned piece out of its place
+                // we have to check every corner
+
+                if (front[5] != up[4] && right[3] != up[4]
+                    && !(front[5] == front[4] && right[3] == right[4]))
+                {
+                    // do the algo
+                    // front-> saða parçayý koyma algoritmasý
+                    // U R U' R' U' F' U F
+                    cout << "U R U' R' U' F' U F" << endl;
+                    upTurn();
+                    rightTurn();
+                    reverseUpTurn();
+                    reverseRightTurn();
+                    reverseUpTurn();
+                    reverseFrontTurn();
+                    upTurn();
+                    frontTurn();
+                }
+
+                else if (front[3] != up[4] && left[5] != up[4]
+                    && !(front[3] == front[4] && left[5] == left[4]))
+                {
+                    // do the algo
+                    // front-> sola parçayý koyma algoritmasý
+                    // U' L' U L U F U' F'
+                    cout << "U' L' U L U F U' F'" << endl;
+                    reverseUpTurn();
+                    reverseLeftTurn();
+                    upTurn();
+                    leftTurn();
+                    upTurn();
+                    frontTurn();
+                    reverseUpTurn();
+                    reverseFrontTurn();
+                }
+                // after this we will check from back
+
+                else if (back[3] != up[4] && right[5] != up[4]
+                    && !(back[3] == back[4] && right[5] == right[4]))
+                {
+                    // do the algo
+                    // back-> sola parçayý koyma algoritmasý
+                    // algorithm bellow has issue
+                    cout << "U' R' U R U B U' B'" << endl;
+                    reverseUpTurn();
+                    reverseRightTurn();
+                    upTurn();
+                    rightTurn();
+                    upTurn();
+                    backTurn();
+                    reverseUpTurn();
+                    reverseBackTurn();
+                }
+
+                else if (back[5] != up[4] && left[3] != up[4]
+                    && !(back[5] == back[4] && left[3] == left[4]))
+                {
+                    // do the algo
+                    // back-> saða parçayý koyma algoritmasý
+                    cout << "U L U' L' U' B' U B" << endl;
+                    upTurn();
+                    leftTurn();
+                    reverseUpTurn();
+                    reverseLeftTurn();
+                    reverseUpTurn();
+                    reverseBackTurn();
+                    upTurn();
+                    backTurn();
+                }
+
+                else
+                {
+                    cout << "Error: 1474 you shouldn't be here!" << endl;
+                }
+            }
+        }
+
+    }
+
+    cout << endl;
+    cout << "Second Layer Solved!" << endl;
+}
+
 void cubeSolve::solveYellowCross()
 {
     cout << "Solving the Yellow Cross:"<<endl;
@@ -2873,396 +3265,42 @@ void cubeSolve::solveThirdLayerEdges()
     
 }
 
-void cubeSolve::solveSecondLayer()
-{
-    int correctPieces = 0;
+void cubeSolve::solveMyCube() {
 
-    if (front[5] == front[4] && right[3] == right[4])
-    {
-        correctPieces++;
-    }
-    
-    if (front[3] == front[4] && left[5] == left[4])
-    {
-        correctPieces++;
-    }
+    decideCurrentState();
 
-    if (back[5] == back[4] && left[3] == left[4])
-    {
-        correctPieces++;
-    }
-
-    if (back[3] == back[4] && right[5] == right[4])
-    {
-        correctPieces++;
-    }
-
-    while (correctPieces != 4)
-    {
-        if (front[1] == front[4] && up[7] != up[4])
-        {
-            // decide to move left or right
-            if (up[7] == left[4])//left  U' L' U L U F U' F'
-            {
-                cout << "U' L' U L U F U' F'" << endl;
-                reverseUpTurn();
-                reverseLeftTurn();
-                upTurn();
-                leftTurn();
-                upTurn();
-                frontTurn();
-                reverseUpTurn();
-                reverseFrontTurn();
-            }
-            else if (up[7] == right[4])// right U R U' R' U' F' U F
-            {
-                cout << "U R U' R' U' F' U F" << endl;
-                upTurn();
-                rightTurn();
-                reverseUpTurn();
-                reverseRightTurn();
-                reverseUpTurn();
-                reverseFrontTurn();
-                upTurn();
-                frontTurn();
-            }
-            else
-            {
-                cout << "ERROR 1189 YOU SHOULDN'T BE HERE" << endl;
-            }
-            correctPieces++;
+    while (currentState < 6) {
+        switch (currentState) {
+        case -1:
+            solveWhiteCross();
+            break;
+        case 0:
+            solveFirstLayer();
+            break;
+        case 1:
+            solveSecondLayer();
+            break;
+        case 2:
+            solveYellowCross();
+            break;
+        case 3:
+            solveYellowFace();
+            break;
+        case 4:
+            solveThirdLayerCorners();
+            break;
+        case 5:
+            solveThirdLayerEdges();
+            break;
+        default:
+            cout << "You shouldn't be here in function solveMyCube" << endl;
+            break;
         }
 
-        else if (back[1] == back[4] && up[1] != up[4])
-        {
-            // decide to move left or right
-            if (up[1] == right[4]) // left: U' L' U L U F U' F' from back
-            {
-                // U' R' U R U B' U' B'
-                cout << "U' R' U R U B U' B'"<<endl;
-                reverseUpTurn();
-                reverseRightTurn();
-                upTurn();
-                rightTurn();
-                upTurn();
-                backTurn();
-                reverseUpTurn();
-                reverseBackTurn();
-            }
-            else if (up[1] == left[4]) // right: U R U' R' U' F' U F from back
-            {
-                // U L U' L' U' B' U B
-                cout << "U L U' L' U' B' U B" << endl;
-                upTurn();
-                leftTurn();
-                reverseUpTurn();
-                reverseLeftTurn();
-                reverseUpTurn();
-                reverseBackTurn();
-                upTurn();
-                backTurn();
-            }
-            else
-            {
-                cout << "ERROR 1241 YOU SHOULDN'T BE HERE" << endl;
-            }
-            correctPieces++;
-        }
-
-        else if (left[1] == left[4] && up[3] != up[4])
-        {
-            // decide to move left or right
-            if (up[3] == back[4]) // left: U' L' U L U F U' F' from left
-            {
-                // U' B' U B U L U' L
-                cout << "U' B' U B U L U' L'" << endl;
-                reverseUpTurn();
-                reverseBackTurn();
-                upTurn();
-                backTurn();
-                upTurn();
-                leftTurn();
-                reverseUpTurn();
-                reverseLeftTurn();
-            }
-            else if (up[3] == front[4]) // right: U R U' R' U' F' U F from left
-            {
-                // U F U' F' U' L' U L
-                cout << "U F U' F' U' L' U L" << endl;
-                upTurn();
-                frontTurn();
-                reverseUpTurn();
-                reverseFrontTurn();
-                reverseUpTurn();
-                reverseLeftTurn();
-                upTurn();
-                leftTurn();
-            }
-            else
-            {
-                cout << "ERROR 1277 YOU SHOULDN'T BE HERE" << endl;
-            }
-            correctPieces++;
-        }
-
-        else if (right[1] == right[4] && up[5] != up[4])
-        {
-            // decide to move left or right
-            if (up[5] == front[4]) // left: U' L' U L U F U' F' from right
-            {
-                // U' F' U F U R U' R'
-                cout << "U' F' U F U R U' R'" << endl;
-                reverseUpTurn();
-                reverseFrontTurn();
-                upTurn();
-                frontTurn();
-                upTurn();
-                rightTurn();
-                reverseUpTurn();
-                reverseRightTurn();
-            }
-            else if (up[5] == back[4]) // right: U R U' R' U' F' U F from right
-            {
-                // U B U' B' U' R' U R
-                cout << "U B U' B' U' R' U R" << endl;
-                upTurn();
-                backTurn();
-                reverseUpTurn();
-                reverseBackTurn();
-                reverseUpTurn();
-                reverseRightTurn();
-                upTurn();
-                rightTurn();
-            }
-            else
-            {
-                cout << "ERROR 1313 YOU SHOULDN'T BE HERE" << endl;
-            }
-            correctPieces++;
-        }
-
-        else
-        {
-            // check if there is 
-            // "correct piece in wrong position"
-            // make turns to do upper conditions correct if possible
-            // if not there is/are piece(s) in the wrong position
-            if (left[1] == front[4] && up[3] != up[4])
-            {
-                cout << "U' ";
-                reverseUpTurn();
-            }
-
-            else if (back[1] == left[4] && up[1] != up[4])
-            {
-                cout << "U' ";
-                reverseUpTurn();
-            }
-
-            else if (right[1] == back[4] && up[5] != up[4])
-            {
-                cout << "U' ";
-                reverseUpTurn();
-            }
-
-            else if (front[1] == right[4] && up[7] != up[4])
-            {
-                cout << "U' ";
-                reverseUpTurn();
-            }
-
-            else if (left[1] == back[4] && up[3] != up[4])
-            {
-                cout << "U ";
-                upTurn();
-            }
-
-            else if (back[1] == right[4] && up[1] != up[4])
-            {
-                cout << "U ";
-                upTurn();
-            }
-
-            else if (right[1] == front[4] && up[5] != up[4])
-            {
-                cout << "U ";
-                upTurn();
-            }
-            
-            else if (front[1] == left[4] && up[7] != up[4])
-            {
-                cout << "U ";
-                upTurn();
-            }
-
-            else if(left[1]==right[4] && up[3]!=up[4])
-            {
-                cout << "U U ";
-                upTurn();
-                upTurn();
-            }
-
-            else if (back[1] == front[4] && up[1] != up[4])
-            {
-                cout << "U U ";
-                upTurn();
-                upTurn();
-            }
-
-            else if (right[1] == left[4] && up[5] != up[4])
-            {
-                cout << "U U ";
-                upTurn();
-                upTurn();
-            }
-
-            else if (front[1] == back[4] && up[7] != up[4])
-            {
-                cout << "U U ";
-                upTurn();
-                upTurn();
-            }
-
-            else
-            {
-                // we need to get the wrong positioned piece out of its place
-                // we have to check every corner
-                
-                if (front[5] != up[4] && right[3] != up[4]
-                    && !(front[5] == front[4] && right[3] == right[4]))
-                {
-                    // do the algo
-                    // front-> saða parçayý koyma algoritmasý
-                    // U R U' R' U' F' U F
-                    cout << "U R U' R' U' F' U F" << endl;
-                    upTurn();
-                    rightTurn();
-                    reverseUpTurn();
-                    reverseRightTurn();
-                    reverseUpTurn();
-                    reverseFrontTurn();
-                    upTurn();
-                    frontTurn();
-                }
-
-                else if (front[3] != up[4] && left[5] != up[4]
-                    && !(front[3] == front[4] && left[5] == left[4]))
-                {
-                    // do the algo
-                    // front-> sola parçayý koyma algoritmasý
-                    // U' L' U L U F U' F'
-                    cout << "U' L' U L U F U' F'" << endl;
-                    reverseUpTurn();
-                    reverseLeftTurn();
-                    upTurn();
-                    leftTurn();
-                    upTurn();
-                    frontTurn();
-                    reverseUpTurn();
-                    reverseFrontTurn();
-                }
-                // after this we will check from back
-
-                else if (back[3] != up[4] && right[5] != up[4]
-                    && !(back[3] == back[4] && right[5] == right[4]))
-                {
-                    // do the algo
-                    // back-> sola parçayý koyma algoritmasý
-                    // algorithm bellow has issue
-                    cout << "U' R' U R U B U' B'" << endl;
-                    reverseUpTurn();
-                    reverseRightTurn();
-                    upTurn();
-                    rightTurn();
-                    upTurn();
-                    backTurn();
-                    reverseUpTurn();
-                    reverseBackTurn();
-                }
-
-                else if (back[5] != up[4] && left[3] != up[4]
-                    && !(back[5] == back[4] && left[3] == left[4]))
-                {
-                    // do the algo
-                    // back-> saða parçayý koyma algoritmasý
-                    cout << "U L U' L' U' B' U B" << endl;
-                    upTurn();
-                    leftTurn();
-                    reverseUpTurn();
-                    reverseLeftTurn();
-                    reverseUpTurn();
-                    reverseBackTurn();
-                    upTurn();
-                    backTurn();
-                }
-                
-                else
-                {
-                    cout << "Error: 1474 you shouldn't be here!" << endl;
-                }
-            }
-        }
-
+        decideCurrentState();  // Update the currentState after each step
     }
 
-    cout << endl;
-    cout << "Second Layer Solved!" << endl;
-}
-
-void cubeSolve::setCube(vector<vector<char>> currentValues)
-{
-    // check if there are any wrong information
-    for (int firstIndex = 0; firstIndex < 6; firstIndex++)
-    {
-        for (int secondIndex = 0; secondIndex < 6; secondIndex++)
-        {
-            char currentColor = currentValues[firstIndex][secondIndex];
-            
-            if (currentColor == 'g' || currentColor == 'b' ||
-                currentColor == 'o' || currentColor == 'r' ||
-                currentColor == 'w' || currentColor == 'y')
-            {
-                continue;
-            }
-
-            else
-            {
-                cout << "There is an error in input!" << endl;
-                exit(EXIT_FAILURE);
-            }
-        }
-    }
-
-    for (int i = 0; i < 9; i++)
-    {
-        front[i] = currentValues[0][i];
-    }
-
-    for (int i = 0; i < 9; i++)
-    {
-        back[i] = currentValues[1][i];
-    }
-
-    for (int i = 0; i < 9; i++)
-    {
-        left[i] = currentValues[2][i];
-    }
-
-    for (int i = 0; i < 9; i++)
-    {
-        right[i] = currentValues[3][i];
-    }
-
-    for (int i = 0; i < 9; i++)
-    {
-        up[i] = currentValues[4][i];
-    }
-
-    for (int i = 0; i < 9; i++)
-    {
-        down[i] = currentValues[5][i];
-    }
-
+    cout << "Cube is solved" << endl;
 }
 
 void cubeSolve::printFront()
@@ -3355,40 +3393,4 @@ void cubeSolve::printDown()
     cout << "-------------------" << endl;
 }
 
-void cubeSolve::solveMyCube() {
 
-    decideCurrentState();
-
-    while (currentState < 6) {
-        switch (currentState) {
-        case -1:
-            solveWhiteCross();
-            break;
-        case 0:
-            solveFirstLayer();
-            break;
-        case 1:
-            solveSecondLayer();
-            break;
-        case 2:
-            solveYellowCross();
-            break;
-        case 3:
-            solveYellowFace();
-            break;
-        case 4:
-            solveThirdLayerCorners();
-            break;
-        case 5:
-            solveThirdLayerEdges();
-            break;
-        default:
-            cout << "You shouldn't be here in function solveMyCube" << endl;
-            break;
-        }
-
-        decideCurrentState();  // Update the currentState after each step
-    }
-
-    cout << "Cube is solved" << endl;
-}
