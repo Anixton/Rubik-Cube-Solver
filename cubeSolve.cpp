@@ -50,7 +50,6 @@ void cubeSolve::frontTurn() {
     front = afterTurn;
 
 }
-
 void cubeSolve::reverseFrontTurn() {
 
     vector<char> afterTurn(9);
@@ -84,6 +83,7 @@ void cubeSolve::reverseFrontTurn() {
     front = afterTurn;
 }
 
+
 void cubeSolve::backTurn() {
     
     vector<char> afterTurn(9);
@@ -116,7 +116,6 @@ void cubeSolve::backTurn() {
 
     back = afterTurn;
 }
-
 void cubeSolve::reverseBackTurn() {
     
     vector<char> afterTurn(9);
@@ -150,6 +149,7 @@ void cubeSolve::reverseBackTurn() {
     back = afterTurn;
 }
 
+
 void cubeSolve::upTurn() {
     
     vector<char> afterTurn(9);
@@ -182,7 +182,6 @@ void cubeSolve::upTurn() {
 
     up = afterTurn;
 }
-
 void cubeSolve::reverseUpTurn() {
     
     vector<char> afterTurn(9);
@@ -216,6 +215,7 @@ void cubeSolve::reverseUpTurn() {
     up = afterTurn;
 }
 
+
 void cubeSolve::downTurn() {
     
     vector<char> afterTurn(9);
@@ -248,7 +248,6 @@ void cubeSolve::downTurn() {
 
     down = afterTurn;
 }
-
 void cubeSolve::reverseDownTurn() {
    
     vector<char> afterTurn(9);
@@ -282,6 +281,7 @@ void cubeSolve::reverseDownTurn() {
     down = afterTurn;
 }
 
+
 void cubeSolve::leftTurn() {
     
     vector<char> afterTurn(9);
@@ -314,7 +314,6 @@ void cubeSolve::leftTurn() {
 
     left = afterTurn;
 }
-
 void cubeSolve::reverseLeftTurn() {
     
     vector<char> afterTurn(9);
@@ -348,6 +347,7 @@ void cubeSolve::reverseLeftTurn() {
     left = afterTurn;
 }
 
+
 void cubeSolve::rightTurn() {
     
     vector<char> afterTurn(9);
@@ -380,7 +380,6 @@ void cubeSolve::rightTurn() {
 
     right = afterTurn;
 }
-
 void cubeSolve::reverseRightTurn() {
     
     vector<char> afterTurn(9);
@@ -413,6 +412,7 @@ void cubeSolve::reverseRightTurn() {
 
     right = afterTurn;
 }
+
 
 void cubeSolve::setCube(vector<vector<char>> currentValues)
 {
@@ -1549,7 +1549,6 @@ void cubeSolve::solveWhiteCross()
     cout << endl;
     cout << "White Cross Solved!" << endl;
 }
-
 void cubeSolve::solveFirstLayer()
 {
     int whiteCornerCount = 0;
@@ -2651,7 +2650,6 @@ void cubeSolve::solveYellowCross()
     cout << "-----------------------------" << endl;
     return;
 }
-
 void cubeSolve::solveYellowFace()
 {
     int yellCount = 0;
@@ -2794,7 +2792,8 @@ void cubeSolve::solveYellowFace()
     cout << endl;
     cout << "Yellow face solved!" << endl;
 }
-    
+   
+
 void cubeSolve::solveThirdLayerCorners()
 {
     int count = 0;
@@ -3026,7 +3025,6 @@ void cubeSolve::solveThirdLayerCorners()
     }
     cout << "Third Layer's Corners are solved !" << endl;
 }
-
 void cubeSolve::solveThirdLayerEdges()
 {
     // check if its already solved
@@ -3303,6 +3301,7 @@ void cubeSolve::solveMyCube() {
     cout << "Cube is solved" << endl;
 }
 
+
 void cubeSolve::printFront()
 {
     cout << "-------------------" << endl;
@@ -3317,7 +3316,6 @@ void cubeSolve::printFront()
     }
     cout << "-------------------" << endl;
 }
-
 void cubeSolve::printBack()
 {
     cout << "-------------------" << endl;
@@ -3332,7 +3330,6 @@ void cubeSolve::printBack()
     }
     cout << "-------------------" << endl;
 }
-
 void cubeSolve::printLeft()
 {
     cout << "-------------------" << endl;
@@ -3347,7 +3344,6 @@ void cubeSolve::printLeft()
     }
     cout << "-------------------" << endl;
 }
-
 void cubeSolve::printRight()
 {
     cout << "-------------------" << endl;
@@ -3362,7 +3358,6 @@ void cubeSolve::printRight()
     }
     cout << "-------------------" << endl;
 }
-
 void cubeSolve::printUp()
 {
     cout << "-------------------" << endl;
@@ -3377,7 +3372,6 @@ void cubeSolve::printUp()
     }
     cout << "-------------------" << endl;
 }
-
 void cubeSolve::printDown()
 {
     cout << "-------------------" << endl;
