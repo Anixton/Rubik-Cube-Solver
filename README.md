@@ -69,8 +69,8 @@
 <pre><code>$ python pacman.py -l mediumMaze -p SearchAgent</code></pre>
 <pre><code>$ python pacman.py -l bigMaze -z .5 -p SearchAgent</code></pre>
 
-<p align="center"> 
- <img src="assets/main_image.png" alt="Rubiks_cube_2" width="150">
+<p align="center">
+  <img src="assets/whiteCross.png"" alt="Rainbow" width="150">
 </p>
 
 <p align="center">
@@ -78,7 +78,7 @@
 </p>
 
 <!-- STEP2 -->
-<h2 id="step2"> :small_orange_diamond: Step 1: Solving The White Cross</h2>
+<h2 id="step2"> :small_orange_diamond: Step 1: Solving The First Layer</h2>
 
 <p>I have implemented the depth-first search (DFS) algorithm in the depthFirstSearch function in <code>search.py</code>.</p>
 <p>The Pacman will quickly find a solution via running the following commands:</p>
@@ -87,9 +87,8 @@
 <pre><code>$ python pacman.py -l mediumMaze -p SearchAgent</code></pre>
 <pre><code>$ python pacman.py -l bigMaze -z .5 -p SearchAgent</code></pre>
 
-<p align="center"> 
-<img src="gif/DFS.gif" alt="Animated gif DFS Algorithm" height="282px" width="637px">
-<!--height="382px" width="737px"-->
+<p align="center">
+  <img src="assets/firstLayerSolved.png"" alt="Rainbow" width="150">
 </p>
 
 <p align="center">
