@@ -18,14 +18,14 @@
     <li><a href="#overview"> ➤ Overview</a></li>
     <li><a href="#project-files-description"> ➤ Project Files Description</a></li>
     <li><a href="#getting-started"> ➤ Getting Started</a></li>
-    <li><a href="#step1"> ➤ Step 1: Depth First Search </a></li>
-    <li><a href="#step2"> ➤ Step 2: Breadth First Search </a></li>
-    <li><a href="#step3"> ➤ Step 3: Uniform Cost Search </a></li>
-    <li><a href="#step4"> ➤ Step 4: A* search algorithm </a></li>
-    <li><a href="#step5"> ➤ Step 5: Finding All Corners </a></li>
-    <li><a href="#step6"> ➤ Step 6: Admissible and Consistent Heuristic </a></li>
-    <li><a href="#step7"> ➤ Step 7: Eating All Dots </a></li>
-    <li><a href="#step8"> ➤ Step 8: Suboptimal Search </a></li>
+    <li><a href="#step1"> ➤ Step 1: Solving The White Cross </a></li>
+    <li><a href="#step2"> ➤ Step 2: Solving The First Layer </a></li>
+    <li><a href="#step3"> ➤ Step 3: Solving The White Crossh </a></li>
+    <li><a href="#step4"> ➤ Step 4: Solving The White Cross </a></li>
+    <li><a href="#step5"> ➤ Step 5: Solving The White Cross </a></li>
+    <li><a href="#step6"> ➤ Step 6: Solving The White Cross </a></li>
+    <li><a href="#step7"> ➤ Step 7: Solving The White Crosss </a></li>
+    <li><a href="#step8"> ➤ Step 8: Solving The White Cross </a></li>
     <li><a href="#references"> ➤ References</a></li>
     <li><a href="#credits"> ➤ Credits</a></li>
   </ol>
@@ -70,8 +70,7 @@
 <pre><code>$ python pacman.py -l bigMaze -z .5 -p SearchAgent</code></pre>
 
 <p align="center"> 
-<img src="gif/DFS.gif" alt="Animated gif DFS Algorithm" height="282px" width="637px">
-<!--height="382px" width="737px"-->
+ <img src="assets/main_image.png" alt="Rubiks_cube_2" width="150">
 </p>
 
 <p align="center">
