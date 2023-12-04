@@ -1547,7 +1547,8 @@ void cubeSolve::solveWhiteCross()
     }
 
     cout << endl;
-    cout << "White Cross Solved!" << endl;
+    cout << "White Cross Solved!" << endl; 
+    cout << "---------------------------------" << endl;
 }
 void cubeSolve::solveFirstLayer()
 {
@@ -2174,6 +2175,7 @@ void cubeSolve::solveFirstLayer()
     }
     cout << endl;
     cout << "First Layer Solved !" << endl;
+    cout << "---------------------------------" << endl;
 }
 
 void cubeSolve::solveSecondLayer()
@@ -2510,12 +2512,11 @@ void cubeSolve::solveSecondLayer()
 
     cout << endl;
     cout << "Second Layer Solved!" << endl;
+    cout << "---------------------------------" << endl;
 }
 
 void cubeSolve::solveYellowCross()
 {
-    cout << "Solving the Yellow Cross:"<<endl;
-    cout << "-----------------------------" << endl;
 
     int yellowCount = 0;
 
@@ -2538,8 +2539,9 @@ void cubeSolve::solveYellowCross()
 
     if (yellowCount == 4)
     {
+        cout << endl;
         cout << "Yellow Cross Already Solved!" << endl;
-        cout << "-----------------------------" << endl;
+        cout << "---------------------------------" << endl;
         return;
     }
 
@@ -2563,8 +2565,9 @@ void cubeSolve::solveYellowCross()
         reverseRightTurn();
         reverseUpTurn();
         reverseFrontTurn();
-        cout << "Second Layer Solved!" << endl;
-        cout << "-----------------------------" << endl;
+        cout << endl;
+        cout << "Yellow Cross Solved!" << endl;
+        cout << "---------------------------------" << endl;;
         return;
     }
     if (up[1] == 'y' && up[7] == 'y')
@@ -2577,8 +2580,9 @@ void cubeSolve::solveYellowCross()
         reverseRightTurn();
         reverseUpTurn();
         reverseFrontTurn();
-        cout << "Second Layer Solved!" << endl;
-        cout << "-----------------------------" << endl;
+        cout << endl;
+        cout << "Yellow Cross Solved!" << endl;
+        cout << "---------------------------------" << endl;
         return;
     }
     if (up[1] == 'y' && up[3] == 'y')
@@ -2590,8 +2594,9 @@ void cubeSolve::solveYellowCross()
         reverseUpTurn();
         reverseRightTurn();
         reverseFrontTurn();
+        cout << endl;
         cout << "Yellow Cross Solved!" << endl;
-        cout << "-----------------------------" << endl;
+        cout << "---------------------------------" << endl;
         return;
     }
     if (up[1] == 'y' && up[5] == 'y')
@@ -2604,8 +2609,9 @@ void cubeSolve::solveYellowCross()
         reverseUpTurn();
         reverseRightTurn();
         reverseFrontTurn();
-        cout << "Second Layer Solved!" << endl;
-        cout << "-----------------------------" << endl;
+        cout << endl;
+        cout << "Yellow Cross Solved!" << endl;
+        cout << "---------------------------------" << endl;
         return;
     }
     if (up[3] == 'y' && up[7] == 'y')
@@ -2618,8 +2624,9 @@ void cubeSolve::solveYellowCross()
         reverseUpTurn();
         reverseRightTurn();
         reverseFrontTurn();
-        cout << "Second Layer Solved!" << endl;
-        cout << "-----------------------------" << endl;
+        cout << endl;
+        cout << "Yellow Cross Solved!" << endl;
+        cout << "---------------------------------" << endl;
         return;
     }
     if (up[5] == 'y' && up[7] == 'w')
@@ -2632,8 +2639,9 @@ void cubeSolve::solveYellowCross()
         reverseUpTurn();
         reverseLeftTurn();
         reverseBackTurn();
-        cout << "Second Layer Solved!" << endl;
-        cout << "-----------------------------" << endl;
+        cout << endl;
+        cout << "Yellow Cross Solved!" << endl;
+        cout << "---------------------------------" << endl;
         return;
     }
     
@@ -2646,8 +2654,9 @@ void cubeSolve::solveYellowCross()
     reverseUpTurn();
     reverseRightTurn();
     reverseFrontTurn();
+    cout << endl;
     cout << "Yellow Cross Solved!" << endl;
-    cout << "-----------------------------" << endl;
+    cout << "---------------------------------" << endl;
     return;
 }
 void cubeSolve::solveYellowFace()
@@ -2791,6 +2800,7 @@ void cubeSolve::solveYellowFace()
 
     cout << endl;
     cout << "Yellow face solved!" << endl;
+    cout << "---------------------------------" << endl;
 }
    
 
@@ -3023,7 +3033,10 @@ void cubeSolve::solveThirdLayerCorners()
             count++;
         }
     }
+    cout << endl;
+    cout << endl;
     cout << "Third Layer's Corners are solved !" << endl;
+    cout << "---------------------------------" << endl;
 }
 void cubeSolve::solveThirdLayerEdges()
 {
@@ -3034,7 +3047,7 @@ void cubeSolve::solveThirdLayerEdges()
     if (front[1] == front[4] && left[1] == left[4]
         && right[1] == right[4] && back[1] == back[4])
     {
-        cout << "Cube is solved siuuuuuuuu!" << endl;
+        cout << "Cube is solved !" << endl;
         return;
     }
     int correctEdgeCount = 0;
@@ -3259,7 +3272,9 @@ void cubeSolve::solveThirdLayerEdges()
         }
     }
     cout << endl;
+    cout << endl;
     cout << "Cube is Solved!";
+    cout << endl;
     
 }
 
@@ -3297,8 +3312,6 @@ void cubeSolve::solveMyCube() {
 
         decideCurrentState();  // Update the currentState after each step
     }
-
-    cout << "Cube is solved" << endl;
 }
 
 

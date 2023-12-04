@@ -1,1 +1,2 @@
 C:\Users\hakan\source\repos\Rubik\x64\Debug\Rubik.exe
+C:\Users\hakan\Documents\GitHub\Rubik-Cube-Solver\x64\Debug\Rubik.exe
