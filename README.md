@@ -16,17 +16,13 @@
   <ol>
     <li><a href="#about-the-project"> ➤ About The Project</a></li>
     <li><a href="#overview"> ➤ Overview</a></li>
-    <li><a href="#project-files-description"> ➤ Project Files Description</a></li>
-    <li><a href="#getting-started"> ➤ Getting Started</a></li>
     <li><a href="#step1"> ➤ Step 1: Solving The White Cross </a></li>
     <li><a href="#step2"> ➤ Step 2: Solving The First Layer </a></li>
-    <li><a href="#step3"> ➤ Step 3: Solving The White Crossh </a></li>
-    <li><a href="#step4"> ➤ Step 4: Solving The White Cross </a></li>
-    <li><a href="#step5"> ➤ Step 5: Solving The White Cross </a></li>
-    <li><a href="#step6"> ➤ Step 6: Solving The White Cross </a></li>
-    <li><a href="#step7"> ➤ Step 7: Solving The White Crosss </a></li>
-    <li><a href="#step8"> ➤ Step 8: Solving The White Cross </a></li>
-    <li><a href="#references"> ➤ References</a></li>
+    <li><a href="#step3"> ➤ Step 3: Solving The Second Layer </a></li>
+    <li><a href="#step4"> ➤ Step 4: Solving The Yellow Cross </a></li>
+    <li><a href="#step5"> ➤ Step 5: Solving The Yellow Face </a></li>
+    <li><a href="#step6"> ➤ Step 6: Solving The Third Layer Corners </a></li>
+    <li><a href="#step7"> ➤ Step 7: Solving The Third Layer Edges </a></li>
     <li><a href="#credits"> ➤ Credits</a></li>
   </ol>
 </details>
@@ -128,3 +124,73 @@
 <p align="center">
   <img src="assets/yellowCross.png"" alt="cubeImage" width="150">
 </p>
+
+<p align="center">
+  <img src="assets/rainbow.png"" alt="Rainbow" width="your_preferred_width">
+</p>
+
+<!-- STEP5 -->
+<h2 id="step5"> :small_orange_diamond: Step 5: Solving The Yellow Face</h2>
+
+<p>The solveYellowCross method in the Rubik's Cube solver is designed to solve the yellow cross on the cube. It employs specific algorithms and moves to manipulate the cube's state and achieve the desired yellow cross configuration on the top face.</p>
+<h3>🧠Algorithm Explanation</h3>
+<p>The function first counts the number of yellow stickers on the top face. If all four corners are yellow, indicating the yellow face is already solved, the function exits with a success message.</p>
+<p>If there are two yellow stickers, it positions them correctly using the algorithm <code>R U R' U R U U R'</code>. This algorithm is repeated until all four corners have yellow stickers.</p>
+<p>The function adapts its approach based on the current arrangement of yellow stickers, ensuring that the yellow face is fully solved. It prints the corresponding moves for positioning the yellow stickers correctly.</p>
+<p>If successful, the function prints a success message.</p>
+
+<p align="center">
+  <img src="assets/whiteFace.png"" alt="cubeImage" width="150">
+</p>
+
+<p align="center">
+  <img src="assets/rainbow.png"" alt="Rainbow" width="your_preferred_width">
+</p>
+
+<!-- STEP6 -->
+<h2 id="step6"> :small_orange_diamond: Step 6: Solving The Third Layer Corners</h2>
+
+<p>The solveThirdLayerCorners method focuses on solving the corner pieces of the third layer on the Rubik's Cube. It utilizes specific algorithms and moves to manipulate the cube and achieve the desired configuration of the third layer corners.</p>
+<h3>🧠Algorithm Explanation</h3>
+<p>The function first checks the number of correctly positioned third layer corner pieces. If all four corners are in the correct position, the function exits with a success message.</p>
+<p>If there are already two correctly positioned corner pieces, the function applies specific algorithms to solve the remaining corners. It checks adjacent faces for pairs of correctly positioned corner pieces and applies reverse moves accordingly.</p>
+<p>If there are no correctly positioned corners, the function performs a series of <code>U</code> and <code>U'</code> turns to reposition the cube and rechecks for correctly positioned corners. This process is repeated until at least two corner pieces are in the correct position.</p>
+<p>The function then adapts its approach based on the specific arrangement of correctly positioned corner pieces, ensuring the entire third layer corners are solved. It prints the corresponding moves for solving the corners.</p>
+<p>If successful, the function prints a success message.</p>
+
+<p align="center">
+  <img src="assets/solvingThirdLayerCorners.png"" alt="cubeImage" width="150">
+</p>
+
+<p align="center">
+  <img src="assets/rainbow.png"" alt="Rainbow" width="your_preferred_width">
+</p>
+
+<!-- STEP7 -->
+<h2 id="step7"> :small_orange_diamond: Step 7: Solving The Third Layer Edges</h2>
+
+<p>The <code>solveThirdLayerEdges</code> method is designed to solve the edge pieces of the third layer on the Rubik's Cube. It checks the current state of the cube and performs specific algorithms to correctly position the third layer edges.</p>
+<h3>🧠Algorithm Explanation</h3>
+<p>The method begins by checking if the cube is already solved. If all edge pieces are in their correct positions, the method prints a success message and returns.</p>
+<p>If not solved, the method counts the number of correctly positioned edge pieces. If there are less than four correct edges, the method enters a loop to perform the necessary algorithms until all edges are correctly positioned.</p>
+<p>The method then evaluates each edge piece individually, determining the appropriate algorithm based on its current position and orientation relative to the adjacent faces. It prints the corresponding algorithm and executes the required moves to solve the edges.</p>
+<p>After each iteration, the method rechecks the number of correctly positioned edges. The loop continues until all four edges are in their correct positions.</p>
+
+
+<p align="center">
+  <img src="assets/solvedCube.svg"" alt="cubeImage" width="150">
+</p> 
+
+<p align="center">
+  <img src="assets/rainbow.png"" alt="Rainbow" width="your_preferred_width">
+</p>
+
+<!-- CREDITS -->
+<h2 id="credits"> :scroll: Credits</h2>
+
+Hakan Gezginci
+
+[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Anixton)
+[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hakan-gezginci-74a939253/)
+
+Acknowledgements: Based on offical Rubik's Cube Solution, <a href="https://rubiks.com/en-US/solve-it/">https://rubiks.com/en-US/solve-it/</a>
