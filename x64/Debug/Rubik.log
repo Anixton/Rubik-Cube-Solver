@@ -1,2 +1,5 @@
 ﻿  cubeSolve.cpp
-  Rubik.vcxproj -> C:\Users\hakan\Documents\GitHub\Rubik-Cube-Solver\x64\Debug\Rubik.exe
+  Rubik.cpp
+  Generating Code...
+  LINK : C:\Users\hakan\source\repos\Rubik\x64\Debug\Rubik.exe not found or not built by the last incremental link; performing full link
+  Rubik.vcxproj -> C:\Users\hakan\source\repos\Rubik\x64\Debug\Rubik.exe
