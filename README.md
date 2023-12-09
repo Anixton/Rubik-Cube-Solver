@@ -1,5 +1,5 @@
 <p align="center"> 
- <img src="assets/main_image.png" alt="Rubiks_cube_2" width="150">
+ <img src="assets/main_image-removebg-preview.png" alt="Rubiks_cube_2" width="300">
 </p>
 
 <h1 align="center"> Rubik's Cube Solver </h1>
@@ -66,7 +66,7 @@
 <p>After successfully solving the white cross, the function prints a success message.</p>
 
 <p align="center">
-  <img src="assets/whiteCross.png"" alt="cubeImage" width="150">
+  <img src="assets/whiteCross-removebg-preview.png"" alt="cubeImage" width="200">
 </p>
 
 <p align="center">
@@ -86,7 +86,7 @@
 <p>After successfully solving the first layer, the function prints a success message.</p>
 
 <p align="center">
-  <img src="assets/firstLayerSolved.png"" alt="cubeImage" width="150">
+  <img src="assets/firstLayerSolved.png"" alt="cubeImage" width="200">
 </p>
 
 <p align="center">
@@ -105,7 +105,7 @@
 <p>After successfully solving the second layer, the function prints a success message.</p>
 
 <p align="center">
-  <img src="assets/secondLayerSolved.png"" alt="cubeImage" width="150">
+  <img src="assets/secondLayerSolved-removebg-preview.png"" alt="cubeImage" width="250">
 </p>
 
 <p align="center">
@@ -122,7 +122,7 @@
 <p>If successful, the function prints a success message.</p>
 
 <p align="center">
-  <img src="assets/yellowCross.png"" alt="cubeImage" width="150">
+  <img src="assets/yellowCross-removebg-preview.png"" alt="cubeImage" width="350">
 </p>
 
 <p align="center">
@@ -140,7 +140,7 @@
 <p>If successful, the function prints a success message.</p>
 
 <p align="center">
-  <img src="assets/whiteFace.png"" alt="cubeImage" width="150">
+  <img src="assets/whiteFace-removebg-preview.png"" alt="cubeImage" width="200">
 </p>
 
 <p align="center">
@@ -159,7 +159,7 @@
 <p>If successful, the function prints a success message.</p>
 
 <p align="center">
-  <img src="assets/solvingThirdLayerCorners.png"" alt="cubeImage" width="150">
+  <img src="assets/solvingThirdLayerCorners-removebg-preview.png"" alt="cubeImage" width="300">
 </p>
 
 <p align="center">
@@ -178,7 +178,7 @@
 
 
 <p align="center">
-  <img src="assets/solvedCube.svg"" alt="cubeImage" width="150">
+  <img src="assets/solvedCube.svg"" alt="cubeImage" width="250">
 </p> 
 
 <p align="center">
